@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -38,40 +37,38 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/rss.xml" />
   </head>
-  <body style="background: #ffe4c4; margin: 0; padding: 0; min-height: 100vh;">
-    <div class="v2-page">
-      <!-- Header -->
+  <body>
+    <div class="v2-content">
+      <!-- 1. Site title -->
       <header class="v2-header">
         <a href="https://nomadtaxhelp.com" class="v2-logo">NomadTaxHelp</a>
       </header>
 
-      <!-- Introduction -->
+      <!-- 2. Introduction -->
       <div class="v2-intro">
-        <p>Hi, I'm Felix.<br />
-        I help nomads sort their tax setup.<br />
-        These are the guides I wish I'd had.</p>
+        <p>
+          Hi, I'm Felix.<br />
+          I help nomads sort their tax setup.<br />
+          These are the guides I wish I'd had.
+        </p>
       </div>
 
-      <!-- Section title -->
+      <!-- 3. Section heading -->
       <h2 class="v2-section-title">Guides</h2>
 
-      <!-- Post list -->
-      <ul class="v2-post-list">
+      <!-- 4. Post list -->
+      <div class="v2-post-list">
         {sortedPosts.map((post) => {
           const isNew = post.data.publishDate >= fourteenDaysAgo;
           return (
-            <li>
-              <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
-              {isNew && <span class="v2-new-badge">(new)</span>}
-            </li>
+            <div class="v2-post-item">
+              <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>{isNew && <span class="v2-new-badge"> (new)</span>}
+            </div>
           );
         })}
-      </ul>
+      </div>
 
-      <!-- Spacer -->
-      <div style="height: 80px;"></div>
-
-      <!-- CTA -->
+      <!-- 5. CTA -->
       <div class="v2-cta">
         <hr class="v2-rule" />
         <p class="v2-cta-heading">Want help sorting yours?</p>
@@ -83,183 +80,225 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
         </a>
       </div>
 
-      <!-- Footer -->
+      <!-- 6. Footer -->
       <footer class="v2-footer">
-        <p>NomadTaxHelp — hello@nomadtaxhelp.com</p>
-        <p>We're not tax or legal advisers. We work alongside licensed partners who are.</p>
+        <p>NomadTaxHelp &middot; <a href="mailto:hello@nomadtaxhelp.com">hello@nomadtaxhelp.com</a></p>
+        <p class="v2-footer-disclaimer">We're not tax or legal advisers. We work alongside licensed partners who are.</p>
+        <p class="v2-footer-links">
+          <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer">Instagram</a>
+          &middot;
+          <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer">Main site</a>
+        </p>
       </footer>
     </div>
 
     <style>
-      /* V2 page — self-contained styles, no Tailwind dependency for layout */
-      .v2-page {
-        max-width: 600px;
-        padding: 0 40px 40px 40px;
-        /* Left-biased: on wide screens, offset ~20% from left */
-        margin-left: max(40px, calc(20vw - 80px));
-        margin-right: auto;
+      /* ===== V2 — self-contained, no Tailwind ===== */
+
+      body {
+        background: #ffe4c4;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      @media (max-width: 768px) {
-        .v2-page {
-          padding: 0 24px 40px 24px;
-          margin-left: 0;
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Content container — centred */
+      .v2-content {
+        max-width: 620px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      @media (min-width: 1200px) {
+        .v2-content {
+          padding: 0 40px;
         }
       }
 
-      /* Header */
+      /* --- 1. Site title --- */
       .v2-header {
-        padding-top: 40px;
-      }
-
-      @media (max-width: 768px) {
-        .v2-header {
-          padding-top: 24px;
-        }
+        padding-top: 48px;
+        text-align: center;
       }
 
       .v2-logo {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         font-weight: 600;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
+        letter-spacing: -0.01em;
         color: #004748;
         text-decoration: none;
         cursor: pointer;
+        transition: opacity 200ms ease;
       }
 
       .v2-logo:hover {
-        color: #004748;
+        opacity: 0.7;
       }
 
-      /* Intro */
+      /* --- 2. Introduction --- */
       .v2-intro {
-        margin-top: 120px;
+        margin-top: 80px;
+        text-align: center;
       }
 
       @media (max-width: 768px) {
         .v2-intro {
-          margin-top: 80px;
+          margin-top: 56px;
         }
       }
 
       .v2-intro p {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-size: 1.125rem;
         color: #004748;
-        line-height: 1.8;
+        line-height: 2.0;
         margin: 0;
       }
 
-      /* Section title */
+      @media (max-width: 768px) {
+        .v2-intro p {
+          line-height: 1.8;
+        }
+      }
+
+      /* --- 3. Section heading --- */
       .v2-section-title {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         font-weight: 700;
         font-size: 1.5rem;
         color: #004748;
-        margin-top: 64px;
-        margin-bottom: 24px;
+        text-align: center;
+        margin-top: 72px;
+        margin-bottom: 32px;
         text-decoration: none;
       }
 
-      /* Post list */
+      /* --- 4. Post list --- */
       .v2-post-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        text-align: center;
       }
 
-      .v2-post-list li {
-        margin-bottom: 16px;
+      .v2-post-item {
+        margin-bottom: 20px;
         line-height: 1.4;
       }
 
-      .v2-post-list a {
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      .v2-post-item a {
+        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-size: 1.0625rem;
         color: #004748;
         text-decoration: none;
         cursor: pointer;
-        transition: text-decoration 150ms ease;
+        transition: color 200ms ease;
       }
 
-      .v2-post-list a:hover {
+      .v2-post-item a:hover {
+        color: #cd7e11;
         text-decoration: underline;
-        color: #004748;
       }
 
       .v2-new-badge {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         font-weight: 400;
+        font-style: italic;
         font-size: 0.8125rem;
         color: #cd7e11;
-        margin-left: 6px;
       }
 
-      /* CTA */
+      /* --- 5. CTA --- */
       .v2-cta {
-        max-width: 600px;
+        margin-top: 80px;
+        text-align: center;
       }
 
       .v2-rule {
+        width: 80px;
         border: none;
         border-top: 1px solid rgba(0, 71, 72, 0.2);
-        margin: 0 0 40px 0;
-        max-width: 600px;
+        margin: 0 auto 40px auto;
       }
 
       .v2-cta-heading {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 600;
-        font-size: 1.125rem;
+        font-weight: 500;
+        font-size: 1rem;
         color: #004748;
-        margin: 0 0 12px 0;
+        margin: 0 0 16px 0;
       }
 
       .v2-cta-primary {
         display: block;
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-size: 1rem;
         color: #cd7e11;
         text-decoration: none;
         cursor: pointer;
         margin-bottom: 8px;
+        transition: color 200ms ease;
       }
 
       .v2-cta-primary:hover {
         text-decoration: underline;
-        color: #cd7e11;
       }
 
       .v2-cta-secondary {
         display: block;
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-size: 0.875rem;
-        color: rgba(0, 71, 72, 0.6);
+        color: rgba(0, 71, 72, 0.5);
         text-decoration: none;
         cursor: pointer;
+        transition: color 200ms ease;
       }
 
       .v2-cta-secondary:hover {
         text-decoration: underline;
       }
 
-      /* Footer */
+      /* --- 6. Footer --- */
       .v2-footer {
         margin-top: 80px;
-        padding-bottom: 0;
+        padding-bottom: 48px;
+        text-align: center;
       }
 
       .v2-footer p {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         font-weight: 400;
         font-size: 0.75rem;
-        color: rgba(0, 71, 72, 0.4);
-        margin: 0 0 4px 0;
+        color: rgba(0, 71, 72, 0.35);
+        margin: 0;
         line-height: 1.5;
+      }
+
+      .v2-footer a {
+        color: rgba(0, 71, 72, 0.35);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 200ms ease;
+      }
+
+      .v2-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .v2-footer-disclaimer {
+        margin-top: 8px;
+      }
+
+      .v2-footer-links {
+        margin-top: 4px;
       }
     </style>
   </body>
