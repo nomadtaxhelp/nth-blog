@@ -55,13 +55,14 @@ h3 {
   font-weight: 600;
 }
 
-a {
+/* Links: only underline in prose/body content, not in nav/header/footer/buttons */
+.prose a {
   color: var(--color-amber-600);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-a:hover {
+.prose a:hover {
   color: var(--color-amber-700);
 }
 

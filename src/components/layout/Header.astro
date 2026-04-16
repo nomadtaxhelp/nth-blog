@@ -6,31 +6,39 @@ const navLinks = [
   { label: 'About', href: '/about' },
 ];
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="bg-teal-900 text-white sticky top-0 z-50">
   <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
     <!-- Logo -->
-    <a href="/" class="no-underline flex items-center gap-2 shrink-0">
+    <a href="/" class="flex items-center gap-2 shrink-0 no-underline">
       <span class="font-heading text-xl font-bold tracking-tight text-white">NomadTaxHelp</span>
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-6">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="text-sm font-heading font-medium text-white/90 hover:text-white no-underline transition-colors"
-          {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        >
-          {link.label}
-        </a>
-      ))}
+      {navLinks.map((link) => {
+        const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+        return (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-heading font-medium text-white tracking-[0.01em] no-underline transition-colors duration-200 pb-1',
+              isActive ? 'border-b-2 border-cream-100' : 'border-b-2 border-transparent hover:text-cream-100',
+            ]}
+            {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {link.label}
+          </a>
+        );
+      })}
       <a
         href={calLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center px-4 py-2 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+        class="inline-flex items-center px-5 py-2 rounded-lg bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200"
       >
         Book a Call
       </a>
@@ -55,7 +63,7 @@ const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
     {navLinks.map((link) => (
       <a
         href={link.href}
-        class="block py-3 text-white/90 hover:text-white no-underline font-heading text-sm border-b border-white/5"
+        class="block py-3 text-white hover:text-cream-100 no-underline font-heading text-sm font-medium border-b border-white/5 transition-colors duration-200"
         {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {link.label}
@@ -65,7 +73,7 @@ const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
       href={calLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="mt-3 block text-center px-4 py-3 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+      class="mt-3 block text-center px-5 py-3 rounded-lg bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200"
     >
       Book a Call
     </a>
@@ -78,7 +86,7 @@ const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
     href={calLink}
     target="_blank"
     rel="noopener noreferrer"
-    class="block text-center px-4 py-3 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors shadow-lg"
+    class="block text-center px-5 py-3 rounded-lg bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200 shadow-lg"
   >
     Book a Call &rarr;
   </a>

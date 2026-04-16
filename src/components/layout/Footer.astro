@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
       href={calLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center px-6 py-3 rounded-full bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+      class="inline-flex items-center px-8 py-3.5 rounded-lg bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200"
     >
       Book a Call &rarr;
     </a>
@@ -31,83 +31,31 @@ const currentYear = new Date().getFullYear();
       <p class="text-sm leading-relaxed">
         Helps digital nomads and remote entrepreneurs build legal, compliant, low-tax setups. Paraguay residency, US LLC formation, and tax exit strategy.
       </p>
-      <p class="text-sm mt-3 italic">
-        We're not tax or legal advisers. We work alongside licensed partners who are.
-      </p>
     </div>
 
     <!-- Nav -->
     <div>
       <p class="font-heading font-semibold text-cream-100 text-sm mb-3 uppercase tracking-wider">Links</p>
       <nav class="flex flex-col gap-2">
-        <a href="/about" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline">About</a>
-        <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline">Main Site</a>
-        <a href={healthCheckLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline">Health Check</a>
-        <a href={calLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline">Book a Call</a>
-        <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline">Instagram</a>
+        <a href="/about" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">About</a>
+        <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Main Site</a>
+        <a href={healthCheckLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Health Check</a>
+        <a href={calLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Book a Call</a>
+        <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Instagram</a>
       </nav>
     </div>
 
-    <!-- Newsletter signup -->
+    <!-- Contact -->
     <div>
-      <p class="font-heading font-semibold text-cream-100 text-sm mb-3 uppercase tracking-wider">Monthly nomad tax updates</p>
-      <p class="text-sm mb-3">One email a month. Tax rule changes, new jurisdictions, case studies. Useful, not salesy.</p>
-      <form id="footer-newsletter-form" class="flex gap-2">
-        <input
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-          class="flex-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-cream-100 placeholder:text-cream-100/40 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
-        />
-        <button
-          type="submit"
-          class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
-        >
-          Subscribe
-        </button>
-      </form>
-      <p id="footer-newsletter-success" class="hidden text-sm text-green-600 mt-2">
-        You're subscribed. Check your email.
-      </p>
-      <p id="footer-newsletter-error" class="hidden text-sm text-coral-600 mt-2">
-        Something went wrong. Try again.
-      </p>
+      <p class="font-heading font-semibold text-cream-100 text-sm mb-3 uppercase tracking-wider">Contact</p>
+      <a href="mailto:hello@nomadtaxhelp.com" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">
+        hello@nomadtaxhelp.com
+      </a>
     </div>
   </div>
 
-  <div class="max-w-[1120px] mx-auto mt-8 pt-6 border-t border-white/10 text-center text-xs text-cream-100/40">
-    &copy; {currentYear} NomadTaxHelp. All rights reserved.
+  <div class="max-w-[1120px] mx-auto mt-8 pt-6 border-t border-white/10 text-center text-xs text-cream-100/60">
+    <p class="mb-1">We're not tax or legal advisers. We work alongside licensed partners who are.</p>
+    <p class="text-cream-100/40">&copy; {currentYear} NomadTaxHelp. All rights reserved.</p>
   </div>
 </footer>
-
-<script>
-  const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null;
-  const successMsg = document.getElementById('footer-newsletter-success');
-  const errorMsg = document.getElementById('footer-newsletter-error');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    successMsg?.classList.add('hidden');
-    errorMsg?.classList.add('hidden');
-
-    const formData = new FormData(form);
-    const email = formData.get('email') as string;
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'footer-newsletter' }),
-      });
-      if (res.ok) {
-        successMsg?.classList.remove('hidden');
-        form.reset();
-      } else {
-        errorMsg?.classList.remove('hidden');
-      }
-    } catch {
-      errorMsg?.classList.remove('hidden');
-    }
-  });
-</script>
