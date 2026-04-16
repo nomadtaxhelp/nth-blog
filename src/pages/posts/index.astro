@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import CategoryPill from '../../components/ui/CategoryPill.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+const categories = [
+  { slug: 'paraguay', label: 'Paraguay' },
+  { slug: 'tax-residency', label: 'Tax Residency' },
+  { slug: 'us-llc', label: 'US LLC' },
+];
+---
+
+<BaseLayout
+  title="All Posts | NomadTaxHelp Blog"
+  description="Browse all NomadTaxHelp blog posts on tax residency, Paraguay setup, US LLCs, and nomad tax strategies."
+>
+  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl sm:text-4xl mb-6">All posts</h1>
+
+    <!-- Category pills -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {categories.map((cat) => (
+        <CategoryPill category={cat.slug} label={cat.label} />
+      ))}
+    </div>
+
+    <!-- Posts grid -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sortedPosts.map((post) => (
+        <a
+          href={`/posts/${post.data.slug}`}
+          class="block bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow no-underline group p-5"
+        >
+          <CategoryPill
+            category={post.data.category}
+            label={categories.find((c) => c.slug === post.data.category)?.label || post.data.category}
+            size="sm"
+          />
+          <h2 class="font-heading font-semibold text-teal-900 text-lg mt-2 mb-2 group-hover:text-amber-600 transition-colors">
+            {post.data.title}
+          </h2>
+          <p class="text-sm text-gray-600 line-clamp-2 mb-3">{post.data.description}</p>
+          <time class="text-xs text-gray-600" datetime={post.data.publishDate.toISOString()}>
+            {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

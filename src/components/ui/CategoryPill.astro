@@ -1,0 +1,21 @@
+---
+interface Props {
+  category: string;
+  label: string;
+  size?: 'sm' | 'md';
+}
+
+const { category, label, size = 'md' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-2.5 py-0.5 text-[11px]',
+  md: 'px-3 py-1 text-xs',
+};
+---
+
+<a
+  href={`/category/${category}`}
+  class={`inline-block font-heading font-semibold rounded-full bg-teal-900 text-white no-underline hover:bg-teal-800 transition-colors ${sizeClasses[size]}`}
+>
+  {label}
+</a>

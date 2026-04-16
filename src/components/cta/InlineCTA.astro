@@ -1,0 +1,113 @@
+---
+interface Props {
+  variant: 'call' | 'health-check' | 'upgrade';
+  heading?: string;
+  upgradeId?: string;
+}
+
+const { variant, heading, upgradeId } = Astro.props;
+
+const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
+
+const variants = {
+  call: {
+    icon: '💡',
+    defaultHeading: 'Want a personalised read on your situation?',
+    defaultBody: "Book a free 20-min clarity call. I'll map your specific setup, flag the risks, and give you a one-page plan.",
+    buttonText: 'Book a call →',
+    buttonLink: calLink,
+    external: true,
+  },
+  'health-check': {
+    icon: '✅',
+    defaultHeading: 'How clean is your tax exit really?',
+    defaultBody: 'Take the 2-minute Tax Residency Health Check. Get a personalised score on your exposure and what to fix.',
+    buttonText: 'Take the Health Check →',
+    buttonLink: healthCheckLink,
+    external: true,
+  },
+  upgrade: {
+    icon: '📄',
+    defaultHeading: 'Get the free guide',
+    defaultBody: 'Enter your email and we\'ll send it straight to your inbox.',
+    buttonText: 'Send it to me',
+    buttonLink: '#',
+    external: false,
+  },
+};
+
+const config = variants[variant];
+const displayHeading = heading || config.defaultHeading;
+---
+
+<aside class="bg-cream-50 border-l-4 border-teal-900 rounded-r-xl p-5 sm:p-6 my-8">
+  <p class="text-xl mb-2">{config.icon}</p>
+  <p class="font-heading font-semibold text-teal-900 text-lg mb-2">{displayHeading}</p>
+
+  {variant === 'upgrade' ? (
+    <div>
+      <p class="text-sm text-gray-600 mb-3"><slot>{config.defaultBody}</slot></p>
+      <form class="inline-cta-form flex gap-2" data-upgrade-id={upgradeId}>
+        <input
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+          class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+        />
+        <button
+          type="submit"
+          class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
+        >
+          {config.buttonText}
+        </button>
+      </form>
+      <p class="inline-cta-success hidden text-sm text-green-600 mt-2">Check your email. The guide is on its way.</p>
+      <p class="inline-cta-error hidden text-sm text-coral-600 mt-2">Something went wrong. Try again.</p>
+    </div>
+  ) : (
+    <div>
+      <p class="text-sm text-gray-600 mb-4"><slot>{config.defaultBody}</slot></p>
+      <a
+        href={config.buttonLink}
+        class="inline-flex items-center px-5 py-2.5 rounded-full bg-amber-600 text-white font-heading font-semibold text-sm no-underline hover:bg-amber-700 transition-colors"
+        {...(config.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {config.buttonText}
+      </a>
+    </div>
+  )}
+</aside>
+
+<script>
+  document.querySelectorAll('.inline-cta-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target as HTMLFormElement;
+      const success = f.parentElement?.querySelector('.inline-cta-success');
+      const error = f.parentElement?.querySelector('.inline-cta-error');
+      success?.classList.add('hidden');
+      error?.classList.add('hidden');
+
+      const email = new FormData(f).get('email') as string;
+      const upgradeId = f.dataset.upgradeId;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, upgradeId, source: 'inline-cta' }),
+        });
+        if (res.ok) {
+          success?.classList.remove('hidden');
+          f.reset();
+        } else {
+          error?.classList.remove('hidden');
+        }
+      } catch {
+        error?.classList.remove('hidden');
+      }
+    });
+  });
+</script>

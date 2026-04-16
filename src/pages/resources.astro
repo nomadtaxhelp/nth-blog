@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const upgrades = await getCollection('upgrades');
+---
+
+<BaseLayout
+  title="Free Resources | NomadTaxHelp Blog"
+  description="Free guides, checklists, and tools for digital nomads sorting their tax residency, US LLC, and international setup."
+>
+  <div class="max-w-[680px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h1 class="text-3xl sm:text-4xl mb-3">Free resources</h1>
+    <p class="text-gray-600 mb-10 max-w-lg">
+      Guides and checklists to help you sort your tax setup. Enter your email and we'll send the PDF straight to your inbox.
+    </p>
+
+    <div class="space-y-6">
+      {upgrades.map((upgrade) => (
+        <div class="bg-cream-50 border border-gray-200 rounded-xl p-5 sm:p-6">
+          <p class="text-xl mb-2">📄</p>
+          <h2 class="font-heading font-semibold text-teal-900 text-xl mb-1">{upgrade.data.title}</h2>
+          <p class="text-sm text-gray-600 mb-4">{upgrade.data.description}</p>
+          <form class="resource-form flex gap-2" data-upgrade-id={upgrade.data.id}>
+            <input
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
+            >
+              Send it to me
+            </button>
+          </form>
+          <p class="resource-success hidden text-sm text-green-600 mt-2">Check your email. The guide is on its way.</p>
+          <p class="resource-error hidden text-sm text-coral-600 mt-2">Something went wrong. Try again.</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.resource-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target as HTMLFormElement;
+      const success = f.parentElement?.querySelector('.resource-success');
+      const error = f.parentElement?.querySelector('.resource-error');
+      success?.classList.add('hidden');
+      error?.classList.add('hidden');
+
+      const email = new FormData(f).get('email') as string;
+      const upgradeId = f.dataset.upgradeId;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, upgradeId, source: 'resources-page' }),
+        });
+        if (res.ok) {
+          success?.classList.remove('hidden');
+          f.reset();
+        } else {
+          error?.classList.remove('hidden');
+        }
+      } catch {
+        error?.classList.remove('hidden');
+      }
+    });
+  });
+</script>

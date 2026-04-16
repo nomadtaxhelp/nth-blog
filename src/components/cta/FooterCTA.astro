@@ -1,0 +1,22 @@
+---
+// FooterCTA is already integrated into Footer.astro as the full-width strip.
+// This component exists for standalone use if needed elsewhere.
+const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+---
+
+<section class="bg-teal-900 text-cream-100 py-12 px-4">
+  <div class="max-w-[680px] mx-auto text-center">
+    <h2 class="font-heading text-2xl font-bold text-cream-100 mb-3">Ready to sort your tax setup?</h2>
+    <p class="text-cream-100/80 mb-6 font-body">
+      Book a free 20-min clarity call. I'll map your situation, flag the risks, and give you a one-page plan to act on.
+    </p>
+    <a
+      href={calLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center px-6 py-3 rounded-full bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+    >
+      Book a Call &rarr;
+    </a>
+  </div>
+</section>

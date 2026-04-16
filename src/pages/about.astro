@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+
+const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
+---
+
+<BaseLayout
+  title="About | NomadTaxHelp Blog"
+  description="Felix Yanez-Bowker is the co-founder of NomadTaxHelp. He writes about tax residency, US LLCs, and how nomads can build clean, defensible cross-border setups."
+>
+  <article class="max-w-[680px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
+      <!-- Headshot placeholder -->
+      <div class="w-[200px] h-[200px] rounded-lg bg-teal-900 flex items-center justify-center text-white font-heading font-bold text-5xl shrink-0">
+        F
+      </div>
+      <div>
+        <h1 class="text-3xl sm:text-4xl mb-4">Hi, I'm Felix. I help nomads sort their tax setup.</h1>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>
+        I'm the co-founder of NomadTaxHelp, a service that helps digital nomads and remote entrepreneurs build legal, low-tax setups that actually hold up to scrutiny. I started this because I went through the same maze myself: trying to work out which residency to take, how to exit cleanly, what would actually protect me, and which advisers were worth listening to. Most of what I read was either too technical, too generic, or too obviously trying to sell me something.
+      </p>
+
+      <p>
+        This blog is the resource I wish I'd had. I write about the things people actually get wrong: spending too many days in their old country, leaving a home "available" to them, running income through the wrong entity, treating a tax residency certificate like a magic shield. The goal is to give you the clearest possible read on your situation, then either help you do it yourself or work with you to set it up properly.
+      </p>
+
+      <p>
+        I'm based between Andorra, Spain, and wherever the snow is good. I'm British, 29, and I've been location-independent for the better part of a decade. Before NomadTaxHelp I spent six years at a crypto hedge fund, and I still write a separate publication on geopolitics, demographics, and decentralisation called <em>The Curious Cat</em>. Tax residency for nomads sits at the intersection of a lot of the things I find genuinely interesting: how individuals navigate states, how money flows across borders, and what it actually takes to live a free life in 2026.
+      </p>
+
+      <h2>What NTH does</h2>
+
+      <p>
+        NomadTaxHelp's core service is end-to-end Paraguay residency setup, paired with optional US LLC formation. Paraguay gives you legal 0% tax on foreign-source income through a 3-day setup visit, with low ongoing presence requirements. We handle the documents, the in-country logistics, the tax number, the residency certificate, and the US LLC if you want it. We've built this with a partner team in Asunci&oacute;n who handle everything on the ground. Our clients have a 100% approval rate.
+      </p>
+
+      <p>
+        If you want to know more about the service itself, the <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer">main site</a> covers it. If you want to see if your current setup has any leaks before deciding what to do, the <a href={healthCheckLink} target="_blank" rel="noopener noreferrer">Tax Residency Health Check</a> is a free 2-minute assessment. And if you want to talk it through, <a href={calLink} target="_blank" rel="noopener noreferrer">book a free 20-minute clarity call</a> and I'll map your situation directly.
+      </p>
+
+      <h2>What NTH isn't</h2>
+
+      <p>
+        NomadTaxHelp is not a tax adviser or a legal adviser. We don't file your taxes, we don't draft contracts, and we don't give you formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational. For anything specific to your situation, confirm with a professional in the relevant jurisdiction before you act on it. That's not a disclaimer for legal cover, it's how this stuff actually works: tax law is local, and your specifics matter.
+      </p>
+
+      <h2>Get in touch</h2>
+
+      <ul>
+        <li>Book a free clarity call: <a href={calLink} target="_blank" rel="noopener noreferrer">cal.com/nomadtaxhelp/clarity-call</a></li>
+        <li>Take the Tax Residency Health Check: <a href={healthCheckLink} target="_blank" rel="noopener noreferrer">nomadtaxhelp.com/health-check</a></li>
+        <li>Email: <a href="mailto:hello@nomadtaxhelp.com">hello@nomadtaxhelp.com</a></li>
+        <li>Instagram: <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer">@nomadtaxhelp_</a></li>
+      </ul>
+    </div>
+  </article>
+</BaseLayout>

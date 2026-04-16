@@ -1,0 +1,99 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'All Posts', href: '/posts' },
+  { label: 'Health Check', href: 'https://nomadtaxhelp.com/health-check' },
+  { label: 'About', href: '/about' },
+];
+const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+---
+
+<header class="bg-teal-900 text-white sticky top-0 z-50">
+  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/" class="no-underline flex items-center gap-2 shrink-0">
+      <span class="font-heading text-xl font-bold tracking-tight text-white">NomadTaxHelp</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-6">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-heading font-medium text-white/90 hover:text-white no-underline transition-colors"
+          {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={calLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center px-4 py-2 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+      >
+        Book a Call
+      </a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-white"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="hidden md:hidden bg-teal-900 border-t border-white/10 px-4 pb-4">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="block py-3 text-white/90 hover:text-white no-underline font-heading text-sm border-b border-white/5"
+        {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href={calLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-3 block text-center px-4 py-3 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+    >
+      Book a Call
+    </a>
+  </nav>
+</header>
+
+<!-- Mobile floating CTA -->
+<div class="md:hidden fixed bottom-4 left-4 right-4 z-40">
+  <a
+    href={calLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="block text-center px-4 py-3 rounded-full bg-amber-600 text-white text-sm font-heading font-semibold no-underline hover:bg-amber-700 transition-colors shadow-lg"
+  >
+    Book a Call &rarr;
+  </a>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    hamburgerIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  });
+</script>

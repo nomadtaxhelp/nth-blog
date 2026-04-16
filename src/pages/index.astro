@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import CategoryPill from '../components/ui/CategoryPill.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const featuredPost = sortedPosts.find((p) => p.data.featured) || sortedPosts[0];
+const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
+
+const categories = [
+  { slug: 'paraguay', label: 'Paraguay' },
+  { slug: 'tax-residency', label: 'Tax Residency' },
+  { slug: 'us-llc', label: 'US LLC' },
+];
+
+const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'NomadTaxHelp',
+  url: 'https://nomadtaxhelp.com',
+  logo: 'https://nomadtaxhelp.com/logo.png',
+  sameAs: ['https://www.instagram.com/nomadtaxhelp_'],
+};
+---
+
+<BaseLayout
+  title="NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup"
+  description="Practical guides on tax residency, US LLCs, and international tax exits for digital nomads and remote entrepreneurs. Written by Felix Yanez-Bowker, co-founder of NomadTaxHelp."
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="bg-cream-100 py-16 sm:py-24 px-4">
+    <div class="max-w-[680px] mx-auto text-center">
+      <h1 class="font-heading text-3xl sm:text-[2.75rem] font-bold text-teal-900 leading-tight mb-5">
+        Practical guides for nomads sorting out their tax setup
+      </h1>
+      <p class="font-body text-lg text-gray-600 mb-8 max-w-lg mx-auto">
+        Written by Felix, co-founder of NomadTaxHelp. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href={calLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 rounded-full bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-colors"
+        >
+          Book a Call
+        </a>
+        <a
+          href={healthCheckLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 rounded-full border-2 border-teal-900 text-teal-900 font-heading font-semibold no-underline hover:bg-teal-900 hover:text-white transition-colors"
+        >
+          Take the Health Check
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Featured post -->
+    {featuredPost && (
+      <section class="mb-12">
+        <a
+          href={`/posts/${featuredPost.data.slug}`}
+          class="block bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow no-underline overflow-hidden group"
+        >
+          <div class="p-6 sm:p-8">
+            <CategoryPill
+              category={featuredPost.data.category}
+              label={categories.find((c) => c.slug === featuredPost.data.category)?.label || featuredPost.data.category}
+              size="sm"
+            />
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-teal-900 mt-3 mb-3 group-hover:text-amber-600 transition-colors">
+              {featuredPost.data.title}
+            </h2>
+            <p class="text-gray-600 mb-4 max-w-2xl">{featuredPost.data.description}</p>
+            <div class="flex items-center gap-3 text-sm text-gray-600">
+              <span class="font-heading font-medium text-gray-900">Felix Yanez-Bowker</span>
+              <span>&middot;</span>
+              <time datetime={featuredPost.data.publishDate.toISOString()}>
+                {featuredPost.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+              {featuredPost.data.readingTime && (
+                <>
+                  <span>&middot;</span>
+                  <span>{featuredPost.data.readingTime} min read</span>
+                </>
+              )}
+            </div>
+          </div>
+        </a>
+      </section>
+    )}
+
+    <!-- Category pills -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {categories.map((cat) => (
+        <CategoryPill category={cat.slug} label={cat.label} />
+      ))}
+    </div>
+
+    <!-- Recent posts grid -->
+    {recentPosts.length > 0 && (
+      <section class="mb-16">
+        <h2 class="font-heading text-xl font-semibold text-teal-900 mb-6">Recent posts</h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {recentPosts.map((post) => (
+            <a
+              href={`/posts/${post.data.slug}`}
+              class="block bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow no-underline group p-5"
+            >
+              <CategoryPill
+                category={post.data.category}
+                label={categories.find((c) => c.slug === post.data.category)?.label || post.data.category}
+                size="sm"
+              />
+              <h3 class="font-heading font-semibold text-teal-900 text-lg mt-2 mb-2 group-hover:text-amber-600 transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-sm text-gray-600 line-clamp-2 mb-3">{post.data.description}</p>
+              <time class="text-xs text-gray-600" datetime={post.data.publishDate.toISOString()}>
+                {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Newsletter strip -->
+    <section class="bg-cream-50 rounded-xl border border-gray-200 p-6 sm:p-8 text-center">
+      <h2 class="font-heading text-xl font-semibold text-teal-900 mb-2">Monthly nomad tax updates</h2>
+      <p class="text-gray-600 mb-5 max-w-md mx-auto">
+        One email a month. Tax rule changes, new jurisdictions, case studies. Useful, not salesy.
+      </p>
+      <form id="home-newsletter-form" class="flex gap-2 max-w-sm mx-auto">
+        <input
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+          class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+        />
+        <button
+          type="submit"
+          class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p id="home-newsletter-success" class="hidden text-sm text-green-600 mt-2">You're subscribed. Check your email.</p>
+      <p id="home-newsletter-error" class="hidden text-sm text-coral-600 mt-2">Something went wrong. Try again.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('home-newsletter-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const success = document.getElementById('home-newsletter-success');
+    const error = document.getElementById('home-newsletter-error');
+    success?.classList.add('hidden');
+    error?.classList.add('hidden');
+
+    const email = new FormData(form).get('email') as string;
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'home-newsletter' }),
+      });
+      if (res.ok) {
+        success?.classList.remove('hidden');
+        form.reset();
+      } else {
+        error?.classList.remove('hidden');
+      }
+    } catch {
+      error?.classList.remove('hidden');
+    }
+  });
+</script>

@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import CategoryPill from '../ui/CategoryPill.astro';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { posts } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  'paraguay': 'Paraguay',
+  'tax-residency': 'Tax Residency',
+  'us-llc': 'US LLC',
+};
+---
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {posts.slice(0, 3).map((post) => (
+    <a
+      href={`/posts/${post.data.slug}`}
+      class="block p-5 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow no-underline group"
+    >
+      <CategoryPill
+        category={post.data.category}
+        label={categoryLabels[post.data.category] || post.data.category}
+        size="sm"
+      />
+      <h3 class="font-heading font-semibold text-teal-900 text-base mt-2 mb-2 group-hover:text-amber-600 transition-colors">
+        {post.data.title}
+      </h3>
+      <p class="text-sm text-gray-600 line-clamp-2">{post.data.description}</p>
+    </a>
+  ))}
+</div>

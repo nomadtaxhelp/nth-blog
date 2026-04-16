@@ -1,0 +1,193 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Hero from '../post/Hero.astro';
+import AnswerCapsule from '../post/AnswerCapsule.astro';
+import TableOfContents from '../post/TableOfContents.astro';
+import AuthorByline from '../post/AuthorByline.astro';
+import RelatedPosts from '../post/RelatedPosts.astro';
+import LastUpdated from '../post/LastUpdated.astro';
+import FAQAccordion from '../post/FAQAccordion.astro';
+import EndOfPostCTA from '../cta/EndOfPostCTA.astro';
+import SidebarCTA from '../cta/SidebarCTA.astro';
+import ExitIntentModal from '../cta/ExitIntentModal.astro';
+import CategoryPill from '../ui/CategoryPill.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  headings: { depth: number; slug: string; text: string }[];
+  relatedPosts?: CollectionEntry<'posts'>[];
+}
+
+const { post, headings, relatedPosts = [] } = Astro.props;
+const { data } = post;
+
+const categoryLabels: Record<string, string> = {
+  'paraguay': 'Paraguay',
+  'tax-residency': 'Tax Residency',
+  'us-llc': 'US LLC',
+};
+
+const categoryLabel = categoryLabels[data.category] || data.category;
+const canonicalUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}`;
+const readingTime = data.readingTime || Math.ceil((post.body?.length || 0) / 1500);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: data.title,
+      description: data.description,
+      author: {
+        '@type': 'Person',
+        name: 'Felix Yanez-Bowker',
+        url: 'https://blog.nomadtaxhelp.com/about',
+        jobTitle: 'Co-Founder, NomadTaxHelp',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'NomadTaxHelp',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://nomadtaxhelp.com/logo.png',
+        },
+      },
+      datePublished: data.publishDate.toISOString(),
+      dateModified: (data.updatedDate || data.publishDate).toISOString(),
+      image: data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : undefined,
+      mainEntityOfPage: canonicalUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://blog.nomadtaxhelp.com/' },
+        { '@type': 'ListItem', position: 2, name: categoryLabel, item: `https://blog.nomadtaxhelp.com/category/${data.category}` },
+        { '@type': 'ListItem', position: 3, name: data.title },
+      ],
+    },
+    ...(data.faqItems && data.faqItems.length > 0
+      ? [{
+          '@type': 'FAQPage',
+          mainEntity: data.faqItems.map((faq: { question: string; answer: string }) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }]
+      : []),
+  ],
+};
+---
+
+<BaseLayout
+  title={`${data.title} | NomadTaxHelp`}
+  description={data.description}
+  canonicalUrl={canonicalUrl}
+  ogImage={data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : undefined}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <article class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-600 mb-4" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-1.5 flex-wrap">
+        <li><a href="/" class="hover:text-amber-600 no-underline text-gray-600">Home</a></li>
+        <li class="text-gray-600">/</li>
+        <li><a href={`/category/${data.category}`} class="hover:text-amber-600 no-underline text-gray-600">{categoryLabel}</a></li>
+        <li class="text-gray-600">/</li>
+        <li class="text-gray-900 truncate max-w-[300px]">{data.title}</li>
+      </ol>
+    </nav>
+
+    <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
+      <!-- Main content column -->
+      <div class="max-w-[680px]">
+        <!-- Category pill -->
+        <div class="mb-3">
+          <CategoryPill category={data.category} label={categoryLabel} />
+        </div>
+
+        <!-- H1 -->
+        <h1 class="text-3xl sm:text-4xl mb-4">{data.title}</h1>
+
+        <!-- Metadata row -->
+        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-6">
+          <AuthorByline />
+          <span>&middot;</span>
+          <time datetime={data.publishDate.toISOString()}>
+            {data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+          {data.updatedDate && data.updatedDate > data.publishDate && (
+            <>
+              <span>&middot;</span>
+              <LastUpdated date={data.updatedDate} />
+            </>
+          )}
+          <span>&middot;</span>
+          <span>{readingTime} min read</span>
+        </div>
+
+        <!-- Answer capsule -->
+        {data.answerCapsule && (
+          <AnswerCapsule text={data.answerCapsule} />
+        )}
+
+        <!-- Table of contents -->
+        {headings.length > 0 && (
+          <TableOfContents headings={headings} />
+        )}
+
+        <!-- Post body -->
+        <div class="prose mt-8">
+          <slot />
+        </div>
+
+        <!-- FAQ section -->
+        {data.faqItems && data.faqItems.length > 0 && (
+          <section class="mt-12">
+            <h2 class="text-2xl font-heading font-semibold text-teal-900 mb-6">Frequently asked questions</h2>
+            <FAQAccordion items={data.faqItems} />
+          </section>
+        )}
+
+        <!-- Related posts -->
+        {relatedPosts.length > 0 && (
+          <section class="mt-12">
+            <h2 class="text-2xl font-heading font-semibold text-teal-900 mb-6">Related posts</h2>
+            <RelatedPosts posts={relatedPosts} />
+          </section>
+        )}
+
+        <!-- Author bio box -->
+        <div class="mt-12 p-6 bg-cream-50 rounded-xl border border-gray-200">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-full bg-teal-900 flex items-center justify-center text-white font-heading font-bold text-xl shrink-0">
+              F
+            </div>
+            <div>
+              <p class="font-heading font-semibold text-teal-900">Felix Yanez-Bowker</p>
+              <p class="text-sm text-gray-600 mb-2">Co-Founder, NomadTaxHelp</p>
+              <p class="text-sm text-gray-600">
+                Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups.
+                <a href="/about" class="text-amber-600">Read more about Felix &rarr;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- End-of-post CTA -->
+        <EndOfPostCTA />
+      </div>
+
+      <!-- Desktop sidebar -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <SidebarCTA />
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <ExitIntentModal />
+</BaseLayout>
