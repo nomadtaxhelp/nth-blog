@@ -24,6 +24,14 @@ const {
   markdownUrl,
 } = Astro.props;
 
+// PostHog snippet (cookie-free, EU host). Only emitted when env var present.
+// Loaded via Fragment set:html to bypass Astro's JSX parsing of script body.
+const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
+const posthogScript = posthogKey
+  ? `<script>!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias group reset register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_distinct_id get_session_id get_session_replay_url onFeatureFlags getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags setPersonProperties getGroups resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags startSessionRecording stopSessionRecording captureException loadToolbar".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHost)},persistence:"memory",autocapture:true,capture_pageview:true,capture_pageleave:true});</script>`
+  : null;
+
 // Sitewide Organization schema — present on every page so LLMs and search
 // engines can identify the publisher entity consistently.
 const organizationJsonLd = {
@@ -104,6 +112,11 @@ const organizationJsonLd = {
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
+
+    {/* PostHog product analytics — cookie-free, EU host. Loads only when
+        PUBLIC_POSTHOG_KEY env var is set, so no analytics in dev unless
+        explicitly enabled. Memory persistence keeps it consent-banner-free. */}
+    {posthogScript && <Fragment set:html={posthogScript} />}
 
     <slot name="head" />
   </head>
