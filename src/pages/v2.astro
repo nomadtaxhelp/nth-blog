@@ -41,14 +41,17 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
     <div class="v2-content">
       <!-- 1. Site title -->
       <header class="v2-header">
-        <a href="https://nomadtaxhelp.com" class="v2-logo">NomadTaxHelp</a>
+        <a href="https://nomadtaxhelp.com" class="v2-logo" aria-label="NomadTaxHelp home">
+          <img src="/logo.svg" alt="NomadTaxHelp" class="v2-logo-img" />
+        </a>
       </header>
 
       <!-- 2. Introduction -->
       <div class="v2-intro">
         <p>
           Hi, I'm Felix.<br />
-          I help nomads sort their tax setup.<br />
+          I've been down this rabbit hole for almost 10 years.<br />
+          Now I help nomads sort their tax setup with NomadTaxHelp.<br />
           These are the guides I wish I'd had.
         </p>
       </div>
@@ -72,12 +75,16 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       <div class="v2-cta">
         <hr class="v2-rule" />
         <p class="v2-cta-heading">Want help sorting yours?</p>
-        <a href={calLink} target="_blank" rel="noopener noreferrer" class="v2-cta-primary">
-          Book a free clarity call &rarr;
-        </a>
-        <a href={healthCheckLink} target="_blank" rel="noopener noreferrer" class="v2-cta-secondary">
-          Or take the free Health Check &rarr;
-        </a>
+        <div class="v2-cta-buttons">
+          <a href={calLink} target="_blank" rel="noopener noreferrer" class="v2-btn v2-btn-primary">
+            <span class="v2-btn-emoji" aria-hidden="true">📞</span>
+            Book a free clarity call
+          </a>
+          <a href={healthCheckLink} target="_blank" rel="noopener noreferrer" class="v2-btn v2-btn-secondary">
+            <span class="v2-btn-emoji" aria-hidden="true">🩺</span>
+            Take the free Health Check
+          </a>
+        </div>
       </div>
 
       <!-- 6. Footer -->
@@ -128,18 +135,28 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       }
 
       .v2-logo {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 600;
-        font-size: 1.25rem;
-        letter-spacing: -0.01em;
-        color: #004748;
+        display: inline-block;
+        line-height: 0;
         text-decoration: none;
         cursor: pointer;
         transition: opacity 200ms ease;
       }
 
       .v2-logo:hover {
-        opacity: 0.7;
+        opacity: 0.75;
+      }
+
+      .v2-logo-img {
+        display: block;
+        height: 64px;
+        width: auto;
+        max-width: 240px;
+      }
+
+      @media (max-width: 768px) {
+        .v2-logo-img {
+          height: 52px;
+        }
       }
 
       /* --- 2. Introduction --- */
@@ -229,41 +246,74 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
       .v2-cta-heading {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 500;
-        font-size: 1rem;
+        font-weight: 600;
+        font-size: 1.125rem;
         color: #004748;
-        margin: 0 0 16px 0;
+        margin: 0 0 24px 0;
       }
 
-      .v2-cta-primary {
-        display: block;
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-        font-weight: 400;
+      .v2-cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .v2-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        font-weight: 600;
         font-size: 1rem;
-        color: #cd7e11;
         text-decoration: none;
         cursor: pointer;
-        margin-bottom: 8px;
-        transition: color 200ms ease;
+        padding: 14px 28px;
+        border-radius: 10px;
+        min-width: 280px;
+        transition: transform 150ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       }
 
-      .v2-cta-primary:hover {
-        text-decoration: underline;
+      .v2-btn-emoji {
+        font-size: 1.125rem;
+        line-height: 1;
       }
 
-      .v2-cta-secondary {
-        display: block;
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        font-size: 0.875rem;
-        color: rgba(0, 71, 72, 0.5);
-        text-decoration: none;
-        cursor: pointer;
-        transition: color 200ms ease;
+      .v2-btn-primary {
+        background-color: #cd7e11;
+        color: #ffffff;
+        border: 2px solid #cd7e11;
+        box-shadow: 0 1px 2px rgba(0, 71, 72, 0.08);
       }
 
-      .v2-cta-secondary:hover {
-        text-decoration: underline;
+      .v2-btn-primary:hover {
+        background-color: #b56c0a;
+        border-color: #b56c0a;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(205, 126, 17, 0.25);
+      }
+
+      .v2-btn-secondary {
+        background-color: transparent;
+        color: #004748;
+        border: 2px solid #004748;
+      }
+
+      .v2-btn-secondary:hover {
+        background-color: #004748;
+        color: #ffe4c4;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 71, 72, 0.18);
+      }
+
+      @media (max-width: 480px) {
+        .v2-btn {
+          min-width: 0;
+          width: 100%;
+          font-size: 0.9375rem;
+          padding: 13px 20px;
+        }
       }
 
       /* --- 6. Footer --- */
