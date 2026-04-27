@@ -49,14 +49,12 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       <!-- 2. Introduction -->
       <div class="v2-intro">
         <p class="v2-intro-greeting">Hey, I'm Felix <span aria-hidden="true">👋</span></p>
-        <p>
-          I get it. Taxes as a digital nomad are a damn nightmare.<br />
-          I've been down this rabbit hole for almost 10 years. I felt the pain.<br />
-          So I built <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="v2-intro-link">nomadtaxhelp.com</a> &mdash; where I help people like you become tax-efficient.<br />
-          But today, I want to help YOU <span aria-hidden="true">🫵</span><br />
-          So here is all the best info and wisdom I have acquired over the last decade in one place.<br />
-          The guides I wish I had&hellip;
-        </p>
+        <p>I get it. Taxes as a digital nomad are a damn nightmare.</p>
+        <p>I've been down this rabbit hole for almost 10 years. I felt the pain.</p>
+        <p>So I built <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="v2-intro-link">nomadtaxhelp.com</a> &mdash; where we help people like you become tax-efficient.</p>
+        <p>But today, I want to help YOU <span aria-hidden="true">🫵</span></p>
+        <p>So here is all the best info and wisdom I have acquired over the last decade in one place.</p>
+        <p>Here you can dig through the guides I wish I had&hellip;</p>
       </div>
 
       <!-- 3. Section heading -->
@@ -118,9 +116,11 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
         box-sizing: border-box;
       }
 
-      /* Content container — centred */
+      /* Content container — centred. Wide enough for the intro
+         to keep each sentence on one line; inner sections are
+         constrained back to a narrower column below. */
       .v2-content {
-        max-width: 620px;
+        max-width: 960px;
         margin: 0 auto;
         padding: 0 24px;
       }
@@ -129,6 +129,17 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
         .v2-content {
           padding: 0 40px;
         }
+      }
+
+      /* Constrain non-intro sections to the original narrow column */
+      .v2-header,
+      .v2-section-title,
+      .v2-post-list,
+      .v2-cta,
+      .v2-footer {
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* --- 1. Site title --- */
@@ -282,9 +293,11 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
       .v2-cta-buttons {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
         gap: 12px;
+        flex-wrap: wrap;
       }
 
       .v2-btn {
@@ -297,9 +310,9 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
         font-size: 1rem;
         text-decoration: none;
         cursor: pointer;
-        padding: 14px 28px;
+        padding: 14px 24px;
         border-radius: 10px;
-        min-width: 280px;
+        min-width: 240px;
         transition: transform 150ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       }
 
@@ -323,19 +336,25 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       }
 
       .v2-btn-secondary {
-        background-color: transparent;
-        color: #004748;
+        background-color: #004748;
+        color: #ffe4c4;
         border: 2px solid #004748;
+        box-shadow: 0 1px 2px rgba(0, 71, 72, 0.08);
       }
 
       .v2-btn-secondary:hover {
-        background-color: #004748;
+        background-color: #003738;
+        border-color: #003738;
         color: #ffe4c4;
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 71, 72, 0.18);
+        box-shadow: 0 4px 12px rgba(0, 71, 72, 0.25);
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 600px) {
+        .v2-cta-buttons {
+          flex-direction: column;
+        }
+
         .v2-btn {
           min-width: 0;
           width: 100%;
