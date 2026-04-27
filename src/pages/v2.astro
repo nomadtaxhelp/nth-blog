@@ -48,11 +48,14 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
       <!-- 2. Introduction -->
       <div class="v2-intro">
+        <p class="v2-intro-greeting">Hey, I'm Felix <span aria-hidden="true">👋</span></p>
         <p>
-          Hi, I'm Felix.<br />
-          I've been down this rabbit hole for almost 10 years.<br />
-          Now I help nomads sort their tax setup with NomadTaxHelp.<br />
-          These are the guides I wish I'd had.
+          I get it. Taxes as a digital nomad are a damn nightmare.<br />
+          I've been down this rabbit hole for almost 10 years. I felt the pain.<br />
+          So I built <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="v2-intro-link">nomadtaxhelp.com</a> &mdash; where I help people like you become tax-efficient.<br />
+          But today, I want to help YOU <span aria-hidden="true">🫵</span><br />
+          So here is all the best info and wisdom I have acquired over the last decade in one place.<br />
+          The guides I wish I had&hellip;
         </p>
       </div>
 
@@ -176,13 +179,38 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
         font-weight: 400;
         font-size: 1.125rem;
         color: #004748;
-        line-height: 2.0;
+        line-height: 1.75;
         margin: 0;
+      }
+
+      .v2-intro p + p {
+        margin-top: 24px;
+      }
+
+      .v2-intro-greeting {
+        font-size: 1.375rem !important;
+        font-weight: 600 !important;
+        line-height: 1.4 !important;
+      }
+
+      .v2-intro-link {
+        color: #cd7e11;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(205, 126, 17, 0.35);
+        transition: border-color 200ms ease;
+      }
+
+      .v2-intro-link:hover {
+        border-bottom-color: #cd7e11;
       }
 
       @media (max-width: 768px) {
         .v2-intro p {
-          line-height: 1.8;
+          line-height: 1.7;
+        }
+
+        .v2-intro-greeting {
+          font-size: 1.25rem !important;
         }
       }
 
