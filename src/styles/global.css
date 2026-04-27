@@ -55,14 +55,16 @@ h3 {
   font-weight: 600;
 }
 
-/* Links: only underline in prose/body content, not in nav/header/footer/buttons */
-.prose a {
+/* Prose body links — amber + underline. Excludes any anchor styled as a
+   button (i.e. has a `bg-*` Tailwind class) so the button's own colour
+   utilities (text-white, etc.) aren't overridden into amber-on-amber. */
+.prose a:not([class*="bg-"]) {
   color: var(--color-amber-600);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.prose a:hover {
+.prose a:not([class*="bg-"]):hover {
   color: var(--color-amber-700);
 }
 
