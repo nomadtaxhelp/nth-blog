@@ -81,7 +81,6 @@ export const GET: APIRoute = async ({ props }) => {
     'NomadTaxHelp is not a tax or legal adviser. We coordinate with licensed partners. Educational content only — confirm specifics with a professional.',
     '',
     'Book a free clarity call: https://cal.com/nomadtaxhelp/clarity-call',
-    'Tax Residency Health Check: https://nomadtaxhelp.com/health-check',
     'Main site: https://nomadtaxhelp.com',
     '',
   ].join('\n');
