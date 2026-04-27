@@ -10,13 +10,53 @@ const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
 const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
+// Homepage JSON-LD: WebSite + Blog + Person.
+// (Sitewide Organization schema is emitted separately by BaseLayout.)
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'NomadTaxHelp',
-  url: 'https://nomadtaxhelp.com',
-  logo: 'https://nomadtaxhelp.com/logo.png',
-  sameAs: ['https://www.instagram.com/nomadtaxhelp_'],
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://blog.nomadtaxhelp.com/#website',
+      url: 'https://blog.nomadtaxhelp.com',
+      name: 'NomadTaxHelp Blog',
+      description: 'Practical guides on tax residency for European and rest-of-world digital nomads.',
+      inLanguage: 'en',
+      publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://blog.nomadtaxhelp.com/posts?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Blog',
+      '@id': 'https://blog.nomadtaxhelp.com/#blog',
+      url: 'https://blog.nomadtaxhelp.com',
+      name: 'NomadTaxHelp Blog',
+      description: 'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',
+      author: { '@id': 'https://blog.nomadtaxhelp.com/about#felix' },
+      publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+      name: 'Felix Yanez-Bowker',
+      url: 'https://blog.nomadtaxhelp.com/about',
+      image: 'https://blog.nomadtaxhelp.com/images/felix.jpg',
+      jobTitle: 'Co-Founder, NomadTaxHelp',
+      sameAs: [
+        'https://www.linkedin.com/in/felix-yanez-bowker-b23270252/',
+        'https://felixyanez.substack.com/',
+        'https://fascinated-princess-801.notion.site/About-Me-54522f72ef6a470aa87711bb889cd30c',
+        'https://nomadtaxhelp.com',
+      ],
+    },
+  ],
 };
 ---
 

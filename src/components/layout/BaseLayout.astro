@@ -1,6 +1,7 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import { felix, organization, blogSite } from '../../data/felix';
 import '../../styles/global.css';
 
 interface Props {
@@ -10,16 +11,47 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   jsonLd?: object | object[];
+  markdownUrl?: string;
 }
 
 const {
   title,
   description,
   canonicalUrl = Astro.url.href,
-  ogImage = '/images/og-default.jpg',
+  ogImage = '/images/og-default.svg',
   ogType = 'website',
   jsonLd,
+  markdownUrl,
 } = Astro.props;
+
+// Sitewide Organization schema — present on every page so LLMs and search
+// engines can identify the publisher entity consistently.
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://nomadtaxhelp.com/#organization',
+  name: organization.name,
+  url: organization.url,
+  logo: {
+    '@type': 'ImageObject',
+    url: organization.logo,
+  },
+  description: organization.description,
+  email: organization.email,
+  foundingDate: organization.foundingDate,
+  areaServed: organization.areaServed,
+  knowsAbout: organization.knowsAbout,
+  founder: {
+    '@type': 'Person',
+    '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+    name: felix.name,
+    url: felix.url,
+    image: felix.image,
+    jobTitle: felix.jobTitle,
+    sameAs: felix.sameAs,
+  },
+  sameAs: organization.sameAs,
+};
 ---
 
 <!doctype html>
@@ -57,10 +89,18 @@ const {
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/rss.xml" />
 
+    {/* Markdown twin for AI/LLM ingestion (when applicable) */}
+    {markdownUrl && (
+      <link rel="alternate" type="text/markdown" href={markdownUrl} title={`${title} — Markdown`} />
+    )}
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- JSON-LD -->
+    <!-- Sitewide Organization JSON-LD (publisher entity) -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
+    <!-- Page-specific JSON-LD -->
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}

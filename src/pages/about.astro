@@ -1,22 +1,90 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import { felix, organization } from '../data/felix';
 
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
 const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
+
+// AboutPage + Person JSON-LD — gives LLMs and search engines a canonical
+// person entity to disambiguate "Felix Yanez-Bowker" against.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      '@id': 'https://blog.nomadtaxhelp.com/about#aboutpage',
+      url: 'https://blog.nomadtaxhelp.com/about',
+      name: 'About Felix Yanez-Bowker',
+      mainEntity: { '@id': 'https://blog.nomadtaxhelp.com/about#felix' },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+      name: felix.name,
+      givenName: felix.givenName,
+      familyName: felix.familyName,
+      jobTitle: felix.jobTitle,
+      description: felix.description,
+      url: felix.url,
+      image: felix.image,
+      email: felix.email,
+      knowsAbout: felix.knowsAbout,
+      sameAs: felix.sameAs,
+      worksFor: { '@id': 'https://nomadtaxhelp.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://blog.nomadtaxhelp.com/' },
+        { '@type': 'ListItem', position: 2, name: 'About', item: 'https://blog.nomadtaxhelp.com/about' },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout
   title="About | NomadTaxHelp Blog"
   description="Felix Yanez-Bowker is the co-founder of NomadTaxHelp. He writes about tax residency, US LLCs, and how nomads can build clean, defensible cross-border setups."
+  jsonLd={jsonLd}
 >
   <article class="max-w-[680px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-    <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
-      <!-- Headshot placeholder -->
-      <div class="w-[200px] h-[200px] rounded-lg bg-teal-900 flex items-center justify-center text-white font-heading font-bold text-5xl shrink-0">
-        F
-      </div>
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+      <img
+        src="/images/felix.jpg"
+        alt="Felix Yanez-Bowker"
+        width="200"
+        height="200"
+        class="w-[200px] h-[200px] rounded-full object-cover shrink-0 border-2 border-teal-900/10 shadow-sm"
+      />
       <div>
         <h1 class="text-3xl sm:text-4xl mb-4">Hi, I'm Felix. I help nomads sort their tax setup.</h1>
+        <div class="flex flex-wrap gap-3 text-sm">
+          <a
+            href="https://www.linkedin.com/in/felix-yanez-bowker-b23270252/"
+            target="_blank"
+            rel="noopener noreferrer me"
+            class="inline-flex items-center px-3 py-1.5 rounded-full border border-teal-900/20 text-teal-900 no-underline hover:border-amber-600 hover:text-amber-600 transition-colors"
+          >
+            LinkedIn &rarr;
+          </a>
+          <a
+            href="https://felixyanez.substack.com/"
+            target="_blank"
+            rel="noopener noreferrer me"
+            class="inline-flex items-center px-3 py-1.5 rounded-full border border-teal-900/20 text-teal-900 no-underline hover:border-amber-600 hover:text-amber-600 transition-colors"
+          >
+            Personal blog &rarr;
+          </a>
+          <a
+            href="https://fascinated-princess-801.notion.site/About-Me-54522f72ef6a470aa87711bb889cd30c"
+            target="_blank"
+            rel="noopener noreferrer me"
+            class="inline-flex items-center px-3 py-1.5 rounded-full border border-teal-900/20 text-teal-900 no-underline hover:border-amber-600 hover:text-amber-600 transition-colors"
+          >
+            Personal site &rarr;
+          </a>
+        </div>
       </div>
     </div>
 

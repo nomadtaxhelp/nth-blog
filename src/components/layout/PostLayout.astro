@@ -11,6 +11,7 @@ import EndOfPostCTA from '../cta/EndOfPostCTA.astro';
 import SidebarCTA from '../cta/SidebarCTA.astro';
 import ExitIntentModal from '../cta/ExitIntentModal.astro';
 import CategoryPill from '../ui/CategoryPill.astro';
+import { felix, organization } from '../../data/felix';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -30,33 +31,53 @@ const categoryLabels: Record<string, string> = {
 
 const categoryLabel = categoryLabels[data.category] || data.category;
 const canonicalUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}`;
+const markdownUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}.md`;
 const readingTime = data.readingTime || Math.ceil((post.body?.length || 0) / 1500);
+
+const personAuthor = {
+  '@type': 'Person',
+  '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+  name: felix.name,
+  url: felix.url,
+  image: felix.image,
+  jobTitle: felix.jobTitle,
+  description: felix.description,
+  knowsAbout: felix.knowsAbout,
+  sameAs: felix.sameAs,
+};
+
+const publisherOrg = {
+  '@type': 'Organization',
+  '@id': 'https://nomadtaxhelp.com/#organization',
+  name: organization.name,
+  url: organization.url,
+  logo: {
+    '@type': 'ImageObject',
+    url: organization.logo,
+  },
+  sameAs: organization.sameAs,
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Article',
+      '@id': `${canonicalUrl}#article`,
       headline: data.title,
       description: data.description,
-      author: {
-        '@type': 'Person',
-        name: 'Felix Yanez-Bowker',
-        url: 'https://blog.nomadtaxhelp.com/about',
-        jobTitle: 'Co-Founder, NomadTaxHelp',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'NomadTaxHelp',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://nomadtaxhelp.com/logo.png',
-        },
-      },
+      author: personAuthor,
+      publisher: publisherOrg,
       datePublished: data.publishDate.toISOString(),
       dateModified: (data.updatedDate || data.publishDate).toISOString(),
-      image: data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : undefined,
+      image: data.heroImage
+        ? `https://blog.nomadtaxhelp.com${data.heroImage}`
+        : 'https://blog.nomadtaxhelp.com/images/og-default.svg',
       mainEntityOfPage: canonicalUrl,
+      inLanguage: 'en',
+      articleSection: categoryLabel,
+      keywords: (data.tags || []).join(', '),
+      url: canonicalUrl,
     },
     {
       '@type': 'BreadcrumbList',
@@ -76,6 +97,19 @@ const jsonLd = {
           })),
         }]
       : []),
+    ...(data.howToSteps && data.howToSteps.length > 0
+      ? [{
+          '@type': 'HowTo',
+          name: data.title,
+          description: data.description,
+          step: data.howToSteps.map((s: { name: string; text: string }, i: number) => ({
+            '@type': 'HowToStep',
+            position: i + 1,
+            name: s.name,
+            text: s.text,
+          })),
+        }]
+      : []),
   ],
 };
 ---
@@ -87,6 +121,7 @@ const jsonLd = {
   ogImage={data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : undefined}
   ogType="article"
   jsonLd={jsonLd}
+  markdownUrl={markdownUrl}
 >
   <article class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Breadcrumb -->
@@ -162,9 +197,14 @@ const jsonLd = {
         <!-- Author bio box -->
         <div class="mt-12 p-6 bg-cream-50 rounded-xl border border-gray-200">
           <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-full bg-teal-900 flex items-center justify-center text-white font-heading font-bold text-xl shrink-0">
-              F
-            </div>
+            <img
+              src="/images/felix.jpg"
+              alt="Felix Yanez-Bowker"
+              loading="lazy"
+              width="64"
+              height="64"
+              class="w-16 h-16 rounded-full object-cover shrink-0 border border-teal-900/10"
+            />
             <div>
               <p class="font-heading font-semibold text-teal-900">Felix Yanez-Bowker</p>
               <p class="text-sm text-gray-600 mb-2">Co-Founder, NomadTaxHelp</p>

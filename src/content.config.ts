@@ -25,6 +25,14 @@ const posts = defineCollection({
       )
       .optional(),
     contentUpgrade: z.string().optional(),
+    howToSteps: z
+      .array(
+        z.object({
+          name: z.string(),
+          text: z.string(),
+        })
+      )
+      .optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
