@@ -122,3 +122,52 @@ h3 {
   border-top: 1px solid var(--color-gray-200);
   margin: 2.5rem 0;
 }
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .prose table {
+    display: table;
+  }
+}
+
+.prose thead {
+  background-color: var(--color-cream-50);
+}
+
+.prose th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-teal-900);
+  border-bottom: 2px solid var(--color-teal-900);
+  vertical-align: top;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  vertical-align: top;
+}
+
+.prose tbody tr:hover td {
+  background-color: var(--color-cream-50);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* SVG/figure containers in posts */
+.prose .not-prose {
+  margin: 2rem 0;
+}
