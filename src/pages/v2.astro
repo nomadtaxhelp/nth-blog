@@ -60,16 +60,16 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       <h2 class="v2-section-title">Guides</h2>
 
       <!-- 4. Post list -->
-      <div class="v2-post-list">
+      <ul class="v2-post-list">
         {sortedPosts.map((post) => {
           const isNew = post.data.publishDate >= fourteenDaysAgo;
           return (
-            <div class="v2-post-item">
+            <li class="v2-post-item">
               <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>{isNew && <span class="v2-new-badge"> (new)</span>}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       <!-- 5. CTA -->
       <div class="v2-cta">
@@ -234,18 +234,40 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
       /* --- 4. Post list --- */
       .v2-post-list {
-        text-align: center;
+        list-style: none;
+        padding: 0;
+        max-width: 540px;
+        text-align: left;
       }
 
       .v2-post-item {
-        margin-bottom: 20px;
-        line-height: 1.4;
+        position: relative;
+        padding-left: 32px;
+        margin-bottom: 28px;
+        line-height: 1.45;
+      }
+
+      .v2-post-item::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        top: 0.05em;
+        color: #cd7e11;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.2;
+        transition: transform 200ms ease;
+      }
+
+      .v2-post-item:hover::before {
+        transform: translateX(3px);
       }
 
       .v2-post-item a {
         font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        font-size: 1.0625rem;
+        font-weight: 600;
+        font-size: 1.125rem;
         color: #004748;
         text-decoration: none;
         cursor: pointer;
@@ -255,14 +277,30 @@ const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
       .v2-post-item a:hover {
         color: #cd7e11;
         text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
       .v2-new-badge {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 400;
+        font-weight: 500;
         font-style: italic;
         font-size: 0.8125rem;
         color: #cd7e11;
+      }
+
+      @media (max-width: 480px) {
+        .v2-post-item {
+          padding-left: 26px;
+          margin-bottom: 24px;
+        }
+
+        .v2-post-item::before {
+          font-size: 1.125rem;
+        }
+
+        .v2-post-item a {
+          font-size: 1.0625rem;
+        }
       }
 
       /* --- 5. CTA --- */
