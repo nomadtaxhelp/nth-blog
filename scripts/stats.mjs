@@ -30,15 +30,41 @@ const PROJECT_ID = process.env.POSTHOG_PROJECT_ID;
 const API_KEY = process.env.POSTHOG_PERSONAL_API_KEY;
 const HOST = process.env.POSTHOG_HOST || 'https://eu.posthog.com';
 
+const RESET_INIT = '\x1b[0m';
+const BOLD_INIT = '\x1b[1m';
+const DIM_INIT = '\x1b[2m';
+const TEAL_INIT = '\x1b[36m';
+const AMBER_INIT = '\x1b[33m';
+
+// Graceful no-PostHog mode — show what's available without API access.
 if (!PROJECT_ID || !API_KEY) {
-  console.error('\n  Missing PostHog credentials.\n');
-  console.error('  Add to .env:');
-  console.error('    POSTHOG_PROJECT_ID=12345');
-  console.error('    POSTHOG_PERSONAL_API_KEY=phx_xxx');
-  console.error('');
-  console.error('  Get them at posthog.com → Settings → Personal API keys + Project.');
-  console.error('');
-  process.exit(1);
+  console.log('');
+  console.log(`${BOLD_INIT}${TEAL_INIT}  NTH BLOG — STATS${RESET_INIT}`);
+  console.log('');
+  console.log(`  ${DIM_INIT}No PostHog credentials configured. That's fine — here's where to look:${RESET_INIT}`);
+  console.log('');
+  console.log(`  ${BOLD_INIT}Traffic data${RESET_INIT}`);
+  console.log(`    ${AMBER_INIT}Vercel Analytics${RESET_INIT}  →  https://vercel.com/dashboard (Project → Analytics)`);
+  console.log(`    ${DIM_INIT}Visitors, pageviews, top pages, sources, countries, devices${RESET_INIT}`);
+  console.log(`    ${DIM_INIT}Enable in Vercel: Project → Analytics tab → Enable Web Analytics${RESET_INIT}`);
+  console.log('');
+  console.log(`  ${BOLD_INIT}Lead conversion${RESET_INIT}`);
+  console.log(`    ${AMBER_INIT}Cal.com Insights${RESET_INIT}  →  https://app.cal.com/insights`);
+  console.log(`    ${DIM_INIT}Bookings, no-shows, conversion funnel for the clarity call${RESET_INIT}`);
+  console.log('');
+  console.log(`  ${BOLD_INIT}Search performance${RESET_INIT}`);
+  console.log(`    ${AMBER_INIT}Google Search Console${RESET_INIT}  →  https://search.google.com/search-console`);
+  console.log(`    ${DIM_INIT}Impressions, clicks, ranking positions per query${RESET_INIT}`);
+  console.log(`    ${AMBER_INIT}Bing Webmaster Tools${RESET_INIT}  →  https://www.bing.com/webmasters`);
+  console.log(`    ${DIM_INIT}Same as GSC for Bing/ChatGPT search index${RESET_INIT}`);
+  console.log('');
+  console.log(`  ${DIM_INIT}For one-command terminal stats here, set up PostHog (5 min):${RESET_INIT}`);
+  console.log(`  ${DIM_INIT}  1. posthog.com → sign up, EU region${RESET_INIT}`);
+  console.log(`  ${DIM_INIT}  2. Settings → Personal API keys → create one with query:read${RESET_INIT}`);
+  console.log(`  ${DIM_INIT}  3. Add POSTHOG_PROJECT_ID + POSTHOG_PERSONAL_API_KEY to .env${RESET_INIT}`);
+  console.log(`  ${DIM_INIT}  4. Run npm run stats again${RESET_INIT}`);
+  console.log('');
+  process.exit(0);
 }
 
 async function query(hogql) {

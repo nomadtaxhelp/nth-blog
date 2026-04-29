@@ -54,15 +54,38 @@ The data layer (PostHog) tells us which is actually working week by week. Don't 
 
 One review per week. Same day every week (suggested: Monday morning). Three steps:
 
-### 1. Check the data — `npm run stats`
+### 1. Check the data
 
-Pulls last-7-days vs previous-7-days from PostHog into the terminal. Look at:
+**Two-track setup**, depending on whether you've enabled PostHog:
+
+#### Track A — Default (Vercel Analytics + Cal.com)
+
+What's tracked automatically once Vercel Analytics is toggled on (Vercel → Project → Analytics → Enable):
+
+- **Vercel Analytics dashboard** (`vercel.com/dashboard` → Project → Analytics): visitors, pageviews, top pages, top referrers, countries, devices.
+- **Vercel Speed Insights** (same dashboard): Core Web Vitals per page.
+- **Cal.com Insights** (`app.cal.com/insights`): bookings, no-shows, the lead funnel.
+- **Google Search Console**: impressions, clicks, queries you rank for.
+- **Bing Webmaster Tools**: same for Bing (and downstream ChatGPT search index).
+
+Run `npm run stats` in the terminal — if PostHog isn't set up, it prints all four dashboard URLs to remind you where to look.
+
+#### Track B — Optional (PostHog full stats CLI)
+
+If you set up PostHog (`POSTHOG_PROJECT_ID` + `POSTHOG_PERSONAL_API_KEY` in `.env`), `npm run stats` prints a coloured terminal report with last-7-days vs previous-7-days:
+
+- Visitors and pageviews trend
+- Conversion rate (visitor → `clarity_call_click`)
+- Top posts by views
+- Traffic sources
+- Which CTA placements converted (hero / inline / sidebar / exit-intent)
+
+Either way, the review questions are the same:
 
 - **Visitors trend.** Is it up week-over-week? If not, distribution problem.
-- **Lead conversion rate.** Aim ≥1%. If lower, CTAs or content fit are off.
+- **Lead conversion.** Are clarity calls being booked? Cal.com tells you.
 - **Top posts.** Which ones are pulling weight?
 - **Traffic sources.** Where are visits coming from? Diversifying or single-source?
-- **CTA placements.** Which placement is converting (hero / inline / sidebar / exit-intent)? Double down on what works.
 
 ### 2. Run the weekly review skill — `/nth-weekly-review`
 

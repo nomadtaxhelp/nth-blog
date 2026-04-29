@@ -11,7 +11,11 @@ You are running Felix's weekly blog review. The full strategic context is in `BL
 
 Run `npm run stats` from the project root and capture the output.
 
-If it fails with "Missing PostHog credentials", tell Felix to add `POSTHOG_PROJECT_ID` and `POSTHOG_PERSONAL_API_KEY` to `.env` (see `.env.example`). Don't proceed without data — the entire point of the review is data-driven.
+**Two modes:**
+
+- **Full mode** (PostHog credentials in `.env`): the script returns visitors, pageviews, conversion rate, top posts, traffic sources, CTA placements that converted. Use this directly.
+
+- **Light mode** (no PostHog credentials): the script lists where Felix can see data manually — Vercel Analytics dashboard, Cal.com Insights, Google Search Console, Bing Webmaster Tools. In light mode, ask Felix for the headline numbers from those dashboards (visitors this week, calls booked, top traffic source) and proceed with whatever he provides. If he doesn't have time to look, run the review based on what's in the codebase + `WEEKLY_REVIEWS/` history alone — propose distribution and content actions rather than data-driven optimisation. Be explicit that the review is operating on incomplete data.
 
 ## Step 2: Read last week's notes
 
