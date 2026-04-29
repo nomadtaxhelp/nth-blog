@@ -199,14 +199,22 @@ const jsonLd = {
         <!-- Author bio box -->
         <div class="mt-12 p-6 bg-cream-50 rounded-xl border border-gray-200">
           <div class="flex items-start gap-4">
-            <img
-              src="/images/felix.png"
-              alt="Felix Yanez-Bowker"
-              loading="lazy"
-              width="64"
-              height="64"
-              class="w-16 h-16 rounded-full object-cover shrink-0 border border-teal-900/10"
-            />
+            <a
+              href="/images/felix.png"
+              data-lightbox="/images/felix.png"
+              data-lightbox-alt="Felix Yanez-Bowker"
+              class="shrink-0 no-underline"
+              aria-label="View larger photo of Felix"
+            >
+              <img
+                src="/images/felix.png"
+                alt="Felix Yanez-Bowker"
+                loading="lazy"
+                width="64"
+                height="64"
+                class="w-16 h-16 rounded-full object-cover border border-teal-900/10"
+              />
+            </a>
             <div>
               <p class="font-heading font-semibold text-teal-900">Felix Yanez-Bowker</p>
               <p class="text-sm text-gray-600 mb-2">Co-Founder, NomadTaxHelp</p>
