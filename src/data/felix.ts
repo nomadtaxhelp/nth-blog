@@ -8,7 +8,7 @@ export const felix = {
   jobTitle: 'Co-Founder, NomadTaxHelp',
   description:
     'Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups via Paraguay tax residency and US LLC formation.',
-  image: 'https://blog.nomadtaxhelp.com/images/felix.jpg',
+  image: 'https://blog.nomadtaxhelp.com/images/felix.png',
   url: 'https://blog.nomadtaxhelp.com/about',
   email: 'hello@nomadtaxhelp.com',
   knowsAbout: [
