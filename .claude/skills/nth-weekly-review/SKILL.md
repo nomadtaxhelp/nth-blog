@@ -53,18 +53,45 @@ Example output:
 
 Tag each item with the bucket in brackets. Mark Felix-manual tasks with *Felix:* prefix.
 
-## Step 5: Save the review
+## Step 5: Save the review (this is our retention layer)
 
-Write the full review (data summary + plan) to `WEEKLY_REVIEWS/YYYY-MM-DD.md` using today's date. Create the directory if it doesn't exist. This becomes next week's "previous week's notes".
+Write the full review to `WEEKLY_REVIEWS/YYYY-MM-DD.md` using today's date. Create the directory if it doesn't exist.
 
-The file structure:
+**Important:** Vercel Analytics on the Hobby plan only retains 30 days of data. By saving structured numbers each week into the markdown file under `## stats:`, **git becomes our permanent analytics history**. After 30 days, Vercel's UI will have rolled the data out — but the snapshot is preserved in the repo forever.
+
+The file structure (the YAML block under `## stats` is mandatory — keep it parseable):
 
 ```markdown
 # Weekly review — {date}
 
-## Stats snapshot
+## stats
 
-{paste relevant numbers from npm run stats}
+```yaml
+visitors_7d: 127
+pageviews_7d: 342
+visitors_prev_7d: 102
+pageviews_prev_7d: 290
+calls_booked_7d: 2
+top_pages:
+  - path: /posts/paraguay-tax-residency-guide
+    views: 58
+  - path: /posts/european-nomad-tax-playbook
+    views: 38
+  - path: /
+    views: 27
+top_sources:
+  - domain: google.com
+    visits: 87
+  - domain: linkedin.com
+    visits: 24
+  - domain: (direct)
+    visits: 12
+search_console:
+  impressions: 1240
+  clicks: 47
+  avg_position: 18.4
+notes: Posted European playbook to LinkedIn on Tuesday — visible bump.
+```
 
 ## What changed
 
@@ -78,6 +105,8 @@ The file structure:
 
 {if there was a previous review, note which actions actually shipped}
 ```
+
+If you're operating in light mode (no PostHog), ask Felix for the headline numbers from Vercel Analytics + Cal.com Insights + Google Search Console. Five numbers max — visitors, pageviews, top page, top source, calls booked. Don't make him hunt for everything. Whatever he gives you, fill in the YAML; leave the rest blank.
 
 ## Step 6: Offer to spawn agents
 

@@ -1,6 +1,8 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import { felix, organization, blogSite } from '../../data/felix';
 import '../../styles/global.css';
 
@@ -162,10 +164,10 @@ const organizationJsonLd = {
     </main>
     <Footer />
 
-    {/* Vercel Web Analytics + Speed Insights — auto-injected by the platform
-        when enabled in the Vercel dashboard. Free, cookie-free, no consent
-        banner needed. Enable at: Vercel → Project → Analytics tab. */}
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    {/* Vercel Web Analytics + Speed Insights — official Astro components.
+        Free on Hobby plan, cookie-free, no consent banner needed.
+        Enable at: Vercel → Project → Analytics tab. */}
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
