@@ -4,7 +4,10 @@ import { felix, organization } from '../data/felix';
 import '../styles/global.css';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
-const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const sortedPosts = allPosts
+  .filter((p) => p.data.slug !== 'paraguay-tax-residency-cost-2026')
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 5);
 
 const now = new Date();
 const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
@@ -109,15 +112,14 @@ const posthogScript = posthogKey
             <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-600/40 hover:decoration-amber-700">nomadtaxhelp.com</a>,
             where we help people like you become tax-efficient.
           </p>
-          <p>But today, I want to help YOU <span aria-hidden="true">🫵</span></p>
-          <p>So here is all the best info and wisdom I've acquired over the last decade in one place.</p>
+          <p>So here <span aria-hidden="true">👇</span> is all the best info and wisdom I've acquired over the last decade in one place.</p>
           <p>Here you can dig through the guides I wish I had&hellip;</p>
         </div>
       </section>
 
       <!-- 3. Guides -->
       <section class="mb-16">
-        <h2 class="font-heading font-bold text-cream-100 text-center text-2xl sm:text-3xl mb-8 tracking-[-0.01em]">Guides</h2>
+        <h2 class="font-heading font-bold text-cream-100 text-center text-2xl sm:text-3xl mb-8 tracking-[-0.01em]">Our Top 5 Guides</h2>
         <ul class="space-y-3 list-none p-0 m-0">
           {sortedPosts.map((post) => {
             const isNew = post.data.publishDate >= fourteenDaysAgo;
