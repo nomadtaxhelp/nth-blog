@@ -125,43 +125,43 @@ const jsonLd = {
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}
 >
-  <article class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <article class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
     <!-- Breadcrumb -->
-    <nav class="text-sm text-gray-600 mb-4" aria-label="Breadcrumb">
+    <nav class="text-sm text-cream-soft/60 mb-5" aria-label="Breadcrumb">
       <ol class="flex items-center gap-1.5 flex-wrap">
-        <li><a href="/" class="hover:text-amber-600 no-underline text-gray-600">Home</a></li>
-        <li class="text-gray-600">/</li>
-        <li><a href={`/category/${data.category}`} class="hover:text-amber-600 no-underline text-gray-600">{categoryLabel}</a></li>
-        <li class="text-gray-600">/</li>
-        <li class="text-gray-900 truncate max-w-[300px]">{data.title}</li>
+        <li><a href="/" class="hover:text-amber-600 no-underline text-cream-soft/60">Home</a></li>
+        <li class="text-cream-soft/40">/</li>
+        <li><a href={`/category/${data.category}`} class="hover:text-amber-600 no-underline text-cream-soft/60">{categoryLabel}</a></li>
+        <li class="text-cream-soft/40">/</li>
+        <li class="text-cream-100 truncate max-w-[300px]">{data.title}</li>
       </ol>
     </nav>
 
     <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
       <!-- Main content column -->
-      <div class="max-w-[680px]">
+      <div class="max-w-[760px]">
         <!-- Category pill -->
-        <div class="mb-3">
+        <div class="mb-4">
           <CategoryPill category={data.category} label={categoryLabel} />
         </div>
 
-        <!-- H1 -->
-        <h1 class="text-3xl sm:text-4xl mb-4">{data.title}</h1>
+        <!-- H1 — cream on teal -->
+        <h1 class="text-3xl sm:text-5xl text-cream-100 font-heading font-bold leading-[1.1] tracking-[-0.01em] mb-5">{data.title}</h1>
 
         <!-- Metadata row -->
-        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-6">
+        <div class="flex flex-wrap items-center gap-3 text-sm text-cream-soft/70 mb-8">
           <AuthorByline />
-          <span>&middot;</span>
+          <span class="text-cream-soft/30">&middot;</span>
           <time datetime={data.publishDate.toISOString()}>
             {data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
           </time>
           {data.updatedDate && data.updatedDate > data.publishDate && (
             <>
-              <span>&middot;</span>
+              <span class="text-cream-soft/30">&middot;</span>
               <LastUpdated date={data.updatedDate} />
             </>
           )}
-          <span>&middot;</span>
+          <span class="text-cream-soft/30">&middot;</span>
           <span>{readingTime} min read</span>
         </div>
 
@@ -175,15 +175,17 @@ const jsonLd = {
           <TableOfContents headings={headings} />
         )}
 
-        <!-- Post body -->
-        <div class="prose mt-8">
-          <slot />
+        <!-- Post body — cream surface card -->
+        <div class="bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
+          <div class="prose">
+            <slot />
+          </div>
         </div>
 
         <!-- FAQ section -->
         {data.faqItems && data.faqItems.length > 0 && (
           <section class="mt-12">
-            <h2 class="text-2xl font-heading font-semibold text-teal-900 mb-6">Frequently asked questions</h2>
+            <h2 class="text-2xl font-heading font-bold text-cream-100 mb-6">Frequently asked questions</h2>
             <FAQAccordion items={data.faqItems} />
           </section>
         )}
@@ -191,13 +193,13 @@ const jsonLd = {
         <!-- Related posts -->
         {relatedPosts.length > 0 && (
           <section class="mt-12">
-            <h2 class="text-2xl font-heading font-semibold text-teal-900 mb-6">Related posts</h2>
+            <h2 class="text-2xl font-heading font-bold text-cream-100 mb-6">Related posts</h2>
             <RelatedPosts posts={relatedPosts} />
           </section>
         )}
 
         <!-- Author bio box -->
-        <div class="mt-12 p-6 bg-cream-50 rounded-xl border border-gray-200">
+        <div class="mt-12 p-6 surface-muted">
           <div class="flex items-start gap-4">
             <a
               href="/images/felix.png"
@@ -212,15 +214,15 @@ const jsonLd = {
                 loading="lazy"
                 width="64"
                 height="64"
-                class="w-16 h-16 rounded-full object-cover border border-teal-900/10"
+                class="w-16 h-16 rounded-full object-cover border border-cream-100/20"
               />
             </a>
             <div>
-              <p class="font-heading font-semibold text-teal-900">Felix Yanez-Bowker</p>
-              <p class="text-sm text-gray-600 mb-2">Co-Founder, NomadTaxHelp</p>
-              <p class="text-sm text-gray-600">
+              <p class="font-heading font-semibold text-cream-100">Felix Yanez-Bowker</p>
+              <p class="text-sm text-cream-soft/70 mb-2">Co-Founder, NomadTaxHelp</p>
+              <p class="text-sm text-cream-soft/80">
                 Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups.
-                <a href="/about" class="text-amber-600">Read more about Felix &rarr;</a>
+                <a href="/about" class="text-amber-600 hover:text-amber-700">Read more about Felix &rarr;</a>
               </p>
             </div>
           </div>

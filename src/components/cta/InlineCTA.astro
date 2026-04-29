@@ -41,42 +41,45 @@ const config = variants[variant];
 const displayHeading = heading || config.defaultHeading;
 ---
 
-<aside class="bg-cream-50 border-l-4 border-teal-900 rounded-r-xl p-5 sm:p-6 my-8">
-  <p class="text-xl mb-2">{config.icon}</p>
-  <p class="font-heading font-semibold text-teal-900 text-lg mb-2">{displayHeading}</p>
+<aside class="bg-teal-900 text-cream-soft p-6 sm:p-7 my-8" style="border-radius: 0.625rem; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.3);">
+  <p class="text-xl mb-2" aria-hidden="true">{config.icon}</p>
+  <p class="font-heading font-bold text-cream-100 text-lg mb-2">{displayHeading}</p>
 
   {variant === 'upgrade' ? (
     <div>
-      <p class="text-sm text-gray-600 mb-3"><slot>{config.defaultBody}</slot></p>
+      <p class="text-sm text-cream-soft/85 mb-4 font-body"><slot>{config.defaultBody}</slot></p>
       <form class="inline-cta-form flex gap-2" data-upgrade-id={upgradeId}>
         <input
           type="email"
           name="email"
           placeholder="you@example.com"
           required
-          class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+          class="flex-1 px-3 py-2 bg-cream-100 text-teal-900 border border-cream-100/30 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+          style="border-radius: 0.5rem;"
         />
         <button
           type="submit"
-          class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
+          class="btn-shimmer px-4 py-2 font-heading font-semibold text-sm shrink-0"
+          style="border-radius: 0.5rem;"
         >
           {config.buttonText}
         </button>
       </form>
-      <p class="inline-cta-success hidden text-sm text-green-600 mt-2">Check your email. The guide is on its way.</p>
+      <p class="inline-cta-success hidden text-sm text-amber-600 mt-2">Check your email. The guide is on its way.</p>
       <p class="inline-cta-error hidden text-sm text-coral-600 mt-2">Something went wrong. Try again.</p>
     </div>
   ) : (
     <div>
-      <p class="text-sm text-gray-600 mb-4"><slot>{config.defaultBody}</slot></p>
+      <p class="text-sm text-cream-soft/85 mb-4 font-body"><slot>{config.defaultBody}</slot></p>
       <a
         href={config.buttonLink}
         class:list={[
-          'inline-flex items-center px-5 py-2.5 rounded-full font-heading font-semibold text-sm no-underline',
+          'inline-flex items-center px-5 py-2.5 font-heading font-semibold text-sm no-underline',
           variant === 'call'
             ? 'btn-shimmer'
-            : 'bg-amber-600 text-white hover:bg-amber-700 transition-colors',
+            : 'bg-amber-600 text-teal-900 hover:bg-amber-700 transition-colors',
         ]}
+        style="border-radius: 0.625rem;"
         {...(config.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {config.buttonText}

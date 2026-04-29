@@ -3,9 +3,9 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
 
 // Canonical glossary of every tax-residency term used across the blog.
 // Two purposes:
-//   1. Internal linking target — posts link first usage of each term here
+//   1. Internal linking target. Posts link first usage of each term here
 //      to build a tight topical link graph.
-//   2. AEO entity layer — the DefinedTermSet schema makes each definition
+//   2. AEO entity layer. The DefinedTermSet schema makes each definition
 //      a structured entity that LLMs can cite as a primary source.
 
 const terms = [
@@ -71,7 +71,7 @@ const terms = [
     name: 'Renta mundial',
     section: 'Tax exit tests',
     definition:
-      'Spanish principle that tax residents are taxed on worldwide income — not just income earned in Spain. Combined with Beckham Law restrictions and Modelo 720 reporting, the Spanish exit framework is one of the more onerous in Europe.',
+      'Spanish principle that tax residents are taxed on worldwide income, not just income earned in Spain. Combined with Beckham Law restrictions and Modelo 720 reporting, the Spanish exit framework is one of the more onerous in Europe.',
     seeAlso: { url: '/posts/european-nomad-tax-playbook', label: 'European nomad tax playbook' },
   },
   {
@@ -79,21 +79,21 @@ const terms = [
     name: 'Beckham Law (Régimen Especial de Trabajadores Desplazados)',
     section: 'Tax exit tests',
     definition:
-      "Spanish special tax regime for inbound expats and certain returnees. Caps personal income tax at a flat 24% for the first 6 years, in lieu of progressive rates that hit 47%+. Restrictive eligibility — primarily employed inbounds, with capped income and narrowing rules in 2024-26.",
+      "Spanish special tax regime for inbound expats and certain returnees. Caps personal income tax at a flat 24% for the first 6 years, in lieu of progressive rates that hit 47%+. Restrictive eligibility: primarily employed inbounds, with capped income and narrowing rules in 2024-26.",
   },
   {
     id: 'day-count-test',
     name: 'Day-count test (183-day rule)',
     section: 'Tax exit tests',
     definition:
-      'Common shorthand for the 183-day rule that many countries use as one (not the only) test of tax residency. Spending 183+ days in country X usually triggers residency in X. Falling under doesn\'t automatically make you non-resident — countries also look at family, home, business control, and centre of vital interests.',
+      'Common shorthand for the 183-day rule that many countries use as one (not the only) test of tax residency. Spending 183+ days in country X usually triggers residency in X. Falling under doesn\'t automatically make you non-resident; countries also look at family, home, business control, and centre of vital interests.',
   },
   {
     id: 'centre-of-vital-interests',
     name: 'Centro de intereses vitales (centre of vital interests)',
     section: 'Tax exit tests',
     definition:
-      'Civil-law concept used in OECD tie-breaker rules to identify the country where your "centre of vital interests" — family, economic activity, social bonds — is located. When two countries both claim you as resident, this is one of the tests used to break the tie.',
+      'Civil-law concept used in OECD tie-breaker rules to identify the country where your "centre of vital interests" (family, economic activity, social bonds) is located. When two countries both claim you as resident, this is one of the tests used to break the tie.',
   },
   {
     id: 'tie-breaker-rule',
@@ -107,14 +107,14 @@ const terms = [
     name: 'DTT / DTA (Double Tax Treaty)',
     section: 'Tax exit tests',
     definition:
-      'Bilateral agreement between two countries to prevent the same income being taxed twice. Includes a tie-breaker article, withholding-tax reductions, and information-exchange provisions. Paraguay has DTAs only with Chile, Taiwan, Qatar and Uruguay — narrow, but it does not matter for territorial residents whose foreign income is already exempt under domestic law.',
+      'Bilateral agreement between two countries to prevent the same income being taxed twice. Includes a tie-breaker article, withholding-tax reductions, and information-exchange provisions. Paraguay has DTAs only with Chile, Taiwan, Qatar and Uruguay, which is narrow, but it does not matter for territorial residents whose foreign income is already exempt under domestic law.',
   },
   {
     id: 'padron',
     name: 'Padrón (municipal registry)',
     section: 'Tax exit tests',
     definition:
-      "Spain's municipal residency registry (Padrón Municipal). Registering or deregistering matters for proving where you actually live. The Spanish tax authority looks at padrón, utility bills and physical presence together — not any single signal.",
+      "Spain's municipal residency registry (Padrón Municipal). Registering or deregistering matters for proving where you actually live. The Spanish tax authority looks at padrón, utility bills and physical presence together, not any single signal.",
   },
 
   // International compliance
@@ -123,7 +123,7 @@ const terms = [
     name: 'OECD CRS (Common Reporting Standard)',
     section: 'International compliance',
     definition:
-      "Automatic exchange of financial-account information between participating countries. Banks worldwide ask account holders for tax residency and report account balances and income to that country's tax authority annually. Paraguay joined CRS in 2021. CRS is how legitimate residency works — banks confirm the structure rather than blow it up.",
+      "Automatic exchange of financial-account information between participating countries. Banks worldwide ask account holders for tax residency and report account balances and income to that country's tax authority annually. Paraguay joined CRS in 2021. CRS is how legitimate residency works: banks confirm the structure rather than blow it up.",
     seeAlso: { url: '/posts/is-paraguay-tax-residency-legit', label: 'Is Paraguay tax residency legit?' },
   },
   {
@@ -163,7 +163,7 @@ const terms = [
     section: 'Other regimes',
     definition:
       "Portugal's special tax regime for inbound residents, in force from 2009 to end-2023. Flat 20% tax on Portuguese-source professional income for 10 years; 0% on most foreign passive income. Closed to new applicants from 1 January 2024. Existing holders keep their 10-year window.",
-    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead — what replaces it' },
+    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
   },
   {
     id: 'ifici',
@@ -171,7 +171,7 @@ const terms = [
     section: 'Other regimes',
     definition:
       "Portugal's narrower replacement for NHR, in force since 2024. Targets specific roles in tech, scientific research, teaching, and certain industries. Excludes most independent freelancers and entrepreneurs that NHR previously attracted.",
-    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead — what replaces it' },
+    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
   },
   {
     id: 'cyprus-60-day',
@@ -179,7 +179,7 @@ const terms = [
     section: 'Other regimes',
     definition:
       "Cyprus's regime for inbound nomads. Tax residency triggers if you spend at least 60 days in Cyprus, are not tax-resident anywhere else for that year, have ties (rented or owned home, business or employment), and don't spend more than 183 days in any other country. Combined with non-dom status, foreign dividend and interest income is taxed only via the 2.65% GHS levy.",
-    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead — what replaces it' },
+    seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
   },
   {
     id: 'uae',
@@ -228,48 +228,53 @@ const jsonLd = {
   description="Plain-English definitions of every tax-residency term used across NomadTaxHelp: TRC, RUC, cédula, OECD CRS, UK Statutory Residence Test, Wegzugsteuer, NHR, IFICI, and more."
   jsonLd={jsonLd}
 >
-  <article class="max-w-[760px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-    <h1 class="text-3xl sm:text-4xl mb-4">Glossary</h1>
-    <p class="text-lg text-gray-600 mb-12 max-w-[640px] font-body">
+  <article class="max-w-[820px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Glossary</p>
+    <h1 class="font-heading font-bold text-cream-100 mb-5 text-4xl sm:text-5xl tracking-[-0.01em]">Plain-English tax-residency terms</h1>
+    <p class="text-base sm:text-lg text-cream-soft/85 mb-12 max-w-[640px] font-body leading-relaxed">
       Tax residency for nomads has more jargon than it deserves. Here's the plain-English version of every term I use across this blog. Each definition links to the post where it actually matters.
     </p>
 
-    {sections.map((section) => (
-      <section class="mb-12">
-        <h2 class="text-xl font-heading font-semibold text-teal-900 mb-6 border-b border-gray-200 pb-2">{section}</h2>
-        <dl class="space-y-8">
-          {terms
-            .filter((t) => t.section === section)
-            .map((t) => (
-              <div id={t.id} class="scroll-mt-24">
-                <dt class="font-heading font-semibold text-teal-900 text-lg mb-2">
-                  <a href={`#${t.id}`} class="no-underline hover:text-amber-600 transition-colors">
-                    {t.name}
-                  </a>
-                </dt>
-                <dd class="text-gray-900 font-body leading-relaxed">
-                  <p class="mb-2">{t.definition}</p>
-                  {t.seeAlso && (
-                    <p class="text-sm text-gray-600">
-                      See:{' '}
-                      <a href={t.seeAlso.url} class="text-amber-600 hover:text-amber-700">
-                        {t.seeAlso.label}
-                      </a>
-                    </p>
-                  )}
-                </dd>
-              </div>
-            ))}
-        </dl>
-      </section>
-    ))}
+    <!-- Big cream card holds all the term definitions for readable scanning -->
+    <div class="surface-cream p-6 sm:p-10" style="box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);">
+      {sections.map((section) => (
+        <section class="mb-10 last:mb-0">
+          <h2 class="font-heading font-bold text-teal-900 text-xl mb-6 pb-2 border-b border-teal-900/15 tracking-[-0.01em]">{section}</h2>
+          <dl class="space-y-7">
+            {terms
+              .filter((t) => t.section === section)
+              .map((t) => (
+                <div id={t.id} class="scroll-mt-24">
+                  <dt class="font-heading font-bold text-teal-900 text-lg mb-2">
+                    <a href={`#${t.id}`} class="no-underline hover:text-amber-700 transition-colors">
+                      {t.name}
+                    </a>
+                  </dt>
+                  <dd class="text-teal-900/90 font-body leading-relaxed">
+                    <p class="mb-2">{t.definition}</p>
+                    {t.seeAlso && (
+                      <p class="text-sm text-teal-900/70">
+                        See:{' '}
+                        <a href={t.seeAlso.url} class="text-amber-600 hover:text-amber-700 underline underline-offset-2">
+                          {t.seeAlso.label}
+                        </a>
+                      </p>
+                    )}
+                  </dd>
+                </div>
+              ))}
+          </dl>
+        </section>
+      ))}
+    </div>
 
-    <div class="mt-16 p-6 bg-cream-50 rounded-xl border border-gray-200">
-      <p class="font-body text-gray-900 mb-3">
-        Got a term that should be in here? Let me know at <a href="mailto:hello@nomadtaxhelp.com" class="text-amber-600 hover:text-amber-700">hello@nomadtaxhelp.com</a>.
+    <!-- Footer note as surface-muted on teal -->
+    <div class="mt-12 surface-muted p-6">
+      <p class="font-body text-cream-soft mb-3">
+        Got a term that should be in here? Let me know at <a href="mailto:hello@nomadtaxhelp.com" class="text-amber-600 hover:text-amber-700 underline underline-offset-2">hello@nomadtaxhelp.com</a>.
       </p>
-      <p class="text-sm text-gray-600 font-body">
-        NomadTaxHelp isn't a tax or legal adviser. We coordinate with licensed partners who are. These definitions are educational; specific applications need a professional.
+      <p class="text-sm text-cream-soft/70 font-body">
+        NomadTaxHelp is a facilitator, not a law firm or tax adviser. We coordinate with licensed partners who are. These definitions are educational; specific applications need a professional.
       </p>
     </div>
   </article>

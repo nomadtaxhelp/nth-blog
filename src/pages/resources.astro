@@ -9,29 +9,32 @@ const upgrades = await getCollection('upgrades');
   title="Free Resources | NomadTaxHelp Blog"
   description="Free guides, checklists, and tools for digital nomads sorting their tax residency, US LLC, and international setup."
 >
-  <div class="max-w-[680px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
-    <h1 class="text-3xl sm:text-4xl mb-3">Free resources</h1>
-    <p class="text-gray-600 mb-10 max-w-lg">
-      Guides and checklists to help you sort your tax setup. Enter your email and we'll send the PDF straight to your inbox.
+  <div class="max-w-[760px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Free resources</p>
+    <h1 class="font-heading font-bold text-cream-100 mb-3 text-4xl sm:text-5xl tracking-[-0.01em]">Guides and checklists</h1>
+    <p class="text-cream-soft/85 mb-10 max-w-lg text-base sm:text-lg leading-relaxed">
+      Free guides and checklists to help you sort your tax setup. Enter your email and we'll send the PDF straight to your inbox.
     </p>
 
-    <div class="space-y-6">
+    <div class="space-y-5">
       {upgrades.map((upgrade) => (
-        <div class="bg-cream-50 border border-gray-200 rounded-xl p-5 sm:p-6">
-          <p class="text-xl mb-2">📄</p>
-          <h2 class="font-heading font-semibold text-teal-900 text-xl mb-1">{upgrade.data.title}</h2>
-          <p class="text-sm text-gray-600 mb-4">{upgrade.data.description}</p>
+        <div class="bg-cream-100 text-teal-900 p-6 sm:p-7" style="border-radius: 0.625rem; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.35);">
+          <p class="text-xl mb-2" aria-hidden="true">📄</p>
+          <h2 class="font-heading font-bold text-teal-900 text-xl mb-1 leading-snug">{upgrade.data.title}</h2>
+          <p class="text-sm text-teal-900/75 mb-4 leading-relaxed">{upgrade.data.description}</p>
           <form class="resource-form flex gap-2" data-upgrade-id={upgrade.data.id}>
             <input
               type="email"
               name="email"
               placeholder="you@example.com"
               required
-              class="flex-1 px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              class="flex-1 px-3 py-2 border border-teal-900/20 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
+              style="border-radius: 0.625rem;"
             />
             <button
               type="submit"
-              class="px-4 py-2 rounded-lg bg-amber-600 text-white font-heading font-semibold text-sm hover:bg-amber-700 transition-colors shrink-0"
+              class="btn-shimmer px-5 py-2 font-heading font-semibold text-sm shrink-0"
+              style="border-radius: 0.625rem;"
             >
               Send it to me
             </button>

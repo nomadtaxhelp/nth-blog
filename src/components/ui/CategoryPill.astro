@@ -7,6 +7,8 @@ interface Props {
 
 const { category, label, size = 'md' } = Astro.props;
 
+// Pill works on both teal page backgrounds and cream card backgrounds —
+// gold fill with teal text reads cleanly against either surface.
 const sizeClasses = {
   sm: 'px-2.5 py-0.5 text-[11px]',
   md: 'px-3 py-1 text-xs',
@@ -15,7 +17,8 @@ const sizeClasses = {
 
 <a
   href={`/category/${category}`}
-  class={`inline-block font-heading font-semibold rounded-full bg-teal-900 text-white no-underline hover:bg-teal-800 transition-colors ${sizeClasses[size]}`}
+  class={`inline-block font-heading font-semibold uppercase tracking-[0.08em] bg-amber-600 text-teal-900 no-underline hover:bg-amber-700 hover:text-cream-100 transition-colors ${sizeClasses[size]}`}
+  style="border-radius: 0.4rem;"
 >
   {label}
 </a>

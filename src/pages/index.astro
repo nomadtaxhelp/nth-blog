@@ -64,13 +64,16 @@ const jsonLd = {
   description="Practical guides on tax residency, US LLCs, and international tax exits for digital nomads and remote entrepreneurs. Written by Felix Yanez-Bowker, co-founder of NomadTaxHelp."
   jsonLd={jsonLd}
 >
-  <!-- Hero -->
-  <section class="bg-cream-100 py-16 sm:py-24 px-4">
-    <div class="max-w-[680px] mx-auto text-center">
-      <h1 class="font-heading font-bold text-teal-900 mb-5 no-underline" style="font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; letter-spacing: -0.02em; text-decoration: none;">
-        Practical Guides for Nomads Sorting Their Tax Setup
+  <!-- Hero: cream slab on teal page bg -->
+  <section class="surface-cream max-w-[1200px] mx-auto mt-8 mb-16 py-16 sm:py-20 px-6 text-center">
+    <div class="max-w-[720px] mx-auto">
+      <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5">
+        NomadTaxHelp Blog
+      </p>
+      <h1 class="font-heading font-bold text-teal-900 mb-5" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; letter-spacing: -0.01em;">
+        Practical guides for nomads sorting their tax setup.
       </h1>
-      <p class="font-body text-gray-600 mb-8 max-w-lg mx-auto" style="font-size: 1.0625rem; line-height: 1.6; font-weight: 400;">
+      <p class="font-body text-teal-900/75 mb-8 max-w-[520px] mx-auto text-base sm:text-lg leading-relaxed">
         Written by Felix, co-founder of NomadTaxHelp. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
       </p>
       <div class="flex justify-center">
@@ -78,7 +81,8 @@ const jsonLd = {
           href={calLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-shimmer inline-flex items-center px-8 py-3.5 rounded-lg font-heading font-semibold no-underline"
+          class="btn-shimmer inline-flex items-center px-8 py-3.5 font-heading font-semibold no-underline text-base"
+          style="border-radius: 0.625rem;"
         >
           Book a Call
         </a>
@@ -86,22 +90,24 @@ const jsonLd = {
     </div>
   </section>
 
-  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Featured post -->
+  <div class="max-w-[1200px] mx-auto px-5 sm:px-8 pb-16">
+    <!-- Featured post (cream card on teal) -->
     {featuredPost && (
-      <section class="mb-12">
+      <section class="mb-14">
+        <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.18em] mb-4">Featured</p>
         <a
           href={`/posts/${featuredPost.data.slug}`}
-          class="block bg-white rounded-xl border border-gray-200 shadow-sm no-underline overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+          class="block bg-cream-100 text-teal-900 no-underline overflow-hidden group transition-all duration-200 hover:-translate-y-0.5"
+          style="border-radius: 0.625rem; box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);"
         >
-          <div class="p-6 sm:p-8">
-            <h2 class="font-heading text-gray-900 mb-3 group-hover:text-teal-900 transition-colors duration-200" style="font-size: 1.375rem; font-weight: 600;">
+          <div class="p-7 sm:p-9">
+            <h2 class="font-heading font-bold text-teal-900 mb-3 group-hover:text-amber-700 transition-colors" style="font-size: 1.75rem; line-height: 1.2; letter-spacing: -0.01em;">
               {featuredPost.data.title}
             </h2>
-            <p class="font-body text-gray-600 mb-4 max-w-2xl" style="font-weight: 400;">
+            <p class="font-body text-teal-900/80 mb-5 max-w-2xl text-base leading-relaxed">
               {featuredPost.data.description}
             </p>
-            <div class="flex items-center gap-3 font-heading" style="font-size: 0.8125rem; font-weight: 400; color: #6b7280;">
+            <div class="flex items-center gap-3 font-heading text-xs text-teal-900/60 uppercase tracking-wider">
               <span>Felix Yanez-Bowker</span>
               <span>&middot;</span>
               <time datetime={featuredPost.data.publishDate.toISOString()}>
@@ -119,21 +125,22 @@ const jsonLd = {
       </section>
     )}
 
-    <!-- Recent posts grid -->
+    <!-- Recent posts grid (cream cards on teal) -->
     {recentPosts.length > 0 && (
       <section class="mb-16">
-        <h2 class="font-heading text-xl font-semibold text-teal-900 mb-6">Recent posts</h2>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 class="font-heading font-bold text-cream-100 text-2xl mb-6 tracking-[-0.01em]">Recent guides</h2>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {recentPosts.map((post) => (
             <a
               href={`/posts/${post.data.slug}`}
-              class="block bg-white rounded-xl border border-gray-200 shadow-sm no-underline group p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+              class="block bg-cream-100 text-teal-900 no-underline group p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5"
+              style="border-radius: 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
             >
-              <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2 group-hover:text-teal-900 transition-colors duration-200">
+              <h3 class="font-heading font-bold text-teal-900 text-lg mb-2 group-hover:text-amber-700 transition-colors leading-snug">
                 {post.data.title}
               </h3>
-              <p class="text-sm text-gray-600 line-clamp-2 mb-3 font-body">{post.data.description}</p>
-              <time class="text-xs text-gray-600 font-heading" style="color: #6b7280;" datetime={post.data.publishDate.toISOString()}>
+              <p class="text-sm text-teal-900/75 line-clamp-2 mb-4 font-body leading-relaxed">{post.data.description}</p>
+              <time class="text-xs text-teal-900/55 font-heading uppercase tracking-wider" datetime={post.data.publishDate.toISOString()}>
                 {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
               </time>
             </a>
@@ -142,20 +149,23 @@ const jsonLd = {
       </section>
     )}
 
-    <!-- Book a Call CTA (replaces newsletter signup) -->
-    <section class="bg-teal-900 rounded-xl px-6 sm:px-8 text-center" style="padding-top: 80px; padding-bottom: 80px;">
-      <h2 class="font-heading font-bold text-white mb-3" style="font-size: 1.75rem;">
-        Ready to Sort Your Tax Setup?
+    <!-- Bottom CTA: cream surface on teal -->
+    <section class="surface-cream px-6 sm:px-8 py-14 sm:py-16 text-center" style="box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);">
+      <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.18em] mb-3">
+        Want help sorting yours?
+      </p>
+      <h2 class="font-heading font-bold text-teal-900 mb-3 text-2xl sm:text-3xl tracking-[-0.01em]">
+        Ready to sort your tax setup?
       </h2>
-      <p class="font-body text-cream-100 mb-6 mx-auto" style="font-weight: 400; font-size: 1.0625rem; max-width: 520px;">
+      <p class="font-body text-teal-900/75 mb-7 mx-auto max-w-[480px] text-base">
         Book a free 20-minute clarity call. I'll map your situation, flag the risks, and give you a one-page plan to act on.
       </p>
       <a
         href={calLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-shimmer inline-flex items-center font-heading font-semibold no-underline"
-        style="padding: 14px 32px; border-radius: 8px;"
+        class="btn-shimmer inline-flex items-center font-heading font-semibold no-underline text-base"
+        style="padding: 14px 32px; border-radius: 0.625rem;"
       >
         Book a Call &rarr;
       </a>

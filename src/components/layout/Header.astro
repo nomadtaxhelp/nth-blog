@@ -9,11 +9,11 @@ const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-teal-900 text-white sticky top-0 z-50">
-  <div class="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+<header id="site-header" class="text-cream-100 sticky top-0 z-50 transition-colors duration-200">
+  <div class="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 shrink-0 no-underline">
-      <span class="font-heading text-xl font-bold tracking-tight text-shimmer-on-dark">NomadTaxHelp</span>
+      <span class="font-heading text-xl font-bold tracking-tight text-cream-100">NomadTaxHelp</span>
     </a>
 
     <!-- Desktop nav -->
@@ -24,8 +24,8 @@ const currentPath = Astro.url.pathname;
           <a
             href={link.href}
             class:list={[
-              'text-sm font-heading font-medium text-white tracking-[0.01em] no-underline transition-colors duration-200 pb-1',
-              isActive ? 'border-b-2 border-cream-100' : 'border-b-2 border-transparent hover:text-cream-100',
+              'text-sm font-heading font-medium text-cream-100 tracking-[0.01em] no-underline transition-colors duration-200 pb-1',
+              isActive ? 'border-b-2 border-amber-600' : 'border-b-2 border-transparent hover:text-amber-600',
             ]}
             {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
@@ -46,7 +46,7 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile hamburger -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden p-2 text-white"
+      class="md:hidden p-2 text-cream-100"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -58,11 +58,11 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile menu -->
-  <nav id="mobile-menu" class="hidden md:hidden bg-teal-900 border-t border-white/10 px-4 pb-4">
+  <nav id="mobile-menu" class="hidden md:hidden bg-teal-deep/95 backdrop-blur-sm border-t border-cream-100/10 px-5 pb-4">
     {navLinks.map((link) => (
       <a
         href={link.href}
-        class="block py-3 text-white hover:text-cream-100 no-underline font-heading text-sm font-medium border-b border-white/5 transition-colors duration-200"
+        class="block py-3 text-cream-100 hover:text-amber-600 no-underline font-heading text-sm font-medium border-b border-cream-100/10 transition-colors duration-200"
         {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {link.label}
@@ -103,4 +103,22 @@ const currentPath = Astro.url.pathname;
     hamburgerIcon?.classList.toggle('hidden', isOpen);
     closeIcon?.classList.toggle('hidden', !isOpen);
   });
+
+  // Header bg: transparent at top, teal-deep/95 with backdrop blur once scrolled.
+  const header = document.getElementById('site-header');
+  const setHeaderState = () => {
+    if (!header) return;
+    const scrolled = window.scrollY > 8;
+    header.classList.toggle('bg-teal-deep/95', scrolled);
+    header.classList.toggle('backdrop-blur-md', scrolled);
+    header.classList.toggle('shadow-[0_1px_0_0_rgba(255,228,196,0.08)]', scrolled);
+  };
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
 </script>
+
+<style>
+  /* Tailwind v4 doesn't auto-emit unused arbitrary class lookups; ensure these
+     are kept by referencing them at the same specificity here. */
+  #site-header.bg-teal-deep\/95 { background-color: rgb(0 53 54 / 0.95); }
+</style>

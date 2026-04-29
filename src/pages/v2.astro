@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { felix, organization } from '../data/felix';
+import '../styles/global.css';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
@@ -8,6 +10,46 @@ const now = new Date();
 const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const canonicalUrl = 'https://blog.nomadtaxhelp.com/v2';
+const ogImage = 'https://blog.nomadtaxhelp.com/images/og-default.svg';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://nomadtaxhelp.com/#organization',
+      name: organization.name,
+      url: organization.url,
+      logo: { '@type': 'ImageObject', url: organization.logo },
+      sameAs: organization.sameAs,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://blog.nomadtaxhelp.com/#website',
+      url: 'https://blog.nomadtaxhelp.com',
+      name: 'NomadTaxHelp Blog',
+      description: 'Practical guides on tax residency for European and rest-of-world digital nomads.',
+      publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+      name: felix.name,
+      url: felix.url,
+      image: felix.image,
+      jobTitle: felix.jobTitle,
+      sameAs: felix.sameAs,
+    },
+  ],
+};
+
+const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
+const posthogScript = posthogKey
+  ? `<script>!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias group reset register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_distinct_id get_session_id get_session_replay_url onFeatureFlags getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags setPersonProperties getGroups resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags startSessionRecording stopSessionRecording captureException loadToolbar".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHost)},persistence:"memory",autocapture:true,capture_pageview:true,capture_pageleave:true});</script>`
+  : null;
 ---
 
 <!doctype html>
@@ -16,419 +58,144 @@ const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>NomadTaxHelp — Guides</title>
+    <title>NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup</title>
     <meta name="description" content="Practical tax residency guides for digital nomads. Written by Felix, co-founder of NomadTaxHelp." />
-    <link rel="canonical" href="https://blog.nomadtaxhelp.com/v2" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="NomadTaxHelp — Guides" />
+    <meta property="og:title" content="NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup" />
     <meta property="og:description" content="Practical tax residency guides for digital nomads. Written by Felix, co-founder of NomadTaxHelp." />
-    <meta property="og:url" content="https://blog.nomadtaxhelp.com/v2" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="NomadTaxHelp" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup" />
+    <meta name="twitter:description" content="Practical tax residency guides for digital nomads." />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/rss.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {posthogScript && <Fragment set:html={posthogScript} />}
   </head>
-  <body>
-    <div class="v2-content">
-      <!-- 1. Site title -->
-      <header class="v2-header">
-        <a href="https://nomadtaxhelp.com" class="v2-logo" aria-label="NomadTaxHelp home">
-          <img src="/logo.svg" alt="NomadTaxHelp" class="v2-logo-img" />
+  <body class="bg-teal-900 text-cream-soft min-h-screen font-body">
+    <div class="max-w-[720px] mx-auto px-5 sm:px-8">
+
+      <!-- 1. Logo -->
+      <header class="pt-12 pb-10 text-center">
+        <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="inline-block no-underline transition-opacity hover:opacity-80" aria-label="NomadTaxHelp home">
+          <img src="/logo.svg" alt="NomadTaxHelp" width="64" height="64" class="h-16 w-auto inline-block" />
         </a>
       </header>
 
-      <!-- 2. Introduction -->
-      <div class="v2-intro">
-        <p class="v2-intro-greeting">Hey, I'm Felix <span aria-hidden="true">👋</span></p>
-        <p>I get it. Taxes as a digital nomad are a damn nightmare.</p>
-        <p>So I built <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="v2-intro-link">nomadtaxhelp.com</a> &mdash; where we help people like you become tax-efficient.</p>
-        <p>But today, I want to help YOU <span aria-hidden="true">🫵</span></p>
-        <p>So here is all the best info and wisdom I have acquired over the last decade in one place.</p>
-        <p>Here you can dig through the guides I wish I had&hellip;</p>
-      </div>
+      <!-- 2. Greeting + intro -->
+      <section class="text-center mb-16">
+        <h1 class="font-heading font-bold text-cream-100 mb-8 text-3xl sm:text-4xl tracking-[-0.01em]">
+          Hey, I'm Felix <span aria-hidden="true">👋</span>
+        </h1>
+        <div class="space-y-5 text-base sm:text-lg text-cream-soft/90 leading-relaxed max-w-[560px] mx-auto">
+          <p>I get it. Taxes as a digital nomad are a damn nightmare.</p>
+          <p>
+            So I built
+            <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-600/40 hover:decoration-amber-700">nomadtaxhelp.com</a>,
+            where we help people like you become tax-efficient.
+          </p>
+          <p>But today, I want to help YOU <span aria-hidden="true">🫵</span></p>
+          <p>So here is all the best info and wisdom I've acquired over the last decade in one place.</p>
+          <p>Here you can dig through the guides I wish I had&hellip;</p>
+        </div>
+      </section>
 
-      <!-- 3. Section heading -->
-      <h2 class="v2-section-title">Guides</h2>
+      <!-- 3. Guides -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-cream-100 text-center text-2xl sm:text-3xl mb-8 tracking-[-0.01em]">Guides</h2>
+        <ul class="space-y-3 list-none p-0 m-0">
+          {sortedPosts.map((post) => {
+            const isNew = post.data.publishDate >= fourteenDaysAgo;
+            return (
+              <li>
+                <a
+                  href={`/posts/${post.data.slug}`}
+                  class="group block bg-cream-100 text-teal-900 px-5 py-5 sm:px-6 sm:py-6 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(0,0,0,0.45)]"
+                  style="border-radius: 0.625rem;"
+                >
+                  <div class="flex items-start gap-4">
+                    <span class="text-amber-600 font-bold text-xl shrink-0 leading-tight transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    <div class="flex-1 min-w-0">
+                      <span class="font-heading font-semibold text-base sm:text-lg leading-snug text-teal-900 group-hover:text-amber-700 transition-colors">
+                        {post.data.title}
+                      </span>
+                      {isNew && (
+                        <span class="ml-2 text-xs font-medium italic text-amber-600 align-middle">(new)</span>
+                      )}
+                      <p class="mt-2 text-sm text-teal-900/70 leading-relaxed line-clamp-2">{post.data.description}</p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
-      <!-- 4. Post list -->
-      <ul class="v2-post-list">
-        {sortedPosts.map((post) => {
-          const isNew = post.data.publishDate >= fourteenDaysAgo;
-          return (
-            <li class="v2-post-item">
-              <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>{isNew && <span class="v2-new-badge"> (new)</span>}
-            </li>
-          );
-        })}
-      </ul>
-
-      <!-- 5. CTA -->
-      <div class="v2-cta">
-        <hr class="v2-rule" />
-        <p class="v2-cta-heading">Want help sorting yours?</p>
-        <div class="v2-cta-buttons">
-          <a href={calLink} target="_blank" rel="noopener noreferrer" class="v2-btn v2-btn-primary btn-shimmer">
-            <span class="v2-btn-emoji" aria-hidden="true">📞</span>
-            Book A Clarity Call HERE
+      <!-- 4. CTA card -->
+      <section class="mb-16">
+        <div class="bg-cream-100 text-teal-900 p-8 sm:p-10 text-center" style="border-radius: 0.625rem; box-shadow: 0 18px 40px -16px rgba(0,0,0,0.4);">
+          <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.15em] mb-3">
+            Want help sorting yours?
+          </p>
+          <h3 class="font-heading font-bold text-teal-900 text-2xl sm:text-3xl mb-4 tracking-[-0.01em]">
+            Book a free 20-minute clarity call
+          </h3>
+          <p class="text-teal-900/75 mb-7 max-w-[420px] mx-auto text-base">
+            I'll map your situation, flag the risks, and give you a one-page plan to act on. No pitch, no obligation.
+          </p>
+          <a
+            href={calLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-shimmer inline-flex items-center gap-2 px-7 py-3.5 font-heading font-semibold no-underline text-base"
+            style="border-radius: 0.625rem;"
+          >
+            <span aria-hidden="true">📞</span>
+            Book a Clarity Call
           </a>
         </div>
-      </div>
+      </section>
 
-      <!-- 6. Footer -->
-      <footer class="v2-footer">
-        <p>NomadTaxHelp &middot; <a href="mailto:hello@nomadtaxhelp.com">hello@nomadtaxhelp.com</a></p>
-        <p class="v2-footer-disclaimer">We're not tax or legal advisers. We work alongside licensed partners who are.</p>
-        <p class="v2-footer-links">
-          <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer">Instagram</a>
-          &middot;
-          <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer">Main site</a>
+      <!-- 5. Footer -->
+      <footer class="pb-12 text-center text-sm text-cream-soft/60 space-y-2">
+        <p>
+          <span class="text-cream-soft/80 font-medium">NomadTaxHelp</span>
+          <span class="mx-1.5 text-cream-soft/40">&middot;</span>
+          <a href="mailto:hello@nomadtaxhelp.com" class="hover:text-amber-600 transition-colors no-underline">hello@nomadtaxhelp.com</a>
+        </p>
+        <p class="text-cream-soft/55 max-w-[560px] mx-auto leading-relaxed">
+          NomadTaxHelp is a facilitator, not a law firm or tax adviser. We coordinate with licensed partners who are.
+        </p>
+        <p class="pt-2">
+          <a href="/about" class="hover:text-amber-600 transition-colors no-underline">About</a>
+          <span class="mx-2 text-cream-soft/30">&middot;</span>
+          <a href="/glossary" class="hover:text-amber-600 transition-colors no-underline">Glossary</a>
+          <span class="mx-2 text-cream-soft/30">&middot;</span>
+          <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer" class="hover:text-amber-600 transition-colors no-underline">Instagram</a>
+          <span class="mx-2 text-cream-soft/30">&middot;</span>
+          <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-600 transition-colors no-underline">Main site</a>
         </p>
       </footer>
+
     </div>
 
-    <style>
-      /* ===== V2 — self-contained, no Tailwind ===== */
-
-      body {
-        background: #ffe4c4;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      /* Content container — centred. Wide enough for the intro
-         to keep each sentence on one line; inner sections are
-         constrained back to a narrower column below. */
-      .v2-content {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
-
-      @media (min-width: 1200px) {
-        .v2-content {
-          padding: 0 40px;
-        }
-      }
-
-      /* Constrain non-intro sections to the original narrow column */
-      .v2-header,
-      .v2-section-title,
-      .v2-post-list,
-      .v2-cta,
-      .v2-footer {
-        max-width: 620px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      /* --- 1. Site title --- */
-      .v2-header {
-        padding-top: 48px;
-        text-align: center;
-      }
-
-      .v2-logo {
-        display: inline-block;
-        line-height: 0;
-        text-decoration: none;
-        cursor: pointer;
-        transition: opacity 200ms ease;
-      }
-
-      .v2-logo:hover {
-        opacity: 0.75;
-      }
-
-      .v2-logo-img {
-        display: block;
-        height: 64px;
-        width: auto;
-        max-width: 240px;
-      }
-
-      @media (max-width: 768px) {
-        .v2-logo-img {
-          height: 52px;
-        }
-      }
-
-      /* --- 2. Introduction --- */
-      .v2-intro {
-        margin-top: 80px;
-        text-align: center;
-      }
-
-      @media (max-width: 768px) {
-        .v2-intro {
-          margin-top: 56px;
-        }
-      }
-
-      .v2-intro p {
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        font-size: 1.125rem;
-        color: #004748;
-        line-height: 1.75;
-        margin: 0;
-      }
-
-      .v2-intro p + p {
-        margin-top: 24px;
-      }
-
-      .v2-intro-greeting {
-        font-size: 1.375rem !important;
-        font-weight: 600 !important;
-        line-height: 1.4 !important;
-      }
-
-      .v2-intro-link {
-        color: #cd7e11;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(205, 126, 17, 0.35);
-        transition: border-color 200ms ease;
-      }
-
-      .v2-intro-link:hover {
-        border-bottom-color: #cd7e11;
-      }
-
-      @media (max-width: 768px) {
-        .v2-intro p {
-          line-height: 1.7;
-        }
-
-        .v2-intro-greeting {
-          font-size: 1.25rem !important;
-        }
-      }
-
-      /* --- 3. Section heading --- */
-      .v2-section-title {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: #004748;
-        text-align: center;
-        margin-top: 72px;
-        margin-bottom: 32px;
-        text-decoration: none;
-      }
-
-      /* --- 4. Post list --- */
-      .v2-post-list {
-        list-style: none;
-        padding: 0;
-        max-width: 540px;
-        text-align: left;
-      }
-
-      .v2-post-item {
-        position: relative;
-        padding-left: 32px;
-        margin-bottom: 28px;
-        line-height: 1.45;
-      }
-
-      .v2-post-item::before {
-        content: '→';
-        position: absolute;
-        left: 0;
-        top: 0.05em;
-        color: #cd7e11;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.2;
-        transition: transform 200ms ease;
-      }
-
-      .v2-post-item:hover::before {
-        transform: translateX(3px);
-      }
-
-      .v2-post-item a {
-        font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-        font-weight: 600;
-        font-size: 1.125rem;
-        color: #004748;
-        text-decoration: none;
-        cursor: pointer;
-        transition: color 200ms ease;
-      }
-
-      .v2-post-item a:hover {
-        color: #cd7e11;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
-
-      .v2-new-badge {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 500;
-        font-style: italic;
-        font-size: 0.8125rem;
-        color: #cd7e11;
-      }
-
-      @media (max-width: 480px) {
-        .v2-post-item {
-          padding-left: 26px;
-          margin-bottom: 24px;
-        }
-
-        .v2-post-item::before {
-          font-size: 1.125rem;
-        }
-
-        .v2-post-item a {
-          font-size: 1.0625rem;
-        }
-      }
-
-      /* --- 5. CTA --- */
-      .v2-cta {
-        margin-top: 80px;
-        text-align: center;
-      }
-
-      .v2-rule {
-        width: 80px;
-        border: none;
-        border-top: 1px solid rgba(0, 71, 72, 0.2);
-        margin: 0 auto 40px auto;
-      }
-
-      .v2-cta-heading {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 600;
-        font-size: 1.125rem;
-        color: #004748;
-        margin: 0 0 24px 0;
-      }
-
-      .v2-cta-buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .v2-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        text-decoration: none;
-        cursor: pointer;
-        padding: 14px 24px;
-        border-radius: 10px;
-        min-width: 240px;
-        transition: transform 150ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
-      }
-
-      .v2-btn-emoji {
-        font-size: 1.125rem;
-        line-height: 1;
-      }
-
-      .v2-btn-primary {
-        background-color: #cd7e11;
-        color: #ffffff;
-        border: 2px solid #cd7e11;
-        box-shadow: 0 1px 2px rgba(0, 71, 72, 0.08);
-      }
-
-      .v2-btn-primary:hover {
-        background-color: #b56c0a;
-        border-color: #b56c0a;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(205, 126, 17, 0.25);
-      }
-
-      .v2-btn-secondary {
-        background-color: #004748;
-        color: #ffe4c4;
-        border: 2px solid #004748;
-        box-shadow: 0 1px 2px rgba(0, 71, 72, 0.08);
-      }
-
-      .v2-btn-secondary:hover {
-        background-color: #003738;
-        border-color: #003738;
-        color: #ffe4c4;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 71, 72, 0.25);
-      }
-
-      @media (max-width: 600px) {
-        .v2-cta-buttons {
-          flex-direction: column;
-        }
-
-        .v2-btn {
-          min-width: 0;
-          width: 100%;
-          font-size: 0.9375rem;
-          padding: 13px 20px;
-        }
-      }
-
-      /* --- 6. Footer --- */
-      .v2-footer {
-        margin-top: 80px;
-        padding-bottom: 48px;
-        text-align: center;
-      }
-
-      .v2-footer p {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        font-weight: 400;
-        font-size: 0.75rem;
-        color: rgba(0, 71, 72, 0.35);
-        margin: 0;
-        line-height: 1.5;
-      }
-
-      .v2-footer a {
-        color: rgba(0, 71, 72, 0.35);
-        text-decoration: none;
-        cursor: pointer;
-        transition: color 200ms ease;
-      }
-
-      .v2-footer a:hover {
-        text-decoration: underline;
-      }
-
-      .v2-footer-disclaimer {
-        margin-top: 8px;
-      }
-
-      .v2-footer-links {
-        margin-top: 4px;
-      }
-    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
   </body>
 </html>

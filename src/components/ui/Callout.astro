@@ -8,16 +8,19 @@ const { type } = Astro.props;
 const config = {
   warning: { icon: '🚨', border: 'border-coral-600', bg: 'bg-red-50' },
   success: { icon: '✅', border: 'border-green-600', bg: 'bg-green-50' },
-  info: { icon: '📌', border: 'border-teal-900', bg: 'bg-cream-50' },
+  info: { icon: '📌', border: 'border-teal-900', bg: 'bg-teal-900/5' },
   tip: { icon: '💡', border: 'border-amber-600', bg: 'bg-amber-50' },
 };
 
 const { icon, border, bg } = config[type];
 ---
 
-<aside class={`${bg} border-l-4 ${border} rounded-r-lg p-4 sm:p-5 my-6`}>
-  <p class="text-lg mb-1">{icon}</p>
-  <div class="text-sm leading-relaxed text-gray-900 [&>p]:mb-2 [&>p:last-child]:mb-0">
+<aside
+  class={`${bg} border-l-4 ${border} p-4 sm:p-5 my-6`}
+  style="border-radius: 0 0.625rem 0.625rem 0;"
+>
+  <p class="text-lg mb-1" aria-hidden="true">{icon}</p>
+  <div class="text-sm leading-relaxed text-teal-900 [&>p]:mb-2 [&>p:last-child]:mb-0">
     <slot />
   </div>
 </aside>

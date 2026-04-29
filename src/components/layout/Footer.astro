@@ -4,17 +4,18 @@ const currentYear = new Date().getFullYear();
 ---
 
 <!-- Footer CTA strip -->
-<section class="bg-teal-900 text-cream-100 py-12 px-4">
-  <div class="max-w-[680px] mx-auto text-center">
-    <h2 class="font-heading text-2xl font-bold text-cream-100 mb-3">Ready to sort your tax setup?</h2>
-    <p class="text-cream-100/80 mb-6 font-body">
-      Book a free 20-min clarity call. I'll map your situation, flag the risks, and give you a one-page plan to act on.
+<section class="bg-teal-deep text-cream-100 py-14 px-5">
+  <div class="max-w-[720px] mx-auto text-center">
+    <h2 class="font-heading text-3xl font-bold text-cream-100 mb-3">Ready to sort your tax setup?</h2>
+    <p class="text-cream-soft/80 mb-8 font-body text-base">
+      Book a free 20-minute clarity call. I'll map your situation, flag the risks, and hand you a one-page plan you can act on.
     </p>
     <a
       href={calLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="btn-shimmer inline-flex items-center px-8 py-3.5 rounded-lg font-heading font-semibold no-underline"
+      class="btn-shimmer inline-flex items-center px-7 py-3.5 font-heading font-semibold no-underline"
+      style="border-radius: 0.625rem;"
     >
       Book a Call &rarr;
     </a>
@@ -22,13 +23,13 @@ const currentYear = new Date().getFullYear();
 </section>
 
 <!-- Footer -->
-<footer class="bg-teal-900 border-t border-white/10 text-cream-100/70 py-10 px-4">
-  <div class="max-w-[1120px] mx-auto grid gap-8 md:grid-cols-3">
+<footer class="bg-teal-deep border-t border-cream-100/10 text-cream-soft/70 py-10 px-5">
+  <div class="max-w-[1200px] mx-auto grid gap-8 md:grid-cols-3">
     <!-- Brand -->
     <div>
       <p class="font-heading font-bold text-cream-100 text-lg mb-2">NomadTaxHelp</p>
-      <p class="text-sm leading-relaxed">
-        Helps digital nomads and remote entrepreneurs build legal, compliant, low-tax setups. Paraguay residency, US LLC formation, and tax exit strategy.
+      <p class="text-sm leading-relaxed text-cream-soft/70">
+        We help digital nomads and remote entrepreneurs build legal, compliant, low-tax setups. Paraguay residency, US LLC formation, and tax exit strategy.
       </p>
     </div>
 
@@ -36,25 +37,25 @@ const currentYear = new Date().getFullYear();
     <div>
       <p class="font-heading font-semibold text-cream-100 text-sm mb-3 uppercase tracking-wider">Links</p>
       <nav class="flex flex-col gap-2">
-        <a href="/about" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">About</a>
-        <a href="/glossary" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Glossary</a>
-        <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Main Site</a>
-        <a href={calLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Book a Call</a>
-        <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">Instagram</a>
+        <a href="/about" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">About</a>
+        <a href="/glossary" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">Glossary</a>
+        <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">Main Site</a>
+        <a href={calLink} target="_blank" rel="noopener noreferrer" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">Book a Call</a>
+        <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">Instagram</a>
       </nav>
     </div>
 
     <!-- Contact -->
     <div>
       <p class="font-heading font-semibold text-cream-100 text-sm mb-3 uppercase tracking-wider">Contact</p>
-      <a href="mailto:hello@nomadtaxhelp.com" class="text-sm text-cream-100/70 hover:text-cream-100 no-underline transition-colors duration-200">
+      <a href="mailto:hello@nomadtaxhelp.com" class="text-sm text-cream-soft/70 hover:text-amber-600 no-underline transition-colors duration-200">
         hello@nomadtaxhelp.com
       </a>
     </div>
   </div>
 
-  <div class="max-w-[1120px] mx-auto mt-8 pt-6 border-t border-white/10 text-center text-xs text-cream-100/60">
-    <p class="mb-1">We're not tax or legal advisers. We work alongside licensed partners who are.</p>
-    <p class="text-cream-100/40">&copy; {currentYear} NomadTaxHelp. All rights reserved.</p>
+  <div class="max-w-[1200px] mx-auto mt-8 pt-6 border-t border-cream-100/10 text-center text-xs text-cream-soft/60">
+    <p class="mb-1">NomadTaxHelp is a facilitator, not a law firm or tax adviser. We coordinate with licensed partners who are.</p>
+    <p class="text-cream-soft/40">&copy; {currentYear} NomadTaxHelp. All rights reserved.</p>
   </div>
 </footer>

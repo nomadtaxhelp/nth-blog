@@ -8,14 +8,14 @@ const tocHeadings = headings.filter((h) => h.depth === 2);
 ---
 
 {tocHeadings.length > 1 && (
-  <nav class="bg-cream-50 rounded-lg p-4 sm:p-5 mb-6 border border-gray-200" aria-label="Table of contents">
-    <p class="font-heading font-semibold text-teal-900 text-sm uppercase tracking-wider mb-3">In this post</p>
+  <nav class="surface-muted p-5 sm:p-6 mb-6" aria-label="Table of contents">
+    <p class="font-heading font-semibold text-cream-100 text-xs uppercase tracking-[0.15em] mb-3">In this post</p>
     <ol class="space-y-2 list-none p-0 m-0">
       {tocHeadings.map((heading) => (
         <li class="m-0">
           <a
             href={`#${heading.slug}`}
-            class="text-sm text-gray-600 hover:text-amber-600 no-underline transition-colors"
+            class="text-sm text-cream-soft/80 hover:text-amber-600 no-underline transition-colors"
           >
             {heading.text}
           </a>

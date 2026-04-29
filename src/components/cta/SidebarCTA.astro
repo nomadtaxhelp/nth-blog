@@ -2,27 +2,28 @@
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
 ---
 
-<div class="space-y-6">
-  <!-- Clarity call card -->
-  <div class="bg-cream-50 rounded-xl border border-gray-200 p-5">
-    <p class="text-lg mb-1">📞</p>
-    <p class="font-heading font-semibold text-teal-900 text-sm mb-2">Free 20-min clarity call</p>
-    <p class="text-sm text-gray-600 mb-3">
+<div class="space-y-5">
+  <!-- Clarity call card (cream on teal) -->
+  <div class="bg-cream-100 text-teal-900 p-5" style="border-radius: 0.625rem; box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);">
+    <p class="text-lg mb-1" aria-hidden="true">📞</p>
+    <p class="font-heading font-bold text-teal-900 text-sm mb-2">Free 20-min clarity call</p>
+    <p class="text-sm text-teal-900/75 mb-4 font-body leading-relaxed">
       Map your situation, flag the risks, walk away with a one-page plan.
     </p>
     <a
       href={calLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="btn-shimmer inline-flex items-center px-4 py-2 rounded-full font-heading font-semibold text-xs no-underline"
+      class="btn-shimmer inline-flex items-center px-4 py-2 font-heading font-semibold text-xs no-underline"
+      style="border-radius: 0.5rem;"
     >
       Book a call &rarr;
     </a>
   </div>
 
-  <!-- Most popular placeholder -->
-  <div class="bg-white rounded-xl border border-gray-200 p-5">
-    <p class="font-heading font-semibold text-teal-900 text-sm uppercase tracking-wider mb-3">Popular posts</p>
-    <p class="text-sm text-gray-600 italic">More posts coming soon.</p>
+  <!-- Popular placeholder (surface-muted on teal) -->
+  <div class="surface-muted p-5">
+    <p class="font-heading font-semibold text-cream-100 text-xs uppercase tracking-[0.15em] mb-3">Popular posts</p>
+    <p class="text-sm text-cream-soft/70 italic font-body">More posts coming soon.</p>
   </div>
 </div>
