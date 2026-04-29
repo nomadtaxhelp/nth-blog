@@ -29,7 +29,42 @@ const {
 const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
 const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
 const posthogScript = posthogKey
-  ? `<script>!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias group reset register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_distinct_id get_session_id get_session_replay_url onFeatureFlags getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags setPersonProperties getGroups resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags startSessionRecording stopSessionRecording captureException loadToolbar".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHost)},persistence:"memory",autocapture:true,capture_pageview:true,capture_pageleave:true});</script>`
+  ? `<script>!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias group reset register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_distinct_id get_session_id get_session_replay_url onFeatureFlags getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags setPersonProperties getGroups resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags startSessionRecording stopSessionRecording captureException loadToolbar".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHost)},persistence:"memory",autocapture:true,capture_pageview:true,capture_pageleave:true});
+
+// Conversion event tracking — fires named events for clarity_call_click and
+// health_check_click so the PostHog funnel can show "page view -> CTA click"
+// without having to filter by element selector. Location property tells you
+// WHERE on the page the user converted (header, footer, sidebar, exit-intent,
+// inline-cta, hero, etc.) so we can iterate on which placements work best.
+document.addEventListener("click", function(e) {
+  var link = e.target.closest && e.target.closest("a[href]");
+  if (!link || !window.posthog) return;
+  var href = link.href || "";
+  var path = window.location.pathname || "";
+  var location = link.closest("#exit-intent-modal") ? "exit-intent" :
+                 link.closest("header") ? "header" :
+                 link.closest("footer") ? "footer" :
+                 link.closest("aside") ? "sidebar" :
+                 link.closest(".prose") ? "inline-cta" :
+                 "hero-or-page";
+  if (href.indexOf("cal.com/nomadtaxhelp") !== -1) {
+    posthog.capture("clarity_call_click", { location: location, page: path });
+  } else if (href.indexOf("nomadtaxhelp.com/health-check") !== -1) {
+    posthog.capture("health_check_click", { location: location, page: path });
+  }
+}, { passive: true });
+
+// Mark page type as a property on every event so PostHog dashboards can
+// segment "post pages" vs "homepage" vs "glossary" cleanly.
+posthog.register({
+  page_type: location.pathname.startsWith("/posts/") ? "post" :
+             location.pathname === "/" || location.pathname === "/v2" ? "homepage" :
+             location.pathname.startsWith("/glossary") ? "glossary" :
+             location.pathname.startsWith("/category/") ? "category" :
+             location.pathname.startsWith("/tag/") ? "tag" :
+             "other"
+});
+</script>`
   : null;
 
 // Sitewide Organization schema — present on every page so LLMs and search
