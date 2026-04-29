@@ -32,6 +32,8 @@ const categoryLabels: Record<string, string> = {
 const categoryLabel = categoryLabels[data.category] || data.category;
 const canonicalUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}`;
 const markdownUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}.md`;
+// Per-post dynamic OG image generated at build time.
+const ogImageUrl = `https://blog.nomadtaxhelp.com/og/${data.slug}.png`;
 const readingTime = data.readingTime || Math.ceil((post.body?.length || 0) / 1500);
 
 const personAuthor = {
@@ -118,7 +120,7 @@ const jsonLd = {
   title={`${data.title} | NomadTaxHelp`}
   description={data.description}
   canonicalUrl={canonicalUrl}
-  ogImage={data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : undefined}
+  ogImage={data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : ogImageUrl}
   ogType="article"
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}

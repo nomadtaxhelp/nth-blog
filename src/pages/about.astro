@@ -1,8 +1,22 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import { felix, organization } from '../data/felix';
+import { getCollection } from 'astro:content';
 
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 4);
+
+const expertise = [
+  { label: 'Paraguay tax residency', href: '/category/paraguay' },
+  { label: 'European tax exits', href: '/category/tax-residency' },
+  { label: 'Crypto realisation strategy', href: '/posts/paraguay-crypto-tax-residency' },
+  { label: 'Portugal NHR alternatives', href: '/posts/portugal-nhr-replacement-2026' },
+  { label: 'Tax-residency glossary', href: '/glossary' },
+];
 
 // AboutPage + Person JSON-LD — gives LLMs and search engines a canonical
 // person entity to disambiguate "Felix Yanez-Bowker" against.
@@ -110,6 +124,31 @@ const jsonLd = {
         If you want to know more about the service itself, the <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer">main site</a> covers it. If you want to talk it through directly, <a href={calLink} target="_blank" rel="noopener noreferrer">book a free 20-minute clarity call</a> and I'll map your situation.
       </p>
 
+      <h2>What I write about</h2>
+
+      <p>
+        The blog covers the full nomad tax stack — exiting your home country cleanly, picking a defensible new residency, structuring your income, and proving everything to a tax authority that asks. Here are the threads I keep pulling on:
+      </p>
+
+      <ul>
+        {expertise.map((e) => (
+          <li><a href={e.href}>{e.label}</a></li>
+        ))}
+      </ul>
+
+      <h2>Latest guides</h2>
+
+      <ul>
+        {latestPosts.map((p) => (
+          <li>
+            <a href={`/posts/${p.data.slug}`}>{p.data.title}</a>
+            <span class="text-sm text-gray-600"> &middot; <time datetime={p.data.publishDate.toISOString()}>
+              {p.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </time></span>
+          </li>
+        ))}
+      </ul>
+
       <h2>What NTH isn't</h2>
 
       <p>
@@ -122,6 +161,8 @@ const jsonLd = {
         <li>Book a free clarity call: <a href={calLink} target="_blank" rel="noopener noreferrer">cal.com/nomadtaxhelp/clarity-call</a></li>
         <li>Email: <a href="mailto:hello@nomadtaxhelp.com">hello@nomadtaxhelp.com</a></li>
         <li>Instagram: <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer">@nomadtaxhelp_</a></li>
+        <li>LinkedIn: <a href={felix.sameAs[0]} target="_blank" rel="noopener noreferrer me">linkedin.com/in/felix-yanez-bowker</a></li>
+        <li>Personal blog (Substack): <a href={felix.sameAs[1]} target="_blank" rel="noopener noreferrer me">felixyanez.substack.com</a></li>
       </ul>
     </div>
   </article>
