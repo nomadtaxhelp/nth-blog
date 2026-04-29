@@ -173,3 +173,124 @@ h3 {
 .prose .not-prose {
   margin: 2rem 0;
 }
+
+/* === NTH gold shimmer === */
+@layer utilities {
+  @keyframes nth-shimmer {
+    0%   { background-position: 200% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+
+  /* Use on BUTTONS / CTAs — solid gold gradient bg, teal text */
+  .btn-shimmer {
+    background-image: linear-gradient(
+      90deg,
+      #cd7e11 0%,
+      #f0b429 25%,
+      #f5c542 50%,
+      #f0b429 75%,
+      #cd7e11 100%
+    );
+    background-size: 200% 100%;
+    color: #004748;
+    animation: nth-shimmer 3s linear infinite;
+  }
+
+  /* Use on TEXT / HEADINGS over a DARK/TEAL background — gold gradient clipped to text */
+  .text-shimmer-on-dark {
+    background-image: linear-gradient(
+      90deg,
+      #ffe4c4 0%,
+      #f5c542 25%,
+      #cd7e11 50%,
+      #f5c542 75%,
+      #ffe4c4 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: nth-shimmer 3s linear infinite;
+  }
+
+  /* Use on TEXT / HEADINGS over a LIGHT background — deeper gold for contrast */
+  .text-shimmer-on-light {
+    background-image: linear-gradient(
+      90deg,
+      #8a4a00 0%,
+      #a85a06 20%,
+      #cd7e11 45%,
+      #f0b429 50%,
+      #cd7e11 55%,
+      #a85a06 80%,
+      #8a4a00 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: nth-shimmer 3s linear infinite;
+  }
+
+  /* Optional: hover-only sheen sweep — wrap any element to add a gold sheen on hover */
+  .shimmer-hover { position: relative; overflow: hidden; isolation: isolate; }
+  .shimmer-hover::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(
+      120deg,
+      transparent 0%, transparent 35%,
+      rgba(245,197,66,0.35) 50%,
+      transparent 65%, transparent 100%
+    );
+    background-size: 220% 100%;
+    background-position: 200% 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    z-index: 1;
+  }
+  .shimmer-hover:hover::after {
+    opacity: 1;
+    animation: nth-shimmer 1.8s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-shimmer,
+    .text-shimmer-on-dark,
+    .text-shimmer-on-light,
+    .shimmer-hover:hover::after {
+      animation: none;
+    }
+  }
+}
+
+/* About-page convenience: bold + light-shimmer ALL links inside a prose block.
+   Outside @layer for higher cascade priority — overrides the default .prose a rule. */
+.prose-shimmer-links a {
+  font-weight: 600;
+  background-image: linear-gradient(
+    90deg,
+    #8a4a00 0%,
+    #a85a06 20%,
+    #cd7e11 45%,
+    #f0b429 50%,
+    #cd7e11 55%,
+    #a85a06 80%,
+    #8a4a00 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  animation: nth-shimmer 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose-shimmer-links a {
+    animation: none;
+  }
+}

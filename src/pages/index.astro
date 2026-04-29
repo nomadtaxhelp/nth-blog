@@ -8,7 +8,6 @@ const featuredPost = sortedPosts.find((p) => p.data.featured) || sortedPosts[0];
 const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
 
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
-const healthCheckLink = 'https://nomadtaxhelp.com/health-check';
 
 // Homepage JSON-LD: WebSite + Blog + Person.
 // (Sitewide Organization schema is emitted separately by BaseLayout.)
@@ -74,22 +73,14 @@ const jsonLd = {
       <p class="font-body text-gray-600 mb-8 max-w-lg mx-auto" style="font-size: 1.0625rem; line-height: 1.6; font-weight: 400;">
         Written by Felix, co-founder of NomadTaxHelp. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <div class="flex justify-center">
         <a
           href={calLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-8 py-3.5 rounded-lg bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200"
+          class="btn-shimmer inline-flex items-center px-8 py-3.5 rounded-lg font-heading font-semibold no-underline"
         >
           Book a Call
-        </a>
-        <a
-          href={healthCheckLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center px-8 py-3.5 rounded-lg border-2 border-teal-900 text-teal-900 font-heading font-semibold no-underline hover:bg-teal-900 hover:text-white transition-colors duration-200"
-        >
-          Take the Health Check
         </a>
       </div>
     </div>
@@ -163,7 +154,7 @@ const jsonLd = {
         href={calLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center bg-amber-600 text-white font-heading font-semibold no-underline hover:bg-amber-700 transition-[background-color] duration-200"
+        class="btn-shimmer inline-flex items-center font-heading font-semibold no-underline"
         style="padding: 14px 32px; border-radius: 8px;"
       >
         Book a Call &rarr;

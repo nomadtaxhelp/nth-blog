@@ -71,7 +71,12 @@ const displayHeading = heading || config.defaultHeading;
       <p class="text-sm text-gray-600 mb-4"><slot>{config.defaultBody}</slot></p>
       <a
         href={config.buttonLink}
-        class="inline-flex items-center px-5 py-2.5 rounded-full bg-amber-600 text-white font-heading font-semibold text-sm no-underline hover:bg-amber-700 transition-colors"
+        class:list={[
+          'inline-flex items-center px-5 py-2.5 rounded-full font-heading font-semibold text-sm no-underline',
+          variant === 'call'
+            ? 'btn-shimmer'
+            : 'bg-amber-600 text-white hover:bg-amber-700 transition-colors',
+        ]}
         {...(config.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {config.buttonText}
