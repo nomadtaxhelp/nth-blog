@@ -22,12 +22,16 @@ const upgrades = await getCollection('upgrades');
           <p class="text-xl mb-2" aria-hidden="true">📄</p>
           <h2 class="font-heading font-bold text-teal-900 text-xl mb-1 leading-snug">{upgrade.data.title}</h2>
           <p class="text-sm text-teal-900/75 mb-4 leading-relaxed">{upgrade.data.description}</p>
-          <form class="resource-form flex gap-2" data-upgrade-id={upgrade.data.id}>
+          <form class="resource-form flex gap-2" data-upgrade-id={upgrade.data.id} aria-label={`Get ${upgrade.data.title}`}>
+            <label for={`resource-email-${upgrade.data.id}`} class="sr-only">Email address</label>
             <input
+              id={`resource-email-${upgrade.data.id}`}
               type="email"
               name="email"
               placeholder="you@example.com"
+              autocomplete="email"
               required
+              aria-label="Email address"
               class="flex-1 px-3 py-2 border border-teal-900/20 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600"
               style="border-radius: 0.625rem;"
             />
