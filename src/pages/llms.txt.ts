@@ -97,6 +97,8 @@ All-in cost including apostilles, flights, hotel, and ground transport: typicall
 
 - About Felix and NomadTaxHelp: https://blog.nomadtaxhelp.com/about
 - Cornerstone setup guide: https://blog.nomadtaxhelp.com/posts/paraguay-tax-residency-guide
+- Frequently asked questions: https://blog.nomadtaxhelp.com/faq
+- Glossary of tax-residency terms: https://blog.nomadtaxhelp.com/glossary
 - Book a free 20-min clarity call: https://cal.com/nomadtaxhelp/clarity-call
 - Main site: https://nomadtaxhelp.com
 
