@@ -4,18 +4,19 @@ import { getCollection } from 'astro:content';
 import { allFaqItems } from '../data/faq';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
-const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
-const featuredPost = sortedPosts.find((p) => p.data.featured) || sortedPosts[0];
-const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
+const sortedPosts = allPosts
+  .filter((p) => p.data.slug !== 'paraguay-tax-residency-cost-2026')
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 5);
+
+const now = new Date();
+const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 
 const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
-
-// Latest content date — used for dateModified freshness signal.
 const latestDate = sortedPosts[0]?.data.publishDate || new Date();
 
-// Homepage JSON-LD: WebSite + Blog + Person + FAQPage (top 6 questions
-// embedded for AI engines that crawl the homepage and don't follow to /faq).
-// (Sitewide Organization schema is emitted separately by BaseLayout.)
+// Homepage JSON-LD: WebSite + Blog + Person + FAQPage. Sitewide
+// Organization schema is emitted separately by BaseLayout.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -48,7 +49,7 @@ const jsonLd = {
       inLanguage: 'en',
       dateModified: latestDate.toISOString(),
       datePublished: '2026-04-16T00:00:00.000Z',
-      blogPost: sortedPosts.slice(0, 6).map((p) => ({
+      blogPost: sortedPosts.map((p) => ({
         '@type': 'BlogPosting',
         headline: p.data.title,
         url: `https://blog.nomadtaxhelp.com/posts/${p.data.slug}`,
@@ -86,132 +87,82 @@ const jsonLd = {
 
 <BaseLayout
   title="NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup"
-  description="Practical guides on tax residency, US LLCs, and international tax exits for digital nomads and remote entrepreneurs. Written by Felix Yanez-Bowker, co-founder of NomadTaxHelp."
+  description="Practical tax residency guides for digital nomads. Written by Felix, co-founder of NomadTaxHelp."
   jsonLd={jsonLd}
 >
-  <!-- Hero: cream slab on teal page bg -->
-  <section class="surface-cream max-w-[1200px] mx-auto mt-8 mb-16 py-16 sm:py-20 px-6 text-center">
-    <div class="max-w-[720px] mx-auto">
-      <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5">
-        NomadTaxHelp Blog
-      </p>
-      <h1 class="font-heading font-bold text-teal-900 mb-5" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; letter-spacing: -0.01em;">
-        Practical guides for nomads sorting their tax setup.
+  <div class="max-w-[720px] mx-auto px-5 sm:px-8 font-body">
+    {/* Hero greeting */}
+    <section class="text-center pt-12 sm:pt-16 mb-16">
+      <h1 class="font-heading font-bold text-cream-100 mb-8 text-3xl sm:text-4xl tracking-[-0.01em]">
+        Hey, I'm Felix <span aria-hidden="true">👋</span>
       </h1>
-      <p class="font-body text-teal-900/75 mb-7 max-w-[520px] mx-auto text-base sm:text-lg leading-relaxed">
-        Written by Felix, co-founder of NomadTaxHelp. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
-      </p>
-      <ul class="text-left max-w-[520px] mx-auto mb-9 space-y-2 font-body text-teal-900/85 text-sm sm:text-base">
-        <li class="flex items-start gap-2.5">
-          <span class="text-amber-600 font-bold shrink-0" aria-hidden="true">→</span>
-          <span>European tax-exit playbooks (UK SRT, Spain, Wegzugsteuer, France, Italy)</span>
-        </li>
-        <li class="flex items-start gap-2.5">
-          <span class="text-amber-600 font-bold shrink-0" aria-hidden="true">→</span>
-          <span>Paraguay tax-residency setup, costs, timelines, and defensibility</span>
-        </li>
-        <li class="flex items-start gap-2.5">
-          <span class="text-amber-600 font-bold shrink-0" aria-hidden="true">→</span>
-          <span>Crypto realisation timing and the order-of-operations that matters</span>
-        </li>
-        <li class="flex items-start gap-2.5">
-          <span class="text-amber-600 font-bold shrink-0" aria-hidden="true">→</span>
-          <span>Compliance: OECD CRS, EU lists, banking acceptance, audit risk</span>
-        </li>
+      <div class="space-y-5 text-base sm:text-lg text-cream-soft/90 leading-relaxed max-w-[560px] mx-auto">
+        <p>I get it. Taxes as a digital nomad are a <span class="text-shimmer-on-dark font-semibold">confusing mess</span>.</p>
+        <p>
+          So I built
+          <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-600/40 hover:decoration-amber-700">nomadtaxhelp.com</a>,
+          where we help people like you become tax-efficient.
+        </p>
+        <p>So here <span aria-hidden="true">👇</span> is all the best alpha I've acquired over the last decade in one place.</p>
+        <p>Dig through the guides I wish I had&hellip;</p>
+      </div>
+    </section>
+
+    {/* Top 5 Guides */}
+    <section class="mb-16">
+      <h2 class="font-heading font-bold text-cream-100 text-center text-2xl sm:text-3xl mb-8 tracking-[-0.01em]">Our Top 5 Guides <span aria-hidden="true">⭐</span></h2>
+      <ul class="space-y-3 list-none p-0 m-0">
+        {sortedPosts.map((post) => {
+          const isNew = post.data.publishDate >= fourteenDaysAgo;
+          return (
+            <li>
+              <a
+                href={`/posts/${post.data.slug}`}
+                class="group block bg-cream-100 text-teal-900 px-5 py-5 sm:px-6 sm:py-6 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(0,0,0,0.45)]"
+                style="border-radius: 0.625rem;"
+              >
+                <div class="flex items-start gap-4">
+                  <span class="text-amber-600 font-bold text-xl shrink-0 leading-tight transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                  <div class="flex-1 min-w-0">
+                    <span class="font-heading font-semibold text-base sm:text-lg leading-snug text-teal-900 group-hover:text-amber-700 transition-colors">
+                      {post.data.title}
+                    </span>
+                    {isNew && (
+                      <span class="ml-2 text-xs font-medium italic text-amber-600 align-middle">(new)</span>
+                    )}
+                    <p class="mt-2 text-sm text-teal-900/70 leading-relaxed line-clamp-2">{post.data.description}</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          );
+        })}
       </ul>
-      <div class="flex justify-center">
+    </section>
+
+    {/* CTA card */}
+    <section class="mb-16">
+      <div class="bg-cream-100 text-teal-900 p-8 sm:p-10 text-center" style="border-radius: 0.625rem; box-shadow: 0 18px 40px -16px rgba(0,0,0,0.4);">
+        <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.15em] mb-3">
+          Want help sorting yours?
+        </p>
+        <h3 class="font-heading font-bold text-teal-900 text-2xl sm:text-3xl mb-4 tracking-[-0.01em]">
+          Book a free 20-minute clarity call
+        </h3>
+        <p class="text-teal-900/75 mb-7 max-w-[420px] mx-auto text-base">
+          I'll map your situation, flag the risks, and give you a one-page plan to act on. No pitch, no obligation.
+        </p>
         <a
           href={calLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-shimmer inline-flex items-center px-8 py-3.5 font-heading font-semibold no-underline text-base"
+          class="btn-shimmer inline-flex items-center gap-2 px-7 py-3.5 font-heading font-semibold no-underline text-base"
           style="border-radius: 0.625rem;"
         >
-          Book a Call
+          <span aria-hidden="true">📞</span>
+          Book a Clarity Call
         </a>
       </div>
-    </div>
-  </section>
-
-  <div class="max-w-[1200px] mx-auto px-5 sm:px-8 pb-16">
-    <!-- Featured post (cream card on teal) -->
-    {featuredPost && (
-      <section class="mb-14">
-        <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.18em] mb-4">Featured</p>
-        <a
-          href={`/posts/${featuredPost.data.slug}`}
-          class="block bg-cream-100 text-teal-900 no-underline overflow-hidden group transition-all duration-200 hover:-translate-y-0.5"
-          style="border-radius: 0.625rem; box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);"
-        >
-          <div class="p-7 sm:p-9">
-            <h2 class="font-heading font-bold text-teal-900 mb-3 group-hover:text-amber-700 transition-colors" style="font-size: 1.75rem; line-height: 1.2; letter-spacing: -0.01em;">
-              {featuredPost.data.title}
-            </h2>
-            <p class="font-body text-teal-900/80 mb-5 max-w-2xl text-base leading-relaxed">
-              {featuredPost.data.description}
-            </p>
-            <div class="flex items-center gap-3 font-heading text-xs text-teal-900/60 uppercase tracking-wider">
-              <span>Felix Yanez-Bowker</span>
-              <span>&middot;</span>
-              <time datetime={featuredPost.data.publishDate.toISOString()}>
-                {featuredPost.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-              </time>
-              {featuredPost.data.readingTime && (
-                <>
-                  <span>&middot;</span>
-                  <span>{featuredPost.data.readingTime} min read</span>
-                </>
-              )}
-            </div>
-          </div>
-        </a>
-      </section>
-    )}
-
-    <!-- Recent posts grid (cream cards on teal) -->
-    {recentPosts.length > 0 && (
-      <section class="mb-16">
-        <h2 class="font-heading font-bold text-cream-100 text-2xl mb-6 tracking-[-0.01em]">Recent guides</h2>
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {recentPosts.map((post) => (
-            <a
-              href={`/posts/${post.data.slug}`}
-              class="block bg-cream-100 text-teal-900 no-underline group p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5"
-              style="border-radius: 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
-            >
-              <h3 class="font-heading font-bold text-teal-900 text-lg mb-2 group-hover:text-amber-700 transition-colors leading-snug">
-                {post.data.title}
-              </h3>
-              <p class="text-sm text-teal-900/75 line-clamp-2 mb-4 font-body leading-relaxed">{post.data.description}</p>
-              <time class="text-xs text-teal-900/55 font-heading uppercase tracking-wider" datetime={post.data.publishDate.toISOString()}>
-                {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-              </time>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
-
-    <!-- Bottom CTA: cream surface on teal -->
-    <section class="surface-cream px-6 sm:px-8 py-14 sm:py-16 text-center" style="box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);">
-      <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.18em] mb-3">
-        Want help sorting yours?
-      </p>
-      <h2 class="font-heading font-bold text-teal-900 mb-3 text-2xl sm:text-3xl tracking-[-0.01em]">
-        Ready to sort your tax setup?
-      </h2>
-      <p class="font-body text-teal-900/75 mb-7 mx-auto max-w-[480px] text-base">
-        Book a free 20-minute clarity call. I'll map your situation, flag the risks, and give you a one-page plan to act on.
-      </p>
-      <a
-        href={calLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-shimmer inline-flex items-center font-heading font-semibold no-underline text-base"
-        style="padding: 14px 32px; border-radius: 0.625rem;"
-      >
-        Schedule a Clarity Call &rarr;
-      </a>
     </section>
   </div>
 </BaseLayout>

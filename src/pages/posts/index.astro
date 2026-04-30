@@ -12,6 +12,16 @@ const categories = [
   { slug: 'us-llc', label: 'US LLC' },
 ];
 
+// Cover palette: bg + text colour, deterministic per category.
+// Paraguay = dark teal, Tax Residency = amber, US LLC = cream.
+// Posts without a category fall back to dark teal.
+const coverPalette: Record<string, { bg: string; fg: string }> = {
+  paraguay: { bg: '#004748', fg: '#ffe4c4' },
+  'tax-residency': { bg: '#cd7e11', fg: '#004748' },
+  'us-llc': { bg: '#ffe4c4', fg: '#004748' },
+};
+const fallbackCover = { bg: '#004748', fg: '#ffe4c4' };
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -59,28 +69,57 @@ const jsonLd = {
       ))}
     </div>
 
-    <!-- Posts grid (cream cards on teal) -->
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {sortedPosts.map((post) => (
-        <a
-          href={`/posts/${post.data.slug}`}
-          class="block bg-cream-100 text-teal-900 no-underline group p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5"
-          style="border-radius: 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
-        >
-          <CategoryPill
-            category={post.data.category}
-            label={categories.find((c) => c.slug === post.data.category)?.label || post.data.category}
-            size="sm"
-          />
-          <h2 class="font-heading font-bold text-teal-900 text-lg mt-3 mb-2 group-hover:text-amber-700 transition-colors leading-snug">
-            {post.data.title}
-          </h2>
-          <p class="text-sm text-teal-900/75 line-clamp-2 mb-4 font-body leading-relaxed">{post.data.description}</p>
-          <time class="text-xs text-teal-900/55 font-heading uppercase tracking-wider" datetime={post.data.publishDate.toISOString()}>
-            {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-          </time>
-        </a>
-      ))}
+    {/* Posts grid: each card is a single self-contained block with
+        a generated cover (no external images), a category tag, and the
+        post title. 1 column mobile, 2 tablet, 3 desktop. */}
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+      {sortedPosts.map((post) => {
+        const cover = coverPalette[post.data.category] || fallbackCover;
+        const titleLength = post.data.title.length;
+        // Scale the cover-title font-size down slightly for very long titles
+        // so they don't overflow the 16:10 box.
+        const titleSize = titleLength > 60 ? '1.5rem' : titleLength > 40 ? '1.75rem' : '2rem';
+        return (
+          <a
+            href={`/posts/${post.data.slug}`}
+            class="post-card group flex flex-col h-full no-underline transition-all duration-200 hover:-translate-y-0.5"
+          >
+            {/* Generated cover — pure colour + typography, no images. */}
+            <div
+              class="post-card__cover flex flex-col justify-end relative"
+              style={`aspect-ratio: 16 / 10; padding: 32px; background: ${cover.bg}; border-radius: 0.625rem 0.625rem 0 0;`}
+            >
+              <h3
+                class="font-heading font-bold m-0"
+                style={`color: ${cover.fg}; font-size: clamp(1.25rem, 2.4vw, ${titleSize}); line-height: 1.05; letter-spacing: -0.01em; text-align: left; word-break: break-word; hyphens: auto;`}
+              >
+                {post.data.title}
+              </h3>
+            </div>
+
+            {/* Card body: category tag, real title, description, date. */}
+            <div
+              class="post-card__body flex flex-col flex-1 bg-cream-100 text-teal-900 p-5 sm:p-6"
+              style="border-radius: 0 0 0.625rem 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); border-top: none; box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
+            >
+              <div class="mb-3">
+                <CategoryPill
+                  category={post.data.category}
+                  label={categories.find((c) => c.slug === post.data.category)?.label || post.data.category}
+                  size="sm"
+                />
+              </div>
+              <h2 class="font-heading font-bold text-teal-900 text-lg mb-2 group-hover:text-amber-700 transition-colors leading-snug">
+                {post.data.title}
+              </h2>
+              <p class="text-sm text-teal-900/75 line-clamp-2 mb-4 font-body leading-relaxed flex-1">{post.data.description}</p>
+              <time class="text-xs text-teal-900/55 font-heading uppercase tracking-wider" datetime={post.data.publishDate.toISOString()}>
+                {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </BaseLayout>
