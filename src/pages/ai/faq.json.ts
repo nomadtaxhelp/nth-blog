@@ -7,6 +7,8 @@ import { faqSections, allFaqItems } from '../../data/faq';
 
 export const GET: APIRoute = async () => {
   const body = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
     schema_version: '1.0',
     type: 'faq',
     name: 'NomadTaxHelp FAQ',
@@ -14,11 +16,31 @@ export const GET: APIRoute = async () => {
     description:
       'Common questions European and rest-of-world digital nomads ask about tax residency, exiting their home country, Paraguay setup, crypto realisation strategy, and the NomadTaxHelp service.',
     in_language: 'en',
+    inLanguage: 'en',
     audience: 'European and rest-of-world digital nomads (not United States persons)',
     publisher: {
+      '@type': 'Organization',
       name: 'NomadTaxHelp',
       url: 'https://nomadtaxhelp.com',
     },
+    // schema.org-style mainEntity for tools that expect FAQPage shape.
+    mainEntity: allFaqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a + (item.seeAlso ? ` See also: ${item.seeAlso.label} (${item.seeAlso.url}).` : ''),
+      },
+    })),
+    // Flat questions array — common alternative naming.
+    questions: allFaqItems.map((item) => ({
+      question: item.q,
+      answer: item.a,
+    })),
+    faqs: allFaqItems.map((item) => ({
+      question: item.q,
+      answer: item.a,
+    })),
     sections: faqSections.map((s) => ({
       id: s.id,
       title: s.title,

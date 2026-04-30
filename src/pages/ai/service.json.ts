@@ -7,8 +7,41 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async () => {
   const body = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
     schema_version: '1.0',
-    type: 'service-manifest',
+    type: 'service',
+    name: 'Paraguay Tax Residency Setup',
+    description:
+      "End-to-end facilitation of legal Paraguay tax residency for digital nomads and remote entrepreneurs. Paraguay's territorial tax system means foreign-source income is taxed at 0%. We handle documents, in-country logistics, the tax number (RUC), the Tax Residency Certificate (TRC), and optional US LLC formation.",
+    serviceType: 'Tax residency facilitation',
+    areaServed: 'Worldwide except United States persons',
+    url: 'https://nomadtaxhelp.com',
+    in_language: 'en',
+    inLanguage: 'en',
+    services: [
+      {
+        '@type': 'Offer',
+        name: 'Core',
+        price: 2500,
+        priceCurrency: 'USD',
+        description: 'Temporary residency, cédula, basic processing, ground transport in-country.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Premium',
+        price: 3500,
+        priceCurrency: 'USD',
+        description: 'Core + priority processing, RUC tax number, Tax Residency Certificate (TRC), 12-month lease, year of basic accounting support.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Ultra+',
+        price: 4750,
+        priceCurrency: 'USD',
+        description: 'Premium + US LLC formation, onboarding call, LLC setup guide, 3-month tax position review.',
+      },
+    ],
     provider: {
       name: 'NomadTaxHelp',
       url: 'https://nomadtaxhelp.com',
