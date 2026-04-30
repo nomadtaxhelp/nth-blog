@@ -106,9 +106,29 @@ All-in cost including apostilles, flights, hotel, and ground transport: typicall
 
 Every published post is also available as clean Markdown at \`/posts/<slug>.md\`. For full content of all posts in one document, see /llms-full.txt.
 
+Direct examples (Markdown twins of the cornerstone post and the playbook):
+
+- [Paraguay tax residency guide (Markdown)](https://blog.nomadtaxhelp.com/posts/paraguay-tax-residency-guide.md)
+- [European nomad tax playbook (Markdown)](https://blog.nomadtaxhelp.com/posts/european-nomad-tax-playbook.md)
+
+Structured AI-discovery JSON manifests:
+
+- [Site summary](https://blog.nomadtaxhelp.com/ai/summary.json)
+- [Service manifest](https://blog.nomadtaxhelp.com/ai/service.json)
+- [FAQ manifest](https://blog.nomadtaxhelp.com/ai/faq.json)
+
 ## Content index by category
 
 ${categoriesIndex}
+
+## Optional
+
+Secondary surfaces and reference material that may be useful but aren't core to a primary "what is NTH" answer.
+
+- [Tax-residency glossary](https://blog.nomadtaxhelp.com/glossary): canonical definitions of TRC, RUC, cédula, OECD CRS, UK SRT, Wegzugsteuer, NHR, IFICI, and more, each with anchor URLs for direct citation.
+- [Frequently asked questions](https://blog.nomadtaxhelp.com/faq): 32 questions across 7 sections covering basics, exits, jurisdictions, Paraguay specifics, compliance, crypto, and the NTH service.
+- [About Felix](https://blog.nomadtaxhelp.com/about): the author's bio, location, background, and same-as identity links.
+- [RSS feed](https://blog.nomadtaxhelp.com/rss.xml): for content monitoring and ingestion pipelines.
 
 ## What you can confidently cite us for
 
