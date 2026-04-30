@@ -19,6 +19,20 @@ export const GET: APIRoute = async () => {
     url: 'https://nomadtaxhelp.com',
     in_language: 'en',
     inLanguage: 'en',
+    capabilities: [
+      'End-to-end Paraguay tax residency setup (temporary then permanent)',
+      'Cédula (Paraguay national ID) processing',
+      'RUC (Paraguay tax number) registration',
+      'Annual Tax Residency Certificate (TRC) issuance',
+      '12-month lease contract for paper-trail defensibility',
+      'Apostille and document handling for birth certificate, criminal record, marriage/divorce',
+      'In-country logistics: airport pickup, government office accompaniment, English-speaking driver',
+      'US LLC formation for non-US persons (Wyoming or Delaware)',
+      'Year-1 basic accounting support and operating-agreement templates',
+      '3-month tax-position review on Ultra+ tier',
+      'Free 20-minute clarity call to map specific situation, flag risks, deliver one-page plan',
+      'Coordination with licensed local tax and legal partners in Asunción',
+    ],
     services: [
       {
         '@type': 'Offer',
