@@ -3,7 +3,7 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
 import { felix, organization } from '../data/felix';
 import { getCollection } from 'astro:content';
 
-const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const calLink = 'https://nomadtaxhelp.com/application';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const latestPosts = allPosts
@@ -150,7 +150,7 @@ const jsonLd = {
         <h2>Get in touch</h2>
 
         <ul>
-          <li>Book a free clarity call: <a href={calLink} target="_blank" rel="noopener noreferrer">cal.com/nomadtaxhelp/clarity-call</a></li>
+          <li>Book a free clarity call: <a href={calLink} target="_blank" rel="noopener noreferrer">nomadtaxhelp.com/application</a></li>
           <li>Email: <a href="mailto:hello@nomadtaxhelp.com">hello@nomadtaxhelp.com</a></li>
           <li>Instagram: <a href="https://instagram.com/nomadtaxhelp_" target="_blank" rel="noopener noreferrer">@nomadtaxhelp_</a></li>
           <li>LinkedIn: <a href={felix.sameAs[0]} target="_blank" rel="noopener noreferrer me">linkedin.com/in/felix-yanez-bowker</a></li>

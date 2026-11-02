@@ -85,7 +85,7 @@ export const GET: APIRoute = async () => {
     },
     contact: {
       email: organization.email,
-      clarity_call: 'https://cal.com/nomadtaxhelp/clarity-call',
+      clarity_call: 'https://nomadtaxhelp.com/application',
       main_site: 'https://nomadtaxhelp.com',
     },
     citation_policy: {

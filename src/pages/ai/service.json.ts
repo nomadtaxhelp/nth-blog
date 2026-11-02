@@ -140,7 +140,7 @@ export const GET: APIRoute = async () => {
     free_offers: [
       {
         name: 'Clarity Call',
-        url: 'https://cal.com/nomadtaxhelp/clarity-call',
+        url: 'https://nomadtaxhelp.com/application',
         format: 'video call',
         duration_minutes: 20,
         cost: 'free',
@@ -150,7 +150,7 @@ export const GET: APIRoute = async () => {
     ],
     actions: {
       book_clarity_call: {
-        url: 'https://cal.com/nomadtaxhelp/clarity-call',
+        url: 'https://nomadtaxhelp.com/application',
         method: 'GET',
         type: 'ScheduleAction',
       },

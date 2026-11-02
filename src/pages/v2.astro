@@ -8,7 +8,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.dat
 const featuredPost = sortedPosts.find((p) => p.data.featured) || sortedPosts[0];
 const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
 
-const calLink = 'https://cal.com/nomadtaxhelp/clarity-call';
+const calLink = 'https://nomadtaxhelp.com/application';
 
 // Latest content date — used for dateModified freshness signal.
 const latestDate = sortedPosts[0]?.data.publishDate || new Date();

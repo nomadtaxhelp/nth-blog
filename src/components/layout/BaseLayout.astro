@@ -49,7 +49,7 @@ document.addEventListener("click", function(e) {
                  link.closest("aside") ? "sidebar" :
                  link.closest(".prose") ? "inline-cta" :
                  "hero-or-page";
-  if (href.indexOf("cal.com/nomadtaxhelp") !== -1) {
+  if (href.indexOf("nomadtaxhelp.com/application") !== -1) {
     posthog.capture("clarity_call_click", { location: location, page: path });
   } else if (href.indexOf("nomadtaxhelp.com/health-check") !== -1) {
     posthog.capture("health_check_click", { location: location, page: path });
