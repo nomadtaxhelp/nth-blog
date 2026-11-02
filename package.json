@@ -19,7 +19,7 @@
     "@astrojs/vercel": "^10.0.4",
     "@tailwindcss/vite": "^4.2.2",
     "@vercel/analytics": "^2.0.1",
-    "@vercel/functions": "^3.7.5",
+    "@vercel/functions": "3.4.3",
     "@vercel/speed-insights": "^2.0.0",
     "astro": "^6.1.7",
     "astro-og-canvas": "^0.11.1",
