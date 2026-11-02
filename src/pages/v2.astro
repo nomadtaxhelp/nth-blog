@@ -21,26 +21,26 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Blog',
-      '@id': 'https://blog.nomadtaxhelp.com/#blog',
-      url: 'https://blog.nomadtaxhelp.com',
+      '@id': 'https://nomadtaxhelp.com/blog/#blog',
+      url: 'https://nomadtaxhelp.com/blog',
       name: 'NomadTaxHelp Blog',
       description: 'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',
-      author: { '@id': 'https://blog.nomadtaxhelp.com/about#felix' },
+      author: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
       dateModified: latestDate.toISOString(),
       blogPost: sortedPosts.slice(0, 6).map((p) => ({
         '@type': 'BlogPosting',
         headline: p.data.title,
-        url: `https://blog.nomadtaxhelp.com/posts/${p.data.slug}`,
+        url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
         description: p.data.description,
       })),
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://blog.nomadtaxhelp.com/v2#faq',
-      url: 'https://blog.nomadtaxhelp.com/faq',
+      '@id': 'https://nomadtaxhelp.com/blog/v2#faq',
+      url: 'https://nomadtaxhelp.com/blog/faq',
       mainEntity: allFaqItems.slice(0, 8).map((item) => ({
         '@type': 'Question',
         name: item.q,
@@ -54,7 +54,7 @@ const jsonLd = {
 <BaseLayout
   title="NomadTaxHelp Blog | Featured guides and recent posts"
   description="Featured tax-residency guide and the latest 6 posts from the NomadTaxHelp blog. Alternate magazine-style homepage layout."
-  canonicalUrl="https://blog.nomadtaxhelp.com/v2"
+  canonicalUrl="https://nomadtaxhelp.com/blog/v2"
   jsonLd={jsonLd}
 >
   {/* Hero: cream slab on teal page bg */}
@@ -107,7 +107,7 @@ const jsonLd = {
       <section class="mb-14">
         <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.18em] mb-4">Featured</p>
         <a
-          href={`/posts/${featuredPost.data.slug}`}
+          href={`/blog/posts/${featuredPost.data.slug}`}
           class="block bg-cream-100 text-teal-900 no-underline overflow-hidden group transition-all duration-200 hover:-translate-y-0.5"
           style="border-radius: 0.625rem; box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);"
         >
@@ -143,7 +143,7 @@ const jsonLd = {
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {recentPosts.map((post) => (
             <a
-              href={`/posts/${post.data.slug}`}
+              href={`/blog/posts/${post.data.slug}`}
               class="block bg-cream-100 text-teal-900 no-underline group p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5"
               style="border-radius: 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
             >

@@ -20,7 +20,7 @@ const {
   title,
   description,
   canonicalUrl = Astro.url.href,
-  ogImage = '/images/og-default.svg',
+  ogImage = '/blog/images/og-default.svg',
   ogType = 'website',
   jsonLd,
   markdownUrl,
@@ -59,11 +59,11 @@ document.addEventListener("click", function(e) {
 // Mark page type as a property on every event so PostHog dashboards can
 // segment "post pages" vs "homepage" vs "glossary" cleanly.
 posthog.register({
-  page_type: location.pathname.startsWith("/posts/") ? "post" :
-             location.pathname === "/" || location.pathname === "/v2" ? "homepage" :
-             location.pathname.startsWith("/glossary") ? "glossary" :
-             location.pathname.startsWith("/category/") ? "category" :
-             location.pathname.startsWith("/tag/") ? "tag" :
+  page_type: location.pathname.startsWith("/blog/posts/") ? "post" :
+             location.pathname === "/blog" || location.pathname === "/blog/v2" ? "homepage" :
+             location.pathname.startsWith("/blog/glossary") ? "glossary" :
+             location.pathname.startsWith("/blog/category/") ? "category" :
+             location.pathname.startsWith("/blog/tag/") ? "tag" :
              "other"
 });
 </script>`
@@ -88,7 +88,7 @@ const organizationJsonLd = {
   knowsAbout: organization.knowsAbout,
   founder: {
     '@type': 'Person',
-    '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+    '@id': 'https://nomadtaxhelp.com/blog/about#felix',
     name: felix.name,
     url: felix.url,
     image: felix.image,
@@ -132,7 +132,7 @@ const organizationJsonLd = {
     />
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/blog/rss.xml" />
 
     {/* Markdown twin for AI/LLM ingestion (when applicable) */}
     {markdownUrl && (
@@ -140,7 +140,7 @@ const organizationJsonLd = {
     )}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg" />
 
     <!-- Sitewide Organization JSON-LD (publisher entity) -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />

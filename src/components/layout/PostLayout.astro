@@ -30,15 +30,15 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryLabel = categoryLabels[data.category] || data.category;
-const canonicalUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}`;
-const markdownUrl = `https://blog.nomadtaxhelp.com/posts/${data.slug}.md`;
+const canonicalUrl = `https://nomadtaxhelp.com/blog/posts/${data.slug}`;
+const markdownUrl = `https://nomadtaxhelp.com/blog/posts/${data.slug}.md`;
 // Per-post dynamic OG image generated at build time.
-const ogImageUrl = `https://blog.nomadtaxhelp.com/og/${data.slug}.png`;
+const ogImageUrl = `https://nomadtaxhelp.com/blog/og/${data.slug}.png`;
 const readingTime = data.readingTime || Math.ceil((post.body?.length || 0) / 1500);
 
 const personAuthor = {
   '@type': 'Person',
-  '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+  '@id': 'https://nomadtaxhelp.com/blog/about#felix',
   name: felix.name,
   url: felix.url,
   image: felix.image,
@@ -73,8 +73,8 @@ const jsonLd = {
       datePublished: data.publishDate.toISOString(),
       dateModified: (data.updatedDate || data.publishDate).toISOString(),
       image: data.heroImage
-        ? `https://blog.nomadtaxhelp.com${data.heroImage}`
-        : 'https://blog.nomadtaxhelp.com/images/og-default.svg',
+        ? `https://nomadtaxhelp.com${data.heroImage}`
+        : 'https://nomadtaxhelp.com/blog/images/og-default.svg',
       mainEntityOfPage: canonicalUrl,
       inLanguage: 'en',
       articleSection: categoryLabel,
@@ -84,8 +84,8 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://blog.nomadtaxhelp.com/' },
-        { '@type': 'ListItem', position: 2, name: categoryLabel, item: `https://blog.nomadtaxhelp.com/category/${data.category}` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nomadtaxhelp.com/blog/' },
+        { '@type': 'ListItem', position: 2, name: categoryLabel, item: `https://nomadtaxhelp.com/blog/category/${data.category}` },
         { '@type': 'ListItem', position: 3, name: data.title },
       ],
     },
@@ -120,7 +120,7 @@ const jsonLd = {
   title={`${data.title} | NomadTaxHelp`}
   description={data.description}
   canonicalUrl={canonicalUrl}
-  ogImage={data.heroImage ? `https://blog.nomadtaxhelp.com${data.heroImage}` : ogImageUrl}
+  ogImage={data.heroImage ? `https://nomadtaxhelp.com${data.heroImage}` : ogImageUrl}
   ogType="article"
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}
@@ -129,9 +129,9 @@ const jsonLd = {
     <!-- Breadcrumb -->
     <nav class="text-sm text-cream-soft/60 mb-5" aria-label="Breadcrumb">
       <ol class="flex items-center gap-1.5 flex-wrap">
-        <li><a href="/" class="hover:text-amber-600 no-underline text-cream-soft/60">Home</a></li>
+        <li><a href="/blog" class="hover:text-amber-600 no-underline text-cream-soft/60">Home</a></li>
         <li class="text-cream-soft/40">/</li>
-        <li><a href={`/category/${data.category}`} class="hover:text-amber-600 no-underline text-cream-soft/60">{categoryLabel}</a></li>
+        <li><a href={`/blog/category/${data.category}`} class="hover:text-amber-600 no-underline text-cream-soft/60">{categoryLabel}</a></li>
         <li class="text-cream-soft/40">/</li>
         <li class="text-cream-100 truncate max-w-[300px]">{data.title}</li>
       </ol>
@@ -202,14 +202,14 @@ const jsonLd = {
         <div class="mt-12 p-6 surface-muted">
           <div class="flex items-start gap-4">
             <a
-              href="/images/felix.png"
-              data-lightbox="/images/felix.png"
+              href="/blog/images/felix.png"
+              data-lightbox="/blog/images/felix.png"
               data-lightbox-alt="Felix Yanez-Bowker"
               class="shrink-0 no-underline"
               aria-label="View larger photo of Felix"
             >
               <img
-                src="/images/felix.png"
+                src="/blog/images/felix.png"
                 alt="Felix Yanez-Bowker"
                 loading="lazy"
                 width="64"
@@ -222,7 +222,7 @@ const jsonLd = {
               <p class="text-sm text-cream-soft/70 mb-2">Co-Founder, NomadTaxHelp</p>
               <p class="text-sm text-cream-soft/80">
                 Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups.
-                <a href="/about" class="text-amber-600 hover:text-amber-700">Read more about Felix &rarr;</a>
+                <a href="/blog/about" class="text-amber-600 hover:text-amber-700">Read more about Felix &rarr;</a>
               </p>
             </div>
           </div>

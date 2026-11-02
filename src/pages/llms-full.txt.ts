@@ -6,7 +6,7 @@ export const GET: APIRoute = async () => {
   const sorted = posts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
   const sections = sorted.map((p) => {
-    const url = `https://blog.nomadtaxhelp.com/posts/${p.data.slug}`;
+    const url = `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`;
     return `# ${p.data.title}\nURL: ${url}\n\n${p.body || ''}`;
   });
 

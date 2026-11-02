@@ -18,7 +18,7 @@ export const GET: APIRoute = async ({ props }) => {
   const { post } = props as { post: any };
   const { data, body } = post;
 
-  const url = `https://blog.nomadtaxhelp.com/posts/${data.slug}`;
+  const url = `https://nomadtaxhelp.com/blog/posts/${data.slug}`;
   const publishDate = new Date(data.publishDate).toISOString().split('T')[0];
 
   // Strip MDX-specific imports and component invocations from the body so the

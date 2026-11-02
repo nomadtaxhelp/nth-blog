@@ -27,7 +27,7 @@
       ]
     },
     {
-      "source": "/ai/(.*)",
+      "source": "/blog/ai/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "source": "/llms(-full)?\\.txt",
+      "source": "/blog/llms(-full)?\\.txt",
       "headers": [
         {
           "key": "Cache-Control",

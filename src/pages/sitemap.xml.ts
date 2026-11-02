@@ -8,7 +8,7 @@ export const GET: APIRoute = () => {
   return new Response(null, {
     status: 301,
     headers: {
-      Location: '/sitemap-index.xml',
+      Location: '/blog/sitemap-index.xml',
       'Cache-Control': 'public, max-age=86400',
     },
   });

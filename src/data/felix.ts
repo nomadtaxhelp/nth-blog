@@ -8,8 +8,8 @@ export const felix = {
   jobTitle: 'Co-Founder, NomadTaxHelp',
   description:
     'Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups via Paraguay tax residency and US LLC formation.',
-  image: 'https://blog.nomadtaxhelp.com/images/felix.png',
-  url: 'https://blog.nomadtaxhelp.com/about',
+  image: 'https://nomadtaxhelp.com/blog/images/felix.png',
+  url: 'https://nomadtaxhelp.com/blog/about',
   email: 'hello@nomadtaxhelp.com',
   knowsAbout: [
     'Tax residency',
@@ -34,7 +34,7 @@ export const organization = {
   name: 'NomadTaxHelp',
   legalName: 'NomadTaxHelp',
   url: 'https://nomadtaxhelp.com',
-  logo: 'https://blog.nomadtaxhelp.com/logo.svg',
+  logo: 'https://nomadtaxhelp.com/blog/logo.svg',
   description:
     'Tax residency facilitation for digital nomads and remote entrepreneurs. Paraguay residency, US LLC formation, and tax exit strategy.',
   email: 'hello@nomadtaxhelp.com',
@@ -49,13 +49,13 @@ export const organization = {
   ],
   sameAs: [
     'https://www.instagram.com/nomadtaxhelp_',
-    'https://blog.nomadtaxhelp.com',
+    'https://nomadtaxhelp.com/blog',
   ],
 };
 
 export const blogSite = {
   name: 'NomadTaxHelp Blog',
-  url: 'https://blog.nomadtaxhelp.com',
+  url: 'https://nomadtaxhelp.com/blog',
   description:
     'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',
   inLanguage: 'en',

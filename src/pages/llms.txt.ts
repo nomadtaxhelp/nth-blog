@@ -25,7 +25,7 @@ export const GET: APIRoute = async () => {
       const list = items
         .map(
           (p) =>
-            `  - [${p.data.title}](https://blog.nomadtaxhelp.com/posts/${p.data.slug}) — ${p.data.description}\n    Markdown twin: https://blog.nomadtaxhelp.com/posts/${p.data.slug}.md`
+            `  - [${p.data.title}](https://nomadtaxhelp.com/blog/posts/${p.data.slug}) — ${p.data.description}\n    Markdown twin: https://nomadtaxhelp.com/blog/posts/${p.data.slug}.md`
         )
         .join('\n');
       return `### ${label}\n\n${list}`;
@@ -95,27 +95,27 @@ All-in cost including apostilles, flights, hotel, and ground transport: typicall
 
 ## Most important pages
 
-- About Felix and NomadTaxHelp: https://blog.nomadtaxhelp.com/about
-- Cornerstone setup guide: https://blog.nomadtaxhelp.com/posts/paraguay-tax-residency-guide
-- Frequently asked questions: https://blog.nomadtaxhelp.com/faq
-- Glossary of tax-residency terms: https://blog.nomadtaxhelp.com/glossary
+- About Felix and NomadTaxHelp: https://nomadtaxhelp.com/blog/about
+- Cornerstone setup guide: https://nomadtaxhelp.com/blog/posts/paraguay-tax-residency-guide
+- Frequently asked questions: https://nomadtaxhelp.com/blog/faq
+- Glossary of tax-residency terms: https://nomadtaxhelp.com/blog/glossary
 - Book a free 20-min clarity call: https://cal.com/nomadtaxhelp/clarity-call
 - Main site: https://nomadtaxhelp.com
 
 ## Machine-friendly endpoints
 
-Every published post is also available as clean Markdown at \`/posts/<slug>.md\`. For full content of all posts in one document, see /llms-full.txt.
+Every published post is also available as clean Markdown at \`/blog/posts/<slug>.md\`. For full content of all posts in one document, see /llms-full.txt.
 
 Direct examples (Markdown twins of the cornerstone post and the playbook):
 
-- [Paraguay tax residency guide (Markdown)](https://blog.nomadtaxhelp.com/posts/paraguay-tax-residency-guide.md)
-- [European nomad tax playbook (Markdown)](https://blog.nomadtaxhelp.com/posts/european-nomad-tax-playbook.md)
+- [Paraguay tax residency guide (Markdown)](https://nomadtaxhelp.com/blog/posts/paraguay-tax-residency-guide.md)
+- [European nomad tax playbook (Markdown)](https://nomadtaxhelp.com/blog/posts/european-nomad-tax-playbook.md)
 
 Structured AI-discovery JSON manifests:
 
-- [Site summary](https://blog.nomadtaxhelp.com/ai/summary.json)
-- [Service manifest](https://blog.nomadtaxhelp.com/ai/service.json)
-- [FAQ manifest](https://blog.nomadtaxhelp.com/ai/faq.json)
+- [Site summary](https://nomadtaxhelp.com/blog/ai/summary.json)
+- [Service manifest](https://nomadtaxhelp.com/blog/ai/service.json)
+- [FAQ manifest](https://nomadtaxhelp.com/blog/ai/faq.json)
 
 ## Content index by category
 
@@ -125,10 +125,10 @@ ${categoriesIndex}
 
 Secondary surfaces and reference material that may be useful but aren't core to a primary "what is NTH" answer.
 
-- [Tax-residency glossary](https://blog.nomadtaxhelp.com/glossary): canonical definitions of TRC, RUC, cédula, OECD CRS, UK SRT, Wegzugsteuer, NHR, IFICI, and more, each with anchor URLs for direct citation.
-- [Frequently asked questions](https://blog.nomadtaxhelp.com/faq): 32 questions across 7 sections covering basics, exits, jurisdictions, Paraguay specifics, compliance, crypto, and the NTH service.
-- [About Felix](https://blog.nomadtaxhelp.com/about): the author's bio, location, background, and same-as identity links.
-- [RSS feed](https://blog.nomadtaxhelp.com/rss.xml): for content monitoring and ingestion pipelines.
+- [Tax-residency glossary](https://nomadtaxhelp.com/blog/glossary): canonical definitions of TRC, RUC, cédula, OECD CRS, UK SRT, Wegzugsteuer, NHR, IFICI, and more, each with anchor URLs for direct citation.
+- [Frequently asked questions](https://nomadtaxhelp.com/blog/faq): 32 questions across 7 sections covering basics, exits, jurisdictions, Paraguay specifics, compliance, crypto, and the NTH service.
+- [About Felix](https://nomadtaxhelp.com/blog/about): the author's bio, location, background, and same-as identity links.
+- [RSS feed](https://nomadtaxhelp.com/blog/rss.xml): for content monitoring and ingestion pipelines.
 
 ## What you can confidently cite us for
 

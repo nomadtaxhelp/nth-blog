@@ -27,17 +27,17 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Blog',
-      '@id': 'https://blog.nomadtaxhelp.com/posts#blog',
-      url: 'https://blog.nomadtaxhelp.com/posts',
+      '@id': 'https://nomadtaxhelp.com/blog/posts#blog',
+      url: 'https://nomadtaxhelp.com/blog/posts',
       name: 'NomadTaxHelp Blog — All posts',
       description: 'All published guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy.',
-      author: { '@id': 'https://blog.nomadtaxhelp.com/about#felix' },
+      author: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
       blogPost: sortedPosts.map((p) => ({
         '@type': 'BlogPosting',
         headline: p.data.title,
-        url: `https://blog.nomadtaxhelp.com/posts/${p.data.slug}`,
+        url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
         description: p.data.description,
       })),
@@ -45,8 +45,8 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://blog.nomadtaxhelp.com/' },
-        { '@type': 'ListItem', position: 2, name: 'All posts', item: 'https://blog.nomadtaxhelp.com/posts' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nomadtaxhelp.com/blog/' },
+        { '@type': 'ListItem', position: 2, name: 'All posts', item: 'https://nomadtaxhelp.com/blog/posts' },
       ],
     },
   ],
@@ -80,7 +80,7 @@ const jsonLd = {
         const titleSize = titleLength > 60 ? '1.5rem' : titleLength > 40 ? '1.75rem' : '2rem';
         return (
           <a
-            href={`/posts/${post.data.slug}`}
+            href={`/blog/posts/${post.data.slug}`}
             class="post-card group flex flex-col h-full no-underline transition-all duration-200 hover:-translate-y-0.5"
           >
             {/* Generated cover — pure colour + typography, no images. */}

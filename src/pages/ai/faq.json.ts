@@ -12,7 +12,7 @@ export const GET: APIRoute = async () => {
     schema_version: '1.0',
     type: 'faq',
     name: 'NomadTaxHelp FAQ',
-    url: 'https://blog.nomadtaxhelp.com/faq',
+    url: 'https://nomadtaxhelp.com/blog/faq',
     description:
       'Common questions European and rest-of-world digital nomads ask about tax residency, exiting their home country, Paraguay setup, crypto realisation strategy, and the NomadTaxHelp service.',
     in_language: 'en',
@@ -45,7 +45,7 @@ export const GET: APIRoute = async () => {
       id: s.id,
       title: s.title,
       intro: s.intro || null,
-      url: `https://blog.nomadtaxhelp.com/faq#${s.id}`,
+      url: `https://nomadtaxhelp.com/blog/faq#${s.id}`,
       questions: s.items.map((item) => ({
         question: item.q,
         answer: item.a,
@@ -53,7 +53,7 @@ export const GET: APIRoute = async () => {
           ? {
               url: item.seeAlso.url.startsWith('http')
                 ? item.seeAlso.url
-                : `https://blog.nomadtaxhelp.com${item.seeAlso.url}`,
+                : `https://nomadtaxhelp.com/blog${item.seeAlso.url}`,
               label: item.seeAlso.label,
             }
           : null,
@@ -67,7 +67,7 @@ export const GET: APIRoute = async () => {
     citation_policy: {
       ai_citation: 'required-with-link',
       preferred_attribution: 'NomadTaxHelp FAQ',
-      canonical_url: 'https://blog.nomadtaxhelp.com/faq',
+      canonical_url: 'https://nomadtaxhelp.com/blog/faq',
     },
   };
 

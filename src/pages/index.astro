@@ -22,8 +22,8 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://blog.nomadtaxhelp.com/#website',
-      url: 'https://blog.nomadtaxhelp.com',
+      '@id': 'https://nomadtaxhelp.com/blog/#website',
+      url: 'https://nomadtaxhelp.com/blog',
       name: 'NomadTaxHelp Blog',
       description: 'Practical guides on tax residency for European and rest-of-world digital nomads.',
       inLanguage: 'en',
@@ -33,18 +33,18 @@ const jsonLd = {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://blog.nomadtaxhelp.com/posts?q={search_term_string}',
+          urlTemplate: 'https://nomadtaxhelp.com/blog/posts?q={search_term_string}',
         },
         'query-input': 'required name=search_term_string',
       },
     },
     {
       '@type': 'Blog',
-      '@id': 'https://blog.nomadtaxhelp.com/#blog',
-      url: 'https://blog.nomadtaxhelp.com',
+      '@id': 'https://nomadtaxhelp.com/blog/#blog',
+      url: 'https://nomadtaxhelp.com/blog',
       name: 'NomadTaxHelp Blog',
       description: 'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',
-      author: { '@id': 'https://blog.nomadtaxhelp.com/about#felix' },
+      author: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
       dateModified: latestDate.toISOString(),
@@ -52,17 +52,17 @@ const jsonLd = {
       blogPost: sortedPosts.map((p) => ({
         '@type': 'BlogPosting',
         headline: p.data.title,
-        url: `https://blog.nomadtaxhelp.com/posts/${p.data.slug}`,
+        url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
         description: p.data.description,
       })),
     },
     {
       '@type': 'Person',
-      '@id': 'https://blog.nomadtaxhelp.com/about#felix',
+      '@id': 'https://nomadtaxhelp.com/blog/about#felix',
       name: 'Felix Yanez-Bowker',
-      url: 'https://blog.nomadtaxhelp.com/about',
-      image: 'https://blog.nomadtaxhelp.com/images/felix.png',
+      url: 'https://nomadtaxhelp.com/blog/about',
+      image: 'https://nomadtaxhelp.com/blog/images/felix.png',
       jobTitle: 'Co-Founder, NomadTaxHelp',
       sameAs: [
         'https://www.linkedin.com/in/felix-yanez-bowker-b23270252/',
@@ -73,8 +73,8 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://blog.nomadtaxhelp.com/#faq',
-      url: 'https://blog.nomadtaxhelp.com/faq',
+      '@id': 'https://nomadtaxhelp.com/blog/#faq',
+      url: 'https://nomadtaxhelp.com/blog/faq',
       mainEntity: allFaqItems.slice(0, 8).map((item) => ({
         '@type': 'Question',
         name: item.q,
@@ -117,7 +117,7 @@ const jsonLd = {
           return (
             <li>
               <a
-                href={`/posts/${post.data.slug}`}
+                href={`/blog/posts/${post.data.slug}`}
                 class="group block bg-cream-100 text-teal-900 px-5 py-5 sm:px-6 sm:py-6 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(0,0,0,0.45)]"
                 style="border-radius: 0.625rem;"
               >

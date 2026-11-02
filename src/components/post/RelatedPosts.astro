@@ -18,7 +18,7 @@ const categoryLabels: Record<string, string> = {
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {posts.slice(0, 3).map((post) => (
     <a
-      href={`/posts/${post.data.slug}`}
+      href={`/blog/posts/${post.data.slug}`}
       class="block p-5 bg-cream-100 text-teal-900 no-underline group transition-all duration-200 hover:-translate-y-0.5"
       style="border-radius: 0.625rem; border: 1px solid rgba(205, 126, 17, 0.2); box-shadow: 0 8px 20px -10px rgba(0,0,0,0.3);"
     >

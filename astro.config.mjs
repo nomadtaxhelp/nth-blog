@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://blog.nomadtaxhelp.com',
+  site: 'https://nomadtaxhelp.com',
+  base: '/blog',
   trailingSlash: 'never',
   integrations: [mdx(), sitemap()],
   vite: {

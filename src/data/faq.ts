@@ -27,7 +27,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'Can I just leave the country and stop paying tax?',
         a: "No. Walking out the door doesn't break your tax residency. You have to formally exit under your home country's specific rules: deregister, fall under the day-count threshold, sever ties (home, family, business). Skip that step and you stay on the hook regardless of where your suitcase is.",
-        seeAlso: { url: '/posts/european-nomad-tax-playbook', label: 'The European nomad tax playbook' },
+        seeAlso: { url: '/blog/posts/european-nomad-tax-playbook', label: 'The European nomad tax playbook' },
       },
       {
         q: "What's the difference between citizenship and tax residency?",
@@ -36,12 +36,12 @@ export const faqSections: FAQSection[] = [
       {
         q: 'Is the 183-day rule the only test that matters?',
         a: 'No. Spending 183 or more days somewhere usually triggers tax residency there, but spending fewer than 183 days in your old country does not automatically remove you from its tax system. Most countries also look at where your home is, where your family is, where your business is run from, and where your "centre of vital interests" lies.',
-        seeAlso: { url: '/glossary#day-count-test', label: 'Day-count test in the glossary' },
+        seeAlso: { url: '/blog/glossary#day-count-test', label: 'Day-count test in the glossary' },
       },
       {
         q: 'What is an OECD tie-breaker rule?',
         a: 'When two countries both claim you as tax-resident under their own rules, the OECD double-tax treaty between them decides who wins. The hierarchy: (1) where you have a permanent home, (2) centre of vital interests, (3) habitual abode, (4) nationality, (5) competent-authority negotiation. The practical translation: do not leave both countries thinking you live there.',
-        seeAlso: { url: '/glossary#tie-breaker-rule', label: 'Tie-breaker rule in the glossary' },
+        seeAlso: { url: '/blog/glossary#tie-breaker-rule', label: 'Tie-breaker rule in the glossary' },
       },
     ],
   },
@@ -53,17 +53,17 @@ export const faqSections: FAQSection[] = [
       {
         q: "I'm a UK resident. How do I cleanly exit?",
         a: 'The UK uses the Statutory Residence Test (SRT) since April 2013. You need to either pass an automatic non-resident test (for example, fewer than 16 days in the UK if you have been resident in any of the prior 3 years), or fall under the sufficient ties threshold for your day count. You also file a P85 with HMRC. Get this wrong and HMRC can claim you for years.',
-        seeAlso: { url: '/glossary#uk-srt', label: 'UK Statutory Residence Test in the glossary' },
+        seeAlso: { url: '/blog/glossary#uk-srt', label: 'UK Statutory Residence Test in the glossary' },
       },
       {
         q: "I'm a Spanish resident. What's the exit?",
         a: 'Spain looks at three things: 183 or more days in Spain, your centre of economic interests being in Spain, or your spouse and minor children living in Spain. You need to break all three. Then deregister from the padrón municipal, file Modelo 030, and Modelo 720 if you held foreign assets above the threshold. Spain is one of the harder exits in Europe.',
-        seeAlso: { url: '/glossary#renta-mundial', label: 'Renta mundial in the glossary' },
+        seeAlso: { url: '/blog/glossary#renta-mundial', label: 'Renta mundial in the glossary' },
       },
       {
         q: 'What is the German Wegzugsteuer and does it apply to me?',
         a: 'The Wegzugsteuer (exit tax) hits anyone who has been a German tax resident with a 1% or greater stake in any company (German or foreign) when they leave. The state treats your shares as sold at fair market value on departure and taxes the gain. If you are a founder or hold equity in a startup, you need to plan this years ahead, not weeks.',
-        seeAlso: { url: '/glossary#wegzugsteuer', label: 'Wegzugsteuer in the glossary' },
+        seeAlso: { url: '/blog/glossary#wegzugsteuer', label: 'Wegzugsteuer in the glossary' },
       },
       {
         q: 'Do I need to be a tax resident somewhere?',
@@ -83,7 +83,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'What is the cheapest 0% tax residency I can get?',
         a: 'Paraguay, by a wide margin. Setup is around $3,500 to $5,500 all-in, takes 3 days on the ground, and you only need to visit every 3 years to maintain it. Cyprus 60-day non-dom is the closest alternative but costs €5,000 to €8,000 and requires 60 days on the ground annually. The UAE is $8,000 to $15,000 and now has 9% corporate tax.',
-        seeAlso: { url: '/posts/paraguay-tax-residency-cost-2026', label: 'Full Paraguay cost breakdown' },
+        seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full Paraguay cost breakdown' },
       },
       {
         q: 'Why Paraguay over Dubai?',
@@ -92,7 +92,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'Is Portugal NHR still available?',
         a: 'No. NHR closed to new applicants on 1 January 2024. Existing holders keep their 10-year window. The replacement, IFICI, is much narrower and only fits highly-qualified employees in specific tech, research, or teaching roles tied to a Portuguese entity. Most independent nomads do not qualify.',
-        seeAlso: { url: '/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
+        seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
       },
       {
         q: 'Can I just live in Bali, Bangkok, or Tbilisi without setting anything up?',
@@ -112,7 +112,7 @@ export const faqSections: FAQSection[] = [
       {
         q: "How does Paraguay's tax system actually work?",
         a: "It's territorial. Paraguay only taxes income earned inside Paraguay. Foreign salaries, foreign dividends, foreign capital gains, crypto, all of it sits outside Paraguay's tax base. Tax rate on that foreign-source income: 0%. This is written into Paraguayan law, not a special incentive that can be revoked.",
-        seeAlso: { url: '/posts/paraguay-tax-residency-guide', label: 'Complete Paraguay tax residency guide' },
+        seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Complete Paraguay tax residency guide' },
       },
       {
         q: 'How long does Paraguay residency take to set up?',
@@ -121,7 +121,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'What does Paraguay residency cost?',
         a: "NomadTaxHelp's Paraguay packages are $2,500 (Core), $3,500 (Premium), or $4,750 (Ultra+ with US LLC). Plus apostilles, flights, and hotel, you are at $3,500 to $5,500 all-in. Premium is what most clients pick.",
-        seeAlso: { url: '/posts/paraguay-tax-residency-cost-2026', label: 'Full cost breakdown' },
+        seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full cost breakdown' },
       },
       {
         q: 'Do I actually have to live in Paraguay?',
@@ -145,7 +145,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'Is Paraguay residency actually legitimate?',
         a: "Yes. Paraguay isn't on the EU non-cooperative jurisdictions list, exited the FATF grey list in 2022, joined OECD CRS in 2021, and has been on the OECD BEPS Inclusive Framework since 2017. Banks worldwide recognise it. Over 30,000 people set up residency in Paraguay in 2025.",
-        seeAlso: { url: '/posts/is-paraguay-tax-residency-legit', label: 'Full legitimacy deep-dive' },
+        seeAlso: { url: '/blog/posts/is-paraguay-tax-residency-legit', label: 'Full legitimacy deep-dive' },
       },
       {
         q: 'Will European banks accept Paraguay tax residency?',
@@ -154,7 +154,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'What is OECD CRS and how does it affect me?',
         a: "The Common Reporting Standard. Banks report your account information to your country of tax residency annually. Paraguay joined CRS in 2021. CRS is good for you, not bad: it's how banks confirm you're legitimately tax-resident somewhere they can report to.",
-        seeAlso: { url: '/glossary#crs', label: 'OECD CRS in the glossary' },
+        seeAlso: { url: '/blog/glossary#crs', label: 'OECD CRS in the glossary' },
       },
       {
         q: 'Will my old country audit me if I move?',
@@ -174,7 +174,7 @@ export const faqSections: FAQSection[] = [
       {
         q: 'Can I realise crypto gains tax-free in Paraguay?',
         a: "Yes, on foreign-source crypto. Trades on foreign exchanges and self-custody wallets sit outside Paraguay's territorial tax base. The catch: you must be Paraguay tax-resident AND cleanly out of your old country before the realisation event. Becoming Paraguayan after the sale does not help.",
-        seeAlso: { url: '/posts/paraguay-crypto-tax-residency', label: 'Paraguay for crypto nomads' },
+        seeAlso: { url: '/blog/posts/paraguay-crypto-tax-residency', label: 'Paraguay for crypto nomads' },
       },
       {
         q: 'What counts as a crypto realisation event?',
