@@ -20,7 +20,7 @@ const {
   title,
   description,
   canonicalUrl = `https://nomadtaxhelp.com${Astro.url.pathname.replace(/\/$/, "")}`,
-  ogImage = '/blog/images/og-default.svg',
+  ogImage = 'https://nomadtaxhelp.com/brand/nth-social.png',
   ogType = 'website',
   jsonLd,
   markdownUrl,
@@ -120,7 +120,7 @@ const pageJsonLd = {
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={new URL(ogImage, "https://nomadtaxhelp.com").href} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="NomadTaxHelp" />
 
@@ -128,7 +128,7 @@ const pageJsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={new URL(ogImage, "https://nomadtaxhelp.com").href} />
 
     <!-- Fonts: Space Grotesk (headings) + Plus Jakarta Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -147,7 +147,10 @@ const pageJsonLd = {
     )}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/nomad-tax-help-icon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Sitewide Organization JSON-LD (publisher entity) -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />

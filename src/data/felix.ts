@@ -33,7 +33,7 @@ export const felix = {
 export const organization = {
   name: 'Nomad Tax Help',
   url: 'https://nomadtaxhelp.com',
-  logo: 'https://nomadtaxhelp.com/blog/logo.svg',
+  logo: 'https://nomadtaxhelp.com/nomad-tax-help-icon.svg',
   description:
     'Tax residency facilitation for digital nomads and remote entrepreneurs. Paraguay residency, US LLC formation, and tax exit strategy.',
   email: 'hello@nomadtaxhelp.com',
