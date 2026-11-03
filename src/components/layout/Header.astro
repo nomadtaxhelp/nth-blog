@@ -1,6 +1,6 @@
 ---
 const navLinks = [
-  { label: 'Home', href: '/blog' },
+  { label: 'Home', href: '/' },
   { label: 'All Posts', href: '/blog/posts' },
   { label: 'FAQ', href: '/blog/faq' },
   { label: 'About', href: '/blog/about' },
@@ -13,14 +13,14 @@ const currentPath = Astro.url.pathname;
 <header id="site-header" class="text-cream-100 sticky top-0 z-50 transition-colors duration-200">
   <div class="max-w-[1200px] mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
     <!-- Logo -->
-    <a href="/blog" class="flex items-center gap-2 shrink-0 no-underline">
+    <a href="/" class="flex items-center gap-2 shrink-0 no-underline">
       <span class="font-heading text-xl font-bold tracking-tight text-cream-100">NomadTaxHelp</span>
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-6">
       {navLinks.map((link) => {
-        const isActive = link.href === '/blog' ? currentPath === '/blog' : currentPath.startsWith(link.href);
+        const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
         return (
           <a
             href={link.href}
