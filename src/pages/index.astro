@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { allFaqItems } from '../data/faq';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const sortedPosts = allPosts
@@ -20,24 +19,7 @@ const latestDate = sortedPosts[0]?.data.publishDate || new Date();
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': 'https://nomadtaxhelp.com/blog/#website',
-      url: 'https://nomadtaxhelp.com/blog',
-      name: 'NomadTaxHelp Blog',
-      description: 'Practical guides on tax residency for European and rest-of-world digital nomads.',
-      inLanguage: 'en',
-      publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
-      dateModified: latestDate.toISOString(),
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: 'https://nomadtaxhelp.com/blog/posts?q={search_term_string}',
-        },
-        'query-input': 'required name=search_term_string',
-      },
-    },
+
     {
       '@type': 'Blog',
       '@id': 'https://nomadtaxhelp.com/blog/#blog',
@@ -71,16 +53,7 @@ const jsonLd = {
         'https://nomadtaxhelp.com',
       ],
     },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://nomadtaxhelp.com/blog/#faq',
-      url: 'https://nomadtaxhelp.com/blog/faq',
-      mainEntity: allFaqItems.slice(0, 8).map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
-      })),
-    },
+
   ],
 };
 ---

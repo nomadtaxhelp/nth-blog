@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { allFaqItems } from '../data/faq';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
@@ -37,16 +36,7 @@ const jsonLd = {
         description: p.data.description,
       })),
     },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://nomadtaxhelp.com/blog/v2#faq',
-      url: 'https://nomadtaxhelp.com/blog/faq',
-      mainEntity: allFaqItems.slice(0, 8).map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
-      })),
-    },
+
   ],
 };
 ---

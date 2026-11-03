@@ -3,7 +3,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import { felix, organization, blogSite } from '../../data/felix';
+import { felix, organization } from '../../data/felix';
 import '../../styles/global.css';
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 const {
   title,
   description,
-  canonicalUrl = Astro.url.href,
+  canonicalUrl = `https://nomadtaxhelp.com${Astro.url.pathname.replace(/\/$/, "")}`,
   ogImage = '/blog/images/og-default.svg',
   ogType = 'website',
   jsonLd,
@@ -83,7 +83,6 @@ const organizationJsonLd = {
   },
   description: organization.description,
   email: organization.email,
-  foundingDate: organization.foundingDate,
   areaServed: organization.areaServed,
   knowsAbout: organization.knowsAbout,
   founder: {
@@ -96,6 +95,14 @@ const organizationJsonLd = {
     sameAs: felix.sameAs,
   },
   sameAs: organization.sameAs,
+};
+const collectionPage = /\/blog(?:\/(?:posts|category\/[^/]+|tag\/[^/]+|resources))?$/.test(Astro.url.pathname.replace(/\/$/, ''));
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': 'https://nomadtaxhelp.com/#website', url: 'https://nomadtaxhelp.com/', name: 'Nomad Tax Help', publisher: { '@id': organizationJsonLd['@id'] }, inLanguage: 'en' },
+    { '@type': collectionPage ? 'CollectionPage' : 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl, name: title, description, inLanguage: 'en', isPartOf: { '@id': 'https://nomadtaxhelp.com/#website' } },
+  ],
 };
 ---
 
@@ -145,9 +152,11 @@ const organizationJsonLd = {
     <!-- Sitewide Organization JSON-LD (publisher entity) -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 
+    <script type="application/ld+json" set:html={JSON.stringify(pageJsonLd).replace(/</g, '\\u003c')} />
+
     <!-- Page-specific JSON-LD -->
     {jsonLd && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
     )}
 
     {/* PostHog product analytics — cookie-free, EU host. Loads only when

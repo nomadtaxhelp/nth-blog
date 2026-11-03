@@ -37,9 +37,19 @@ const categories = [
   { slug: 'tax-residency', label: 'Tax Residency' },
   { slug: 'us-llc', label: 'US LLC' },
 ];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `https://nomadtaxhelp.com/blog/category/${slug}#list`,
+  itemListElement: sortedPosts.map((post, index) => ({
+    '@type': 'ListItem', position: index + 1, name: post.data.title,
+    url: `https://nomadtaxhelp.com/blog/posts/${post.data.slug}`,
+  })),
+};
 ---
 
 <BaseLayout
+  jsonLd={jsonLd}
   title={`${label} | NomadTaxHelp Blog`}
   description={description}
 >

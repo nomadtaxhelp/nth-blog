@@ -31,14 +31,12 @@ export const felix = {
 };
 
 export const organization = {
-  name: 'NomadTaxHelp',
-  legalName: 'NomadTaxHelp',
+  name: 'Nomad Tax Help',
   url: 'https://nomadtaxhelp.com',
   logo: 'https://nomadtaxhelp.com/blog/logo.svg',
   description:
     'Tax residency facilitation for digital nomads and remote entrepreneurs. Paraguay residency, US LLC formation, and tax exit strategy.',
   email: 'hello@nomadtaxhelp.com',
-  foundingDate: '2024',
   areaServed: 'Worldwide (excluding United States persons)',
   knowsAbout: [
     'Paraguay tax residency',
@@ -49,7 +47,6 @@ export const organization = {
   ],
   sameAs: [
     'https://www.instagram.com/nomadtaxhelp_',
-    'https://nomadtaxhelp.com/blog',
   ],
 };
 

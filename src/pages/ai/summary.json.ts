@@ -58,13 +58,7 @@ export const GET: APIRoute = async () => {
       'Cyprus 60-day non-dom, UAE corporate tax, Italy flat-tax',
       'Tax-residency certificates (TRC), RUC, cédula, apostilles',
     ],
-    pricing_summary: {
-      core: { price_usd: 2500, includes: 'Temporary residency + cédula + basic processing' },
-      premium: { price_usd: 3500, includes: 'Core + RUC + TRC + lease + year-1 accounting' },
-      ultra_plus: { price_usd: 4750, includes: 'Premium + US LLC + onboarding + 3-month review' },
-      all_in_estimate_usd: '3500-5500',
-      currency: 'USD',
-    },
+    pricing_summary: { premium_plus: { price_usd: 5950, url: 'https://nomadtaxhelp.com/services' }, currency: 'USD', travel_and_accommodation: 'Separate' },
     machine_endpoints: {
       summary: 'https://nomadtaxhelp.com/blog/ai/summary.json',
       faq: 'https://nomadtaxhelp.com/blog/ai/faq.json',

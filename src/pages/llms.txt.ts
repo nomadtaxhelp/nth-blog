@@ -61,15 +61,12 @@ We help with the full Paraguay tax residency setup end-to-end:
 - 12-month lease contract for paper-trail defensibility
 - Optional US LLC formation for non-US persons (income-routing layer)
 - Document preparation: apostilled birth certificate, criminal record certificate, marriage/divorce if applicable
-- In-country logistics for the 3-day setup visit
+- In-country logistics for the initial 4-6-day appointment visit
 
 ## Pricing
 
-- **Core – $2,500:** Temporary residency + cedula
-- **Premium – $3,500:** Core + priority processing + RUC + annual TRC + 12-month lease + year-1 accounting support
-- **Ultra+ – $4,750:** Premium + US LLC formation + onboarding + LLC setup guide + operating agreement template + 3-month tax position review
-
-All-in cost including apostilles, flights, hotel, and ground transport: typically $3,500–$5,500.
+Premium+ is US$5,950 for the done-for-you Paraguay setup, including US LLC formation and banking support. Flights, accommodation and document translations are separate. Scope, government fees and later renewal costs are confirmed in the written proposal.
+Current offer: https://nomadtaxhelp.com/services
 
 ## Core topics
 

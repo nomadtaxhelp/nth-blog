@@ -64,7 +64,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Article',
+      '@type': 'BlogPosting',
       '@id': `${canonicalUrl}#article`,
       headline: data.title,
       description: data.description,
@@ -73,9 +73,10 @@ const jsonLd = {
       datePublished: data.publishDate.toISOString(),
       dateModified: (data.updatedDate || data.publishDate).toISOString(),
       image: data.heroImage
-        ? `https://nomadtaxhelp.com${data.heroImage}`
-        : 'https://nomadtaxhelp.com/blog/images/og-default.svg',
-      mainEntityOfPage: canonicalUrl,
+        ? new URL(data.heroImage, 'https://nomadtaxhelp.com').href
+        : ogImageUrl,
+      mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+      isPartOf: { '@id': 'https://nomadtaxhelp.com/blog/#blog' },
       inLanguage: 'en',
       articleSection: categoryLabel,
       keywords: (data.tags || []).join(', '),
@@ -99,19 +100,6 @@ const jsonLd = {
           })),
         }]
       : []),
-    ...(data.howToSteps && data.howToSteps.length > 0
-      ? [{
-          '@type': 'HowTo',
-          name: data.title,
-          description: data.description,
-          step: data.howToSteps.map((s: { name: string; text: string }, i: number) => ({
-            '@type': 'HowToStep',
-            position: i + 1,
-            name: s.name,
-            text: s.text,
-          })),
-        }]
-      : []),
   ],
 };
 ---
@@ -120,7 +108,7 @@ const jsonLd = {
   title={`${data.title} | NomadTaxHelp`}
   description={data.description}
   canonicalUrl={canonicalUrl}
-  ogImage={data.heroImage ? `https://nomadtaxhelp.com${data.heroImage}` : ogImageUrl}
+  ogImage={data.heroImage ? new URL(data.heroImage, 'https://nomadtaxhelp.com').href : ogImageUrl}
   ogType="article"
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}

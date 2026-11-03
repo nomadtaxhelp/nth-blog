@@ -82,7 +82,7 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'What is the cheapest 0% tax residency I can get?',
-        a: 'Paraguay, by a wide margin. Setup is around $3,500 to $5,500 all-in, takes 3 days on the ground, and you only need to visit every 3 years to maintain it. Cyprus 60-day non-dom is the closest alternative but costs €5,000 to €8,000 and requires 60 days on the ground annually. The UAE is $8,000 to $15,000 and now has 9% corporate tax.',
+        a: 'Compare the complete first-year and renewal costs for your circumstances. NTH Premium+ is US$5,950, with flights, accommodation and translations separate. Presence requirements and tax eligibility differ between Paraguay, Cyprus and the UAE.',
         seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full Paraguay cost breakdown' },
       },
       {
@@ -120,7 +120,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'What does Paraguay residency cost?',
-        a: "NomadTaxHelp's Paraguay packages are $2,500 (Core), $3,500 (Premium), or $4,750 (Ultra+ with US LLC). Plus apostilles, flights, and hotel, you are at $3,500 to $5,500 all-in. Premium is what most clients pick.",
+        a: "Nomad Tax Help offers Premium+ at US$5,950 for a coordinated Paraguay residency and US business setup. Flights, accommodation and document translations are separate. See the current services page for inclusions and confirm renewal costs in your proposal.",
         seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full cost breakdown' },
       },
       {
