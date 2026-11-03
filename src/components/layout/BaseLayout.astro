@@ -270,7 +270,15 @@ const pageJsonLd = {
     {/* Vercel Web Analytics + Speed Insights — official Astro components.
         Free on Hobby plan, cookie-free, no consent banner needed.
         Enable at: Vercel → Project → Analytics tab. */}
-    <Analytics />
-    <SpeedInsights />
+    <Analytics
+      scriptSrc="/blog/_vercel/insights/script.js"
+      viewEndpoint="/blog/_vercel/insights/view"
+      eventEndpoint="/blog/_vercel/insights/event"
+      sessionEndpoint="/blog/_vercel/insights/session"
+    />
+    <SpeedInsights
+      scriptSrc="/blog/_vercel/speed-insights/script.js"
+      endpoint="/blog/_vercel/speed-insights/vitals"
+    />
   </body>
 </html>
