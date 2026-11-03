@@ -31,7 +31,7 @@ const jsonLd = {
       url: 'https://nomadtaxhelp.com/blog/posts',
       name: 'NomadTaxHelp Blog — All posts',
       description: 'All published guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy.',
-      author: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
+      author: [{ '@id': 'https://nomadtaxhelp.com/blog/about#felix' }, { '@id': 'https://nomadtaxhelp.com/#organization' }],
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
       blogPost: sortedPosts.map((p) => ({
@@ -39,6 +39,8 @@ const jsonLd = {
         headline: p.data.title,
         url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
+        dateModified: (p.data.updatedDate || p.data.publishDate).toISOString(),
+        author: { '@id': p.data.author === 'nth' ? 'https://nomadtaxhelp.com/#organization' : 'https://nomadtaxhelp.com/blog/about#felix' },
         description: p.data.description,
       })),
     },

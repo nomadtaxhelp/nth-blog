@@ -53,7 +53,7 @@ export const GET: APIRoute = async () => {
           ? {
               url: item.seeAlso.url.startsWith('http')
                 ? item.seeAlso.url
-                : `https://nomadtaxhelp.com/blog${item.seeAlso.url}`,
+                : `https://nomadtaxhelp.com${item.seeAlso.url}`,
               label: item.seeAlso.label,
             }
           : null,

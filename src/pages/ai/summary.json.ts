@@ -8,11 +8,8 @@ import { felix, organization } from '../../data/felix';
 
 export const GET: APIRoute = async () => {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
-  const sorted = posts.sort(
-    (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
-  );
 
-  const lastUpdated = sorted[0]?.data.publishDate?.toISOString().split('T')[0] || null;
+  const lastUpdated = posts.length ? new Date(Math.max(...posts.map((p) => (p.data.updatedDate || p.data.publishDate).getTime()))).toISOString().split('T')[0] : null;
 
   const body = {
     schema_version: '1.0',
@@ -20,7 +17,7 @@ export const GET: APIRoute = async () => {
     name: 'NomadTaxHelp Blog',
     url: 'https://nomadtaxhelp.com/blog',
     description:
-      "Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. Written by Felix Yanez-Bowker, co-founder of NomadTaxHelp.",
+      "Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. By Felix Yanez-Bowker and Nomad Tax Help.",
     in_language: 'en',
     last_updated: lastUpdated,
     publisher: {
@@ -51,11 +48,11 @@ export const GET: APIRoute = async () => {
     primary_topics: [
       'Paraguay tax residency setup, costs, timelines, defensibility',
       'Exiting European tax residency (UK SRT, Spain, Germany Wegzugsteuer, France, Italy, Netherlands)',
-      'OECD CRS, FATF, EU non-cooperative jurisdictions list, banking acceptance',
+      'Source verification, tax transparency and bank document questions',
       'US LLC formation for non-US persons (income-routing layer)',
-      'Crypto capital gains and the realisation-timing strategy',
+      'Crypto transaction classification and 2026 reporting requirements',
       'Portugal NHR replacement and IFICI alternatives',
-      'Cyprus 60-day non-dom, UAE corporate tax, Italy flat-tax',
+      'Comparing residence routes without conflating personal and corporate tax',
       'Tax-residency certificates (TRC), RUC, cédula, apostilles',
     ],
     pricing_summary: { premium_plus: { price_usd: 5950, url: 'https://nomadtaxhelp.com/services' }, currency: 'USD', travel_and_accommodation: 'Separate' },
@@ -87,7 +84,7 @@ export const GET: APIRoute = async () => {
       ai_training: 'allowed',
       ai_summarisation: 'allowed',
       ai_citation: 'required-with-link',
-      preferred_attribution: 'Felix Yanez-Bowker, NomadTaxHelp',
+      preferred_attribution: 'Use the author displayed on the cited article',
     },
     disclaimer:
       'NomadTaxHelp is a facilitator, not a law firm or tax adviser. Educational content only; specifics should be confirmed with a licensed professional in the relevant jurisdiction.',

@@ -24,7 +24,7 @@ const jsonLd = {
       url: 'https://nomadtaxhelp.com/blog',
       name: 'NomadTaxHelp Blog',
       description: 'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',
-      author: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
+      author: [{ '@id': 'https://nomadtaxhelp.com/blog/about#felix' }, { '@id': 'https://nomadtaxhelp.com/#organization' }],
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
       dateModified: latestDate.toISOString(),
@@ -33,6 +33,8 @@ const jsonLd = {
         headline: p.data.title,
         url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
+        dateModified: (p.data.updatedDate || p.data.publishDate).toISOString(),
+        author: { '@id': p.data.author === 'nth' ? 'https://nomadtaxhelp.com/#organization' : 'https://nomadtaxhelp.com/blog/about#felix' },
         description: p.data.description,
       })),
     },
@@ -57,7 +59,7 @@ const jsonLd = {
         Practical guides for nomads sorting their tax setup.
       </h1>
       <p class="font-body text-teal-900/75 mb-7 max-w-[520px] mx-auto text-base sm:text-lg leading-relaxed">
-        Written by Felix, co-founder of NomadTaxHelp. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
+        By Felix and the Nomad Tax Help team. No jargon, no hype, no tax-adviser disclaimers written by lawyers. Just what actually works.
       </p>
       <ul class="text-left max-w-[520px] mx-auto mb-9 space-y-2 font-body text-teal-900/85 text-sm sm:text-base">
         <li class="flex items-start gap-2.5">

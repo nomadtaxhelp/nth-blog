@@ -22,16 +22,16 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'What is "tax residency" and why should I care?',
-        a: "Tax residency is the country that gets to tax your worldwide income. It's not the same as citizenship, and it's not the same as where you spend most of your time. Every country has its own rules for deciding if you're tax-resident there. Until you actively change yours, it's almost always the country you most recently lived in. As a nomad, this is the single most important thing to get right.",
+        a: "Tax residence determines how a country applies its tax rules to you. It is different from citizenship and immigration permission. Countries use their own tests, and more than one can initially regard you as resident. Your income and activities can also create tax obligations where you are not resident.",
       },
       {
         q: 'Can I just leave the country and stop paying tax?',
-        a: "No. Walking out the door doesn't break your tax residency. You have to formally exit under your home country's specific rules: deregister, fall under the day-count threshold, sever ties (home, family, business). Skip that step and you stay on the hook regardless of where your suitcase is.",
+        a: "Not automatically. Apply your home country’s residence rules to your actual move and check continuing source-country tax, filings and any exit charges. Deregistration or a new foreign permit alone does not settle all of those questions.",
         seeAlso: { url: '/blog/posts/european-nomad-tax-playbook', label: 'The European nomad tax playbook' },
       },
       {
         q: "What's the difference between citizenship and tax residency?",
-        a: 'Citizenship is your passport (nationality). Tax residency is which country claims your income for tax purposes. They\'re independent. A British citizen can be tax-resident in Paraguay; a German citizen can be tax-resident in the UAE. Only the United States and Eritrea tax their citizens on worldwide income regardless of where they live.',
+        a: "Citizenship is nationality. Tax residence is a status determined under tax rules. The two are different, although nationality can also affect taxation. This service is designed for non-US persons; US tax connections need separate specialist advice.",
       },
       {
         q: 'Is the 183-day rule the only test that matters?',
@@ -40,7 +40,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'What is an OECD tie-breaker rule?',
-        a: 'When two countries both claim you as tax-resident under their own rules, the OECD double-tax treaty between them decides who wins. The hierarchy: (1) where you have a permanent home, (2) centre of vital interests, (3) habitual abode, (4) nationality, (5) competent-authority negotiation. The practical translation: do not leave both countries thinking you live there.',
+        a: "Some bilateral tax treaties use residence tie-breakers when both countries treat someone as resident. The applicable treaty, if one exists and covers the person, determines the tests. Do not assume every country pair has such a treaty or that a certificate alone settles the outcome.",
         seeAlso: { url: '/blog/glossary#tie-breaker-rule', label: 'Tie-breaker rule in the glossary' },
       },
     ],
@@ -52,26 +52,26 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: "I'm a UK resident. How do I cleanly exit?",
-        a: 'The UK uses the Statutory Residence Test (SRT) since April 2013. You need to either pass an automatic non-resident test (for example, fewer than 16 days in the UK if you have been resident in any of the prior 3 years), or fall under the sufficient ties threshold for your day count. You also file a P85 with HMRC. Get this wrong and HMRC can claim you for years.',
+        a: "Apply HMRC’s Statutory Residence Test, including automatic tests and sufficient ties. Split-year treatment has separate conditions, as do temporary non-residence rules on a later return. Confirm the appropriate departure filings for your circumstances with a UK adviser.",
         seeAlso: { url: '/blog/glossary#uk-srt', label: 'UK Statutory Residence Test in the glossary' },
       },
       {
         q: "I'm a Spanish resident. What's the exit?",
-        a: 'Spain looks at three things: 183 or more days in Spain, your centre of economic interests being in Spain, or your spouse and minor children living in Spain. You need to break all three. Then deregister from the padrón municipal, file Modelo 030, and Modelo 720 if you held foreign assets above the threshold. Spain is one of the harder exits in Europe.',
+        a: "Review days, economic interests and the rebuttable family presumption under Spain’s rules. More than 183 days is one test; sporadic absences may count. Administrative address changes do not alone determine the result. Use a Spanish adviser for the move-year position and filings.",
         seeAlso: { url: '/blog/glossary#renta-mundial', label: 'Renta mundial in the glossary' },
       },
       {
         q: 'What is the German Wegzugsteuer and does it apply to me?',
-        a: 'The Wegzugsteuer (exit tax) hits anyone who has been a German tax resident with a 1% or greater stake in any company (German or foreign) when they leave. The state treats your shares as sold at fair market value on departure and taxes the gain. If you are a founder or hold equity in a startup, you need to plan this years ahead, not weeks.',
+        a: "German exit-tax rules can affect people with qualifying ownership interests when relevant conditions are met. It is not a universal charge on every emigrant. Have a German adviser review your holdings, residence history and planned move before restructuring or selling.",
         seeAlso: { url: '/blog/glossary#wegzugsteuer', label: 'Wegzugsteuer in the glossary' },
       },
       {
         q: 'Do I need to be a tax resident somewhere?',
-        a: 'Yes, ideally. "Stateless" tax residency is technically possible but it kills your banking, your treaty access, and your defensibility against your old country. You should always have a clear, documented tax home. That is what makes the rest of the structure work.',
+        a: "Establish your position under each relevant country’s rules rather than assuming constant travel makes you non-resident everywhere. Banks may also request tax-residence information. Use an accurate, documented position that fits your actual circumstances.",
       },
       {
         q: "What documents prove I've actually exited?",
-        a: 'Your audit-defence file should include: a deregistration letter from your old tax authority, your new TRC (tax residency certificate), a lease or property contract abroad, utility bills in your name, banking statements showing local activity, flight records, and ideally a tax return filed in your new jurisdiction. Without this paper trail, even a perfect setup looks suspicious.',
+        a: "Keep travel and work-location records, evidence about available homes and family ties, relevant filings and tax certificates, and written advice. The required evidence depends on the country and issue; no generic document pack guarantees an accepted exit.",
       },
     ],
   },
@@ -87,20 +87,20 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'Why Paraguay over Dubai?',
-        a: 'Cost, speed, and presence requirements. Dubai now charges 9% corporate tax, requires significant time in country to maintain, has high cost of living, and getting banking right takes work. Paraguay is genuinely 0% on foreign-source income, cheap, fast, and you do not need to actually live there.',
+        a: "Compare your actual income, intended time in each country, immigration route, personal and company taxes, banking and recurring costs. Paraguay and the UAE have different rules; neither a short visit nor a company registration automatically establishes a tax-free personal position.",
       },
       {
         q: 'Is Portugal NHR still available?',
-        a: 'No. NHR closed to new applicants on 1 January 2024. Existing holders keep their 10-year window. The replacement, IFICI, is much narrower and only fits highly-qualified employees in specific tech, research, or teaching roles tied to a Portuguese entity. Most independent nomads do not qualify.',
-        seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
+        a: "NHR was repealed from 1 January 2024 with transitional protections; eligible existing holders retain the remainder of their period. IFICI is a separate incentive that can cover qualifying employment and self-employment. Check the exact role and eligibility conditions.",
+        seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR and IFICI explained' },
       },
       {
         q: 'Can I just live in Bali, Bangkok, or Tbilisi without setting anything up?',
-        a: 'You can, and many people do, but you are flying blind. You are either still tax-resident in your old country (because you did not formally exit), or you are claiming nowhere is your tax home (which most banks will not accept). Pick a defensible structure or you are one audit away from a bad year.',
+        a: "Review immigration permission, work rights, local tax rules and your previous tax residence before a long stay. Constant movement does not itself remove obligations. The answer depends on what you do, where and for how long.",
       },
       {
         q: 'What about Italy, Bulgaria, or other low-tax EU options?',
-        a: 'Italy has a €100,000 flat tax for high-net-worth inbound residents (good if you have €1M+ in capital gains, otherwise overkill). Bulgaria is 10% flat tax across the board. Andorra is 10% personal income tax with a high cost of entry (€30,000 to €50,000 deposit). All are workable; Paraguay is just the most flexible and cheapest.',
+        a: "Compare the current rules for your move date and income type, including qualification, social contributions, residence requirements and renewal costs. Do not rely on old flat-tax figures or assume a headline rate covers every kind of income.",
       },
     ],
   },
@@ -111,12 +111,12 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: "How does Paraguay's tax system actually work?",
-        a: "It's territorial. Paraguay only taxes income earned inside Paraguay. Foreign salaries, foreign dividends, foreign capital gains, crypto, all of it sits outside Paraguay's tax base. Tax rate on that foreign-source income: 0%. This is written into Paraguayan law, not a special incentive that can be revoked.",
+        a: "Paraguay’s personal-income rules focus on Paraguayan-source income. Source depends on the activity, asset or right producing income, not just the payer or bank location. Work performed in Paraguay for foreign clients needs its own analysis. Company and crypto activity also require specific review.",
         seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Complete Paraguay tax residency guide' },
       },
       {
         q: 'How long does Paraguay residency take to set up?',
-        a: '3 days physically in Paraguay for the initial setup (immigration, police, ID office). Documents process over the following 4 months. You then need a short check-in visit before 365 days, a conversion visit before the 2-year mark for permanent residency, and after that, a visit every 3 years to maintain it.',
+        a: "NTH currently plans around 4–6 days for initial appointments. Residence approval, the cédula, RUC and fiscal certificate are separate later stages. Government processing times are not guaranteed. Confirm your route and current estimates before booking travel.",
       },
       {
         q: 'What does Paraguay residency cost?',
@@ -125,15 +125,15 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'Do I actually have to live in Paraguay?',
-        a: 'No. After the 3-day setup visit, you only need to visit every 3 years to maintain permanent residency. Most NTH clients live elsewhere and treat Paraguay as their tax home, not their physical home.',
+        a: "Immigration absence limits, fiscal residence and your other countries’ tax rules are different questions. The migration law addresses unjustified absences over one year for temporary residents and three consecutive years for permanent residents, subject to authorisation provisions. This is not a universal tax-residence day count.",
       },
       {
         q: 'What documents do I need to set up?',
-        a: 'Three apostilled documents: birth certificate, criminal record certificate (issued within 3 months of arrival), and marriage or divorce certificate if applicable. The criminal record timing is the most common cause of last-minute setup delays.',
+        a: "The ordinary temporary route includes identity and entry documents, a birth record, applicable background checks and civil-status records where relevant, plus local requirements. Authentication, translations, prior residence and nationality can change the checklist. Check the current official list before travel.",
       },
       {
         q: 'Can my home country still tax me after Paraguay residency?',
-        a: 'Yes, if you do not exit your old residency cleanly. Paraguay residency is one half of the structure. Cleanly breaking your old country tests is the other. The clarity call is exactly to map both halves for your specific case.',
+        a: "Yes, depending on residence rules, local-source income and other obligations. A Paraguay permit alone does not end those claims. NTH can discuss service fit; your home-country tax position needs the appropriate professional review.",
       },
     ],
   },
@@ -144,25 +144,25 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'Is Paraguay residency actually legitimate?',
-        a: "Yes. Paraguay isn't on the EU non-cooperative jurisdictions list, exited the FATF grey list in 2022, joined OECD CRS in 2021, and has been on the OECD BEPS Inclusive Framework since 2017. Banks worldwide recognise it. Over 30,000 people set up residency in Paraguay in 2025.",
+        a: "Yes, Paraguay has a statutory immigration process and tax rules. That does not approve every provider’s claim or guarantee a particular tax outcome. Check the official requirements, the written service scope and the treatment of your income.",
         seeAlso: { url: '/blog/posts/is-paraguay-tax-residency-legit', label: 'Full legitimacy deep-dive' },
       },
       {
         q: 'Will European banks accept Paraguay tax residency?',
-        a: 'Yes, with the right paper trail. The standard pack is your cédula, RUC, annual TRC, lease contract, and utility bill. Without that pack no jurisdiction works. With it, every major European bank, US-friendly fintech, and global private bank will open an account.',
+        a: "Each bank decides under its own onboarding and ongoing-review requirements. Ask what it needs for identity, address, tax residence, business activity and source of funds. No single document pack guarantees acceptance by every bank.",
       },
       {
         q: 'What is OECD CRS and how does it affect me?',
-        a: "The Common Reporting Standard. Banks report your account information to your country of tax residency annually. Paraguay joined CRS in 2021. CRS is good for you, not bad: it's how banks confirm you're legitimately tax-resident somewhere they can report to.",
+        a: "CRS is a framework for automatic financial-account information exchange between participating jurisdictions. The OECD’s May 2026 update says Paraguay is preparing to commence in 2027. Participation does not approve an individual residency setup. Give institutions accurate residence information.",
         seeAlso: { url: '/blog/glossary#crs', label: 'OECD CRS in the glossary' },
       },
       {
         q: 'Will my old country audit me if I move?',
-        a: 'Possibly, if you do not exit cleanly. Tax authorities do not blacklist Paraguay; they check whether you still meet their own residency tests. The risk is your exit, not the destination. A clean paper trail showing you have genuinely moved is your best defence.',
+        a: "An audit cannot be ruled out. Keep records supporting your residence, income and filings. A new permit or certificate does not prevent an authority from reviewing your circumstances under its rules.",
       },
       {
         q: 'Is what I am doing legal?',
-        a: "Yes, when done correctly. There's a clear difference between tax avoidance (legal: structuring affairs to minimise tax under the rules) and tax evasion (illegal: hiding income or lying about residency). What we coordinate is full-disclosure, fully-documented tax avoidance under written law in two jurisdictions.",
+        a: "Residency and tax planning must follow the applicable rules and accurately reflect your circumstances. The legality of a particular arrangement needs review in the relevant jurisdictions. Do not hide income or misrepresent where you live or work.",
       },
     ],
   },
@@ -173,20 +173,20 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'Can I realise crypto gains tax-free in Paraguay?',
-        a: "Yes, on foreign-source crypto. Trades on foreign exchanges and self-custody wallets sit outside Paraguay's territorial tax base. The catch: you must be Paraguay tax-resident AND cleanly out of your old country before the realisation event. Becoming Paraguayan after the sale does not help.",
+        a: "A residence permit, foreign exchange or self-custody wallet does not establish a blanket exemption. Review the source and classification of the transactions and your former country’s rules. DNIT’s 2026 crypto information-return requirements may also apply.",
         seeAlso: { url: '/blog/posts/paraguay-crypto-tax-residency', label: 'Paraguay for crypto nomads' },
       },
       {
         q: 'What counts as a crypto realisation event?',
-        a: 'Selling for fiat. Swapping one coin for another. Spending crypto. Some DeFi events. NFT trades. In most European jurisdictions, all of these are taxable events. Holding through a price increase is not.',
+        a: "Sales, swaps, spending and other transactions can have tax consequences, but the treatment depends on the jurisdiction and activity. Preserve the transaction history and have each type classified rather than applying one rule to the whole portfolio.",
       },
       {
         q: 'What about crypto-to-crypto swaps?',
-        a: 'A taxable event in most European jurisdictions. BTC to ETH, ETH to SOL, USDC to DAI: each one is a disposal at fair market value, with capital gains calculated against your cost basis. Plan accordingly.',
+        a: "Do not assume that no fiat withdrawal means no tax or reporting. The treatment varies by jurisdiction. Paraguay’s Resolution 47/2026 includes swaps within the information-reporting scope for covered users.",
       },
       {
         q: 'How do I time a big realisation?',
-        a: 'Get Paraguay residency in place, exit your old country cleanly, then realise. The order matters more than the cédula in your wallet. If you sell on Friday and become Paraguayan on Monday, the Friday sale is taxed by your old country, not Paraguay.',
+        a: "Before executing, establish your residence position for the transaction date and review any exit or temporary non-residence rules, the transaction’s classification, reporting and bank evidence. Moving or changing account details after a transaction does not rewrite what happened.",
       },
     ],
   },
@@ -205,15 +205,15 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'What is a clarity call?',
-        a: 'A free 20-minute call with Felix. We map your specific situation, flag the risks, and you walk away with a one-page plan. No pitch, no obligation.',
+        a: "A call with Felix to discuss your situation, the NTH service and whether the setup fits your plans. It is a service discussion, not a promised personalised tax opinion or a replacement for professional advice in the countries involved.",
       },
       {
         q: "Why don't you serve US citizens?",
-        a: 'The US is the only country (alongside Eritrea) that taxes its citizens on worldwide income regardless of where they live. The exit involves either renouncing citizenship, claiming the Foreign Earned Income Exclusion, or a much more complex multi-jurisdiction structure. It is a different product.',
+        a: "US tax connections can create continuing obligations that require a different analysis. NTH’s current offer is for non-US persons; US citizens and green-card holders should obtain specialist advice for their situation.",
       },
       {
         q: "What if I've already moved abroad without doing this properly?",
-        a: "More common than you'd think. Bring it on the call. We will work out where you actually stand under your old country's rules, what risks you have accumulated, and whether a clean retrospective fix is possible.",
+        a: "Bring the timeline and existing documents to the discussion. Any correction of past filings or tax positions needs review by the relevant professional; a retrospective fix is not guaranteed.",
       },
     ],
   },

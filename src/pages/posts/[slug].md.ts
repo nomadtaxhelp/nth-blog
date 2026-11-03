@@ -46,8 +46,9 @@ export const GET: APIRoute = async ({ props }) => {
     '',
     `> ${data.description}`,
     '',
-    `**Author:** Felix Yanez-Bowker (Co-Founder, NomadTaxHelp)`,
+    `**Author:** ${data.author === 'nth' ? 'Nomad Tax Help' : 'Felix Yanez-Bowker (Co-Founder, NomadTaxHelp)'}`,
     `**Published:** ${publishDate}`,
+    `**Updated:** ${new Date(data.updatedDate || data.publishDate).toISOString().split('T')[0]}`,
     `**Canonical URL:** ${url}`,
     `**Category:** ${data.category}`,
   ];
@@ -78,14 +79,17 @@ export const GET: APIRoute = async ({ props }) => {
     '',
     '---',
     '',
-    'NomadTaxHelp is not a tax or legal adviser. We coordinate with licensed partners. Educational content only — confirm specifics with a professional.',
+    'NomadTaxHelp is not a tax or legal adviser. We coordinate with licensed partners. Educational content only. Confirm specifics with a professional.',
     '',
     'Book a free clarity call: https://nomadtaxhelp.com/application',
     'Main site: https://nomadtaxhelp.com',
     '',
   ].join('\n');
 
-  const md = frontmatter + cleanBody + faqSection + footer;
+  const sources = data.sources?.length
+    ? '\n\n## Sources\n\n' + data.sources.map((source: { name: string; url: string }) => `- [${source.name}](${source.url})`).join('\n')
+    : '';
+  const md = frontmatter + cleanBody + faqSection + sources + footer;
 
   return new Response(md, {
     headers: {

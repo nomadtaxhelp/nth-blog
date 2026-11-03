@@ -15,7 +15,7 @@ const terms = [
     name: 'TRC (Tax Residency Certificate)',
     section: 'Paraguay',
     definition:
-      "Annual document issued by Paraguay's tax authority (SET) confirming you are tax-resident. Required for double-tax-treaty benefits and for opening or maintaining bank accounts that ask for proof of residency. Renewed each calendar year.",
+      "A fiscal residence certificate issued through DNIT under the relevant procedure. General Resolution 65/2020 provides one-year validity from issuance. The certified period and the recipient’s requirements matter; it is distinct from an immigration permit.",
     seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Paraguay tax residency guide' },
   },
   {
@@ -23,7 +23,7 @@ const terms = [
     name: 'RUC (Registro Único del Contribuyente)',
     section: 'Paraguay',
     definition:
-      'Paraguay\'s tax number. Equivalent to a national tax ID. Issued after residency and cedula are in hand. Required to open a Paraguayan bank account and to be issued a TRC.',
+      "Registro Único de Contribuyentes, Paraguay’s taxpayer register. Registration identifies the taxpayer and applicable obligations. It is not itself a fiscal residence certificate or a blanket tax exemption.",
     seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Paraguay tax residency guide' },
   },
   {
@@ -38,7 +38,7 @@ const terms = [
     name: 'Territorial taxation',
     section: 'Paraguay',
     definition:
-      'A tax system where only locally-sourced income is taxed; foreign-source income is exempt. Paraguay, Panama, Costa Rica, Hong Kong (mostly), and Georgia operate on this principle. The opposite of "renta mundial" (worldwide taxation), which is what most of Europe uses.',
+      "An approach that taxes income according to its source. Paraguay’s personal-income rules require classification under domestic law; a foreign client or foreign bank does not by itself make income foreign-source. Company rules require separate review.",
     seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Paraguay tax residency guide' },
   },
   {
@@ -46,7 +46,7 @@ const terms = [
     name: 'Paraguay temporary vs permanent residency',
     section: 'Paraguay',
     definition:
-      'Paraguay first issues a 2-year temporary residency. Conversion to permanent residency happens before the 2-year mark. Permanent residency renews every 10 years and only requires physical presence in Paraguay every 3 years to remain valid.',
+      "The ordinary route begins with temporary residence, valid for up to two years, followed by a separate permanent application. Immigration absence rules and document expiry dates are distinct from fiscal residence and tax obligations.",
   },
 
   // Tax exit & residency tests
@@ -63,7 +63,7 @@ const terms = [
     name: 'Wegzugsteuer (German exit tax)',
     section: 'Tax exit tests',
     definition:
-      "Germany's deemed-disposal tax. Triggered when a German tax resident with a 1%-or-greater holding in any corporation (German or foreign) emigrates. The state treats your shares as sold at fair market value on departure and taxes the gain. Forces careful planning for founders and equity holders before leaving Germany.",
+      "German exit tax. It can apply to qualifying ownership interests when statutory conditions are met. An adviser must review the holdings, residence history and proposed move rather than assuming every departure triggers the same charge.",
     seeAlso: { url: '/blog/posts/european-nomad-tax-playbook', label: 'European nomad tax playbook' },
   },
   {
@@ -79,7 +79,7 @@ const terms = [
     name: 'Beckham Law (Régimen Especial de Trabajadores Desplazados)',
     section: 'Tax exit tests',
     definition:
-      "Spanish special tax regime for inbound expats and certain returnees. Caps personal income tax at a flat 24% for the first 6 years, in lieu of progressive rates that hit 47%+. Restrictive eligibility: primarily employed inbounds, with capped income and narrowing rules in 2024-26.",
+      "Spain’s special tax regime for qualifying people moving to Spain. Eligibility, covered income and applicable rates require a current individual review; it is not a blanket low rate for every new resident.",
   },
   {
     id: 'day-count-test',
@@ -100,14 +100,14 @@ const terms = [
     name: 'OECD tie-breaker rule',
     section: 'Tax exit tests',
     definition:
-      'Article 4 of OECD-model double-tax treaties. When two states both claim you as a tax resident, this hierarchy decides which one wins: (1) permanent home, (2) centre of vital interests, (3) habitual abode, (4) nationality, (5) mutual agreement between the two tax authorities.',
+      "A residence-conflict rule in an applicable bilateral tax treaty. OECD-model provisions often consider permanent home, personal and economic ties, habitual abode and nationality. The actual treaty and eligibility control; not every country pair has one.",
   },
   {
     id: 'dtt',
     name: 'DTT / DTA (Double Tax Treaty)',
     section: 'Tax exit tests',
     definition:
-      'Bilateral agreement between two countries to prevent the same income being taxed twice. Includes a tie-breaker article, withholding-tax reductions, and information-exchange provisions. Paraguay has DTAs only with Chile, Taiwan, Qatar and Uruguay, which is narrow, but it does not matter for territorial residents whose foreign income is already exempt under domestic law.',
+      "A bilateral tax treaty that allocates taxing rights and may provide relief, withholding limits and information-exchange rules. Check whether a relevant treaty exists, covers the person and income, and applies to the period in question.",
   },
   {
     id: 'padron',
@@ -123,7 +123,7 @@ const terms = [
     name: 'OECD CRS (Common Reporting Standard)',
     section: 'International compliance',
     definition:
-      "Automatic exchange of financial-account information between participating countries. Banks worldwide ask account holders for tax residency and report account balances and income to that country's tax authority annually. Paraguay joined CRS in 2021. CRS is how legitimate residency works: banks confirm the structure rather than blow it up.",
+      "The Common Reporting Standard for automatic financial-account information exchange. The OECD’s May 2026 update says Paraguay is preparing to commence exchanges in 2027. It does not certify an individual tax setup.",
     seeAlso: { url: '/blog/posts/is-paraguay-tax-residency-legit', label: 'Is Paraguay tax residency legit?' },
   },
   {
@@ -138,7 +138,7 @@ const terms = [
     name: 'EU non-cooperative jurisdictions list',
     section: 'International compliance',
     definition:
-      "EU's \"tax havens blacklist\" of countries deemed uncooperative on transparency. Listed jurisdictions face penalties (higher withholding, reporting). Paraguay is NOT listed, and has not been. Currently includes American Samoa, Anguilla, Fiji, Guam, Palau, Russia, Samoa, Trinidad and Tobago, US Virgin Islands and Vanuatu.",
+      "The EU list of non-cooperative jurisdictions for tax purposes. It is periodically revised. Check the Council’s current publication; list status does not determine whether a specific person’s tax arrangement is valid.",
     seeAlso: { url: '/blog/posts/is-paraguay-tax-residency-legit', label: 'Is Paraguay tax residency legit?' },
   },
   {
@@ -146,7 +146,7 @@ const terms = [
     name: 'FATF (Financial Action Task Force)',
     section: 'International compliance',
     definition:
-      "Intergovernmental body that monitors anti-money-laundering compliance. Maintains a \"grey list\" (jurisdictions under monitoring) and a \"black list\". Paraguay exited the FATF grey list in 2022 and is currently in good standing.",
+      "The Financial Action Task Force sets anti-money-laundering and counter-terrorist-financing standards and publishes jurisdiction monitoring information. Its assessments are distinct from tax-residence rules and bank approval decisions.",
   },
   {
     id: 'apostille',
@@ -162,31 +162,31 @@ const terms = [
     name: 'NHR (Non-Habitual Resident, Portugal)',
     section: 'Other regimes',
     definition:
-      "Portugal's special tax regime for inbound residents, in force from 2009 to end-2023. Flat 20% tax on Portuguese-source professional income for 10 years; 0% on most foreign passive income. Closed to new applicants from 1 January 2024. Existing holders keep their 10-year window.",
-    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
+      "Portugal’s former Non-Habitual Resident tax regime. Repealed from 1 January 2024 with transitional protections and continuing benefits for eligible existing holders. Treatment depends on the income category and applicable conditions.",
+    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR and IFICI explained' },
   },
   {
     id: 'ifici',
     name: 'IFICI (Portugal)',
     section: 'Other regimes',
     definition:
-      "Portugal's narrower replacement for NHR, in force since 2024. Targets specific roles in tech, scientific research, teaching, and certain industries. Excludes most independent freelancers and entrepreneurs that NHR previously attracted.",
-    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
+      "Portugal’s incentive for scientific research and innovation. It can provide a 20% rate on qualifying Portuguese employment and self-employment income over ten years, with specific eligibility and foreign-income rules.",
+    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR and IFICI explained' },
   },
   {
     id: 'cyprus-60-day',
     name: 'Cyprus 60-day non-dom',
     section: 'Other regimes',
     definition:
-      "Cyprus's regime for inbound nomads. Tax residency triggers if you spend at least 60 days in Cyprus, are not tax-resident anywhere else for that year, have ties (rented or owned home, business or employment), and don't spend more than 183 days in any other country. Combined with non-dom status, foreign dividend and interest income is taxed only via the 2.65% GHS levy.",
-    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR is dead, what replaces it' },
+      "Cyprus has a conditional 60-day tax-residence route. Residence and non-dom status are separate concepts. Check the current Tax Department criteria and treatment of each income stream instead of treating 60 days as the only condition.",
+    seeAlso: { url: '/blog/posts/portugal-nhr-replacement-2026', label: 'Portugal NHR and IFICI explained' },
   },
   {
     id: 'uae',
     name: 'UAE / Dubai tax',
     section: 'Other regimes',
     definition:
-      'UAE introduced a 9% federal corporate tax in June 2023, with small-business relief up to AED 3M revenue. Personal income remains 0%. The real cost of UAE residency is the cost of living plus banking complexity, not the headline tax rate.',
+      "The UAE has separate rules for personal tax residence, residence certificates and corporate taxation. Immigration permission and a company licence are not interchangeable with a personal fiscal residence determination.",
   },
 ];
 

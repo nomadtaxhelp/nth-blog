@@ -16,6 +16,7 @@ const posts = defineCollection({
     heroAlt: z.string().optional(),
     readingTime: z.number().optional(),
     answerCapsule: z.string().optional(),
+    sources: z.array(z.object({ name: z.string(), url: z.string().url() })).default([]),
     faqItems: z
       .array(
         z.object({

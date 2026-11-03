@@ -68,7 +68,7 @@ const jsonLd = {
       '@id': `${canonicalUrl}#article`,
       headline: data.title,
       description: data.description,
-      author: personAuthor,
+      author: data.author === 'nth' ? publisherOrg : personAuthor,
       publisher: publisherOrg,
       datePublished: data.publishDate.toISOString(),
       dateModified: (data.updatedDate || data.publishDate).toISOString(),
@@ -81,6 +81,7 @@ const jsonLd = {
       articleSection: categoryLabel,
       keywords: (data.tags || []).join(', '),
       url: canonicalUrl,
+      citation: data.sources.map((source) => source.url),
     },
     {
       '@type': 'BreadcrumbList',
@@ -138,7 +139,7 @@ const jsonLd = {
 
         <!-- Metadata row -->
         <div class="flex flex-wrap items-center gap-3 text-sm text-cream-soft/70 mb-8">
-          <AuthorByline />
+          <AuthorByline author={data.author} />
           <span class="text-cream-soft/30">&middot;</span>
           <time datetime={data.publishDate.toISOString()}>
             {data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -167,6 +168,13 @@ const jsonLd = {
         <div class="bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
           <div class="prose">
             <slot />
+            {data.sources.length > 0 && (
+              <section aria-label="Sources">
+                <h2>Sources checked for this guide</h2>
+                <p>Checked on {(data.updatedDate || data.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}. Official rules and NTH service information are identified separately below.</p>
+                <ul>{data.sources.map((source) => <li><a href={source.url}>{source.name}</a></li>)}</ul>
+              </section>
+            )}
           </div>
         </div>
 
@@ -187,7 +195,7 @@ const jsonLd = {
         )}
 
         <!-- Author bio box -->
-        <div class="mt-12 p-6 surface-muted">
+        {data.author === 'felix' ? <div class="mt-12 p-6 surface-muted">
           <div class="flex items-start gap-4">
             <a
               href="/blog/images/felix.png"
@@ -214,7 +222,10 @@ const jsonLd = {
               </p>
             </div>
           </div>
-        </div>
+        </div> : <div class="mt-12 p-6 surface-muted">
+          <p class="font-heading font-semibold text-cream-100">Nomad Tax Help</p>
+          <p class="text-sm text-cream-soft/80">Practical residency guides using official sources and NTH's published service information. <a href="/services" class="text-amber-600 hover:text-amber-700">Meet the team and see our services</a>.</p>
+        </div>}
 
         <!-- End-of-post CTA -->
         <EndOfPostCTA />

@@ -1,8 +1,10 @@
 ---
 // Compact inline author byline for the post metadata row (sits on teal bg).
+const { author = 'felix' } = Astro.props;
 ---
 
 <span class="inline-flex items-center gap-2">
+  {author === 'felix' && (
   <img
     src="/blog/images/felix.png"
     alt=""
@@ -11,5 +13,6 @@
     class="w-6 h-6 rounded-full object-cover shrink-0 border border-cream-100/15"
     loading="lazy"
   />
-  <span class="font-heading font-medium text-cream-soft">Felix Yanez-Bowker</span>
+  )}
+  <span class="font-heading font-medium text-cream-soft">{author === 'nth' ? 'Nomad Tax Help' : 'Felix Yanez-Bowker'}</span>
 </span>
