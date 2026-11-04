@@ -4,9 +4,8 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const sortedPosts = allPosts
-  .filter((p) => p.data.slug !== 'paraguay-tax-residency-cost-2026')
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 5);
+;
 
 const now = new Date();
 const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
@@ -14,7 +13,7 @@ const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 const calLink = 'https://nomadtaxhelp.com/application';
 const latestDate = sortedPosts[0]?.data.publishDate || new Date();
 
-// Homepage JSON-LD: WebSite + Blog + Person + FAQPage. Sitewide
+// Homepage JSON-LD: Blog + Person. Sitewide
 // Organization schema is emitted separately by BaseLayout.
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -58,85 +57,39 @@ const jsonLd = {
 
   ],
 };
+
+const featured = sortedPosts.find(p => p.data.slug.includes('requirements')) || sortedPosts[0];
+const category = (p: typeof sortedPosts[number]) => /bank|llc|crypto/.test(p.data.slug) ? 'Money & business' : /dubai|portugal|europe/.test(p.data.slug) ? 'Comparisons & tax exit' : 'Paraguay residency';
 ---
 
-<BaseLayout
-  title="NomadTaxHelp Blog | Practical guides for nomads sorting their tax setup"
-  description="Practical tax residency guides for digital nomads. By Felix and the Nomad Tax Help team."
-  jsonLd={jsonLd}
->
-  <div class="max-w-[720px] mx-auto px-5 sm:px-8 font-body">
-    {/* Hero greeting */}
-    <section class="text-center pt-12 sm:pt-16 mb-16">
-      <h1 class="font-heading font-bold text-cream-100 mb-8 text-3xl sm:text-4xl tracking-[-0.01em]">
-        Hey, I'm Felix <span aria-hidden="true">👋</span>
-      </h1>
-      <div class="space-y-5 text-base sm:text-lg text-cream-soft/90 leading-relaxed max-w-[560px] mx-auto">
-        <p>I get it. Taxes as a digital nomad are a <span class="text-shimmer-on-dark font-semibold">confusing mess</span>.</p>
-        <p>
-          So I built
-          <a href="https://nomadtaxhelp.com" target="_blank" rel="noopener noreferrer" class="text-amber-600 hover:text-amber-700 underline underline-offset-4 decoration-amber-600/40 hover:decoration-amber-700">nomadtaxhelp.com</a>,
-          where we help people like you become tax-efficient.
-        </p>
-        <p>So here <span aria-hidden="true">👇</span> is all the best alpha I've acquired over the last decade in one place.</p>
-        <p>Dig through the guides I wish I had&hellip;</p>
-      </div>
-    </section>
-
-    {/* Top 5 Guides */}
-    <section class="mb-16">
-      <h2 class="font-heading font-bold text-cream-100 text-center text-2xl sm:text-3xl mb-8 tracking-[-0.01em]">Our Top 5 Guides <span aria-hidden="true">⭐</span></h2>
-      <ul class="space-y-3 list-none p-0 m-0">
-        {sortedPosts.map((post) => {
-          const isNew = post.data.publishDate >= fourteenDaysAgo;
-          return (
-            <li>
-              <a
-                href={`/blog/posts/${post.data.slug}`}
-                class="group block bg-cream-100 text-teal-900 px-5 py-5 sm:px-6 sm:py-6 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(0,0,0,0.45)]"
-                style="border-radius: 0.625rem;"
-              >
-                <div class="flex items-start gap-4">
-                  <span class="text-amber-600 font-bold text-xl shrink-0 leading-tight transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                  <div class="flex-1 min-w-0">
-                    <span class="font-heading font-semibold text-base sm:text-lg leading-snug text-teal-900 group-hover:text-amber-700 transition-colors">
-                      {post.data.title}
-                    </span>
-                    {isNew && (
-                      <span class="ml-2 text-xs font-medium italic text-amber-600 align-middle">(new)</span>
-                    )}
-                    <p class="mt-2 text-sm text-teal-900/70 leading-relaxed line-clamp-2">{post.data.description}</p>
-                  </div>
-                </div>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-
-    {/* CTA card */}
-    <section class="mb-16">
-      <div class="bg-cream-100 text-teal-900 p-8 sm:p-10 text-center" style="border-radius: 0.625rem; box-shadow: 0 18px 40px -16px rgba(0,0,0,0.4);">
-        <p class="font-heading text-amber-600 text-xs font-semibold uppercase tracking-[0.15em] mb-3">
-          Need help with your tax setup?
-        </p>
-        <h3 class="font-heading font-bold text-teal-900 text-2xl sm:text-3xl mb-4 tracking-[-0.01em]">
-          Book a free 20-minute clarity call
-        </h3>
-        <p class="text-teal-900/75 mb-7 max-w-[420px] mx-auto text-base">
-          We can have a 1-1 call, explore your situation and point you towards a more tax-efficient setup.
-        </p>
-        <a
-          href={calLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-shimmer inline-flex items-center px-7 py-3.5 font-heading font-semibold no-underline text-base"
-          style="border-radius: 0.625rem;"
-        >
-          Let's Chat ☎️
-        </a>
-      </div>
-    </section>
-  </div>
+<BaseLayout editorial title="Paraguay Residency & Tax Guides | Nomad Tax Help" description="Understand Paraguay residency, banking, tax and your options abroad. Practical guides from Felix and the Nomad Tax Help team." jsonLd={jsonLd}>
+ <Fragment slot="head"><link rel="stylesheet" href="/blog/library.css" /></Fragment>
+ <header class="library-header"><a class="library-brand" href="/">Nomad Tax Help<span>RESIDENCY · TAX · FREEDOM</span></a><nav aria-label="Main navigation"><a href="/">Home</a><a href="#guides" aria-current="page">Guides</a><a href="/blog/about">Our team</a><a class="library-button" href={calLink}>Apply for our services <span aria-hidden="true">↗</span></a></nav></header>
+ <div class="library-main">
+  <section class="library-hero"><div><p class="library-eyebrow">THE NOMAD TAX HELP LIBRARY</p><h1>A clearer path to<br /><em>your life abroad.</em></h1><p class="library-intro">Paraguay residency. Your tax position. A setup that works together. Get the information to make your next move with confidence.</p><a class="library-text-link" href="#guides">Explore the guides <span aria-hidden="true">↓</span></a></div><aside class="library-feature"><img src="/blog/images/library-asuncion.webp" alt="Asunción skyline at dusk beside the Paraguay River" width="800" height="533" fetchpriority="high" /><div><span class="library-eyebrow">START HERE · PARAGUAY RESIDENCY</span><h2><a href={`/blog/posts/${featured.data.slug}`}>{featured.data.title}</a></h2><a class="library-text-link" href={`/blog/posts/${featured.data.slug}`}>Read the guide <span aria-hidden="true">↗</span></a></div></aside></section>
+  <div class="library-editor"><img src="/blog/images/felix.png" alt="Felix Yanez-Bowker" width="48" height="48" loading="lazy" /><p><strong>From Felix & the Nomad Tax Help team</strong><span>Practical explanations. Official sources linked. Clear next steps.</span></p><a href="/blog/about">Meet the team <span aria-hidden="true">↗</span></a></div>
+  <section id="guides" class="library-guides"><div class="library-section-heading"><div><p class="library-eyebrow">MAKE AN INFORMED MOVE</p><h2>Start with your question.</h2></div><label class="library-search"><span class="sr-only">Search guides</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="guide-search" type="search" placeholder="Search residency, banking, tax…" /></label></div>
+   <div class="library-filters" role="group" aria-label="Filter guides">{['All guides','Paraguay residency','Money & business','Comparisons & tax exit'].map((label,i)=><button type="button" data-filter={label} aria-pressed={i===0}>{label}</button>)}</div>
+   <p id="guide-count" class="library-count" aria-live="polite">{sortedPosts.length} guides</p>
+   <div class="library-grid">{sortedPosts.map((post,i)=><article class="library-guide" data-category={category(post)} data-search={`${post.data.title} ${post.data.description}`.toLowerCase()}><div class="library-guide-top"><span>{category(post)}</span><span aria-hidden="true">{String(i+1).padStart(2,'0')}</span></div><h3><a href={`/blog/posts/${post.data.slug}`}>{post.data.title}</a></h3><p>{post.data.description}</p><div class="library-guide-bottom"><span>Updated {new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(post.data.updatedDate||post.data.publishDate)}</span><a href={`/blog/posts/${post.data.slug}`} aria-label={`Read ${post.data.title}`}><span aria-hidden="true">↗</span></a></div></article>)}</div>
+   <p id="guide-empty" hidden>No matching guides. Try “residency”, “banking” or “tax”.</p>
+  </section>
+  <section class="library-service"><div><p class="library-eyebrow">FROM RESEARCH TO REALITY</p><h2>Have our team handle<br /><em>your Paraguay setup.</em></h2><p>Ready for help with the next step? Apply for our done-for-you services so we can understand your situation.</p></div><a class="library-button" href={calLink}>Apply for our services <span aria-hidden="true">↗</span></a></section>
+ </div>
+ <footer class="library-footer"><div><a class="library-brand" href="/">Nomad Tax Help</a><nav aria-label="Footer navigation"><a href="/blog/about">About</a><a href="/blog/faq">Common questions</a><a href="/blog/glossary">Glossary</a><a href="mailto:hello@nomadtaxhelp.com">Contact</a></nav></div><p>Nomad Tax Help is a facilitator, not a law firm or tax adviser. We coordinate with licensed partners who are.</p><small>© {new Date().getFullYear()} Nomad Tax Help. All rights reserved.</small></footer>
 </BaseLayout>
+<script>
+ const input = document.querySelector<HTMLInputElement>('#guide-search');
+ const cards = [...document.querySelectorAll<HTMLElement>('.library-guide')];
+ const filters = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+ let selected = 'All guides';
+ function updateGuides() {
+  const query = (input?.value || '').trim().toLowerCase();
+  let count = 0;
+  cards.forEach(card => {const show = (selected === 'All guides' || card.dataset.category === selected) && (card.dataset.search || '').includes(query);card.hidden = !show;if(show) count++;});
+  const label=document.querySelector('#guide-count');if(label) label.textContent=`${count} ${count===1?'guide':'guides'}`;
+  const empty=document.querySelector<HTMLElement>('#guide-empty');if(empty) empty.hidden=count>0;
+ }
+ input?.addEventListener('input',updateGuides);
+ filters.forEach(button=>button.addEventListener('click',()=>{selected=button.dataset.filter||'All guides';filters.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));updateGuides();}));
+</script>
