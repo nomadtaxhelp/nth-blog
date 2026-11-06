@@ -174,7 +174,7 @@ const pageJsonLd = {
 
     <slot name="head" />
   </head>
-  <body class:list={["min-h-screen flex flex-col", editorial ? "editorial-library" : "bg-teal-900 text-cream-soft"]}>
+  <body class:list={["min-h-screen flex flex-col", editorial ? "editorial-library" : "bg-teal-900 text-cream-soft", Astro.url.pathname.includes("choose-paraguay-residency-agency") && "decision-guide"]}>
     {!editorial && <Header />}
     <main class="flex-1">
       <slot />

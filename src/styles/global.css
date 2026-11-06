@@ -366,3 +366,21 @@ h3 {
     animation: none;
   }
 }
+
+/* Match the provider guide to the approved forest-green service identity. */
+body.decision-guide { --color-teal-900: #173e38; --color-teal-deep: #102b22; --color-cream-100: #f7f6f0; --color-cream-soft: #eff3ec; --color-amber-600: #c5d1c8; --color-amber-700: #eff3ec; background: #173e38; }
+.decision-guide .prose { --color-amber-600: #173e38; --color-amber-700: #315b4c; }
+.decision-guide .btn-shimmer { background: #173e38; color: white; animation: none; border: 1px solid #c5d1c8; }
+.decision-guide .btn-shimmer::after { display:none; }
+.decision-guide .bg-cream-100 .text-amber-600,.decision-guide .surface-cream .text-amber-600 { color: #315b4c; }
+@media (max-width:600px) {
+  .decision-guide .prose table:first-of-type,
+  .decision-guide .prose table:first-of-type tbody,
+  .decision-guide .prose table:first-of-type tr,
+  .decision-guide .prose table:first-of-type td { display:block; width:100%; }
+  .decision-guide .prose table:first-of-type thead { display:none; }
+  .decision-guide .prose table:first-of-type tr { border:1px solid #c5d1c8; margin:18px 0; }
+  .decision-guide .prose table:first-of-type td { padding:12px; border:0; }
+  .decision-guide .prose table:first-of-type td:first-child { background:#eef2ed; font-weight:700; }
+  .decision-guide .prose table:first-of-type td:nth-child(2)::before { content:'Published price'; display:block; font-size:12px; font-weight:600; }
+}
