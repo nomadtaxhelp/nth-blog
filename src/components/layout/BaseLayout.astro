@@ -15,6 +15,7 @@ interface Props {
   jsonLd?: object | object[];
   markdownUrl?: string;
   editorial?: boolean;
+  noindex?: boolean;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   jsonLd,
   markdownUrl,
   editorial = false,
+  noindex = false,
 } = Astro.props;
 
 // PostHog snippet (cookie-free, EU host). Only emitted when env var present.
@@ -117,6 +119,7 @@ const pageJsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />

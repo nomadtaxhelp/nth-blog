@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://nomadtaxhelp.com',
   base: '/blog',
   trailingSlash: 'never',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap({ filter: (page) => !page.endsWith('/blog/v2') })],
   vite: {
     plugins: [tailwindcss()],
   },
