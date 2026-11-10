@@ -3,14 +3,14 @@
 /* === Brand Tokens === */
 @theme {
   /* Core palette */
-  --color-teal-900: #004748;          /* primary background */
-  --color-teal-deep: #003536;         /* darker teal — sections, footer */
+  --color-teal-900: #123e32;          /* primary background */
+  --color-teal-deep: #102b22;         /* darker teal — sections, footer */
   --color-teal-800: #085041;          /* legacy alias */
-  --color-cream-100: #ffe4c4;         /* primary cream / card surface */
-  --color-cream-soft: #fff1de;        /* lighter cream / body text on teal */
-  --color-cream-50: #fff6e8;          /* legacy alias */
-  --color-amber-600: #cd7e11;         /* gold — CTAs, accents, links */
-  --color-amber-700: #a86509;
+  --color-cream-100: #edf3ed;         /* primary cream / card surface */
+  --color-cream-soft: #f4f7f2;        /* lighter cream / body text on teal */
+  --color-cream-50: #ffffff;          /* legacy alias */
+  --color-amber-600: #315b4c;         /* gold — CTAs, accents, links */
+  --color-amber-700: #123e32;
   --color-gold-bright: #f0b429;
   --color-gold-light: #f5c542;
   --color-coral-600: #993C1D;
@@ -257,14 +257,14 @@ h3 {
   .btn-shimmer {
     background-image: linear-gradient(
       90deg,
-      #cd7e11 0%,
+      #315b4c 0%,
       #f0b429 25%,
       #f5c542 50%,
       #f0b429 75%,
-      #cd7e11 100%
+      #315b4c 100%
     );
     background-size: 200% 100%;
-    color: #004748;
+    color: #123e32;
     animation: nth-shimmer 3s linear infinite;
   }
 
@@ -272,11 +272,11 @@ h3 {
   .text-shimmer-on-dark {
     background-image: linear-gradient(
       90deg,
-      #ffe4c4 0%,
+      #edf3ed 0%,
       #f5c542 25%,
-      #cd7e11 50%,
+      #315b4c 50%,
       #f5c542 75%,
-      #ffe4c4 100%
+      #edf3ed 100%
     );
     background-size: 200% 100%;
     -webkit-background-clip: text;
@@ -292,9 +292,9 @@ h3 {
       90deg,
       #8a4a00 0%,
       #a85a06 20%,
-      #cd7e11 45%,
+      #315b4c 45%,
       #f0b429 50%,
-      #cd7e11 55%,
+      #315b4c 55%,
       #a85a06 80%,
       #8a4a00 100%
     );
@@ -346,9 +346,9 @@ h3 {
     90deg,
     #8a4a00 0%,
     #a85a06 20%,
-    #cd7e11 45%,
+    #315b4c 45%,
     #f0b429 50%,
-    #cd7e11 55%,
+    #315b4c 55%,
     #a85a06 80%,
     #8a4a00 100%
   );

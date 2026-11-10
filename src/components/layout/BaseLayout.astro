@@ -5,6 +5,7 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import { felix, organization } from '../../data/felix';
 import '../../styles/global.css';
+import '../../styles/green-brand.css';
 
 interface Props {
   title: string;
@@ -135,17 +136,6 @@ const pageJsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, "https://nomadtaxhelp.com").href} />
 
-    <!-- The editorial library uses local fonts; other pages retain their existing typography. -->
-    {!editorial && <Fragment>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-
-    </Fragment>}
-
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="NomadTaxHelp Blog" href="/blog/rss.xml" />
 
@@ -177,7 +167,7 @@ const pageJsonLd = {
 
     <slot name="head" />
   </head>
-  <body class:list={["min-h-screen flex flex-col", editorial ? "editorial-library" : "bg-teal-900 text-cream-soft", Astro.url.pathname.includes("choose-paraguay-residency-agency") && "decision-guide"]}>
+  <body class:list={["min-h-screen flex flex-col", editorial ? "editorial-library" : "green-editorial", Astro.url.pathname.includes("choose-paraguay-residency-agency") && "decision-guide"]}>
     {!editorial && <Header />}
     <main class="flex-1">
       <slot />
