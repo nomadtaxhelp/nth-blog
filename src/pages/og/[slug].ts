@@ -28,19 +28,19 @@ const { getStaticPaths, GET } = await OGImageRoute({
   getImageOptions: (_path, page: { title: string; description: string; category: string }) => ({
     title: page.title,
     description: page.description,
-    // Cream background, teal accent — matches the brand.
-    bgGradient: [[255, 228, 196]],
-    border: { color: [0, 71, 72], width: 6, side: 'inline-start' },
+    // Paper background and forest-green accent match the approved brand.
+    bgGradient: [[255, 255, 255]],
+    border: { color: [18, 62, 50], width: 6, side: 'inline-start' },
     padding: 80,
     font: {
       title: {
-        color: [0, 71, 72], // teal #004748
+        color: [18, 62, 50], // forest #123e32
         size: 60,
         weight: 'Bold',
         lineHeight: 1.15,
       },
       description: {
-        color: [75, 85, 99], // gray-600
+        color: [83, 100, 92], // gray-600
         size: 26,
         lineHeight: 1.4,
       },

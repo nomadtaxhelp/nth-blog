@@ -13,14 +13,14 @@ const categories = [
 ];
 
 // Cover palette: bg + text colour, deterministic per category.
-// Paraguay = dark teal, Tax Residency = amber, US LLC = cream.
+// Category covers vary within the approved forest and sage palette.
 // Posts without a category fall back to dark teal.
 const coverPalette: Record<string, { bg: string; fg: string }> = {
-  paraguay: { bg: '#004748', fg: '#ffe4c4' },
-  'tax-residency': { bg: '#cd7e11', fg: '#004748' },
-  'us-llc': { bg: '#ffe4c4', fg: '#004748' },
+  paraguay: { bg: '#123e32', fg: '#edf3ed' },
+  'tax-residency': { bg: '#d8e9d9', fg: '#123e32' },
+  'us-llc': { bg: '#edf3ed', fg: '#123e32' },
 };
-const fallbackCover = { bg: '#004748', fg: '#ffe4c4' };
+const fallbackCover = { bg: '#123e32', fg: '#edf3ed' };
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -81,8 +81,7 @@ const jsonLd = {
         // so they don't overflow the 16:10 box.
         const titleSize = titleLength > 60 ? '1.5rem' : titleLength > 40 ? '1.75rem' : '2rem';
         return (
-          <a
-            href={`/blog/posts/${post.data.slug}`}
+          <article
             class="post-card group flex flex-col h-full no-underline transition-all duration-200 hover:-translate-y-0.5"
           >
             {/* Generated cover — pure colour + typography, no images. */}
@@ -111,14 +110,14 @@ const jsonLd = {
                 />
               </div>
               <h2 class="font-heading font-bold text-teal-900 text-lg mb-2 group-hover:text-amber-700 transition-colors leading-snug">
-                {post.data.title}
+                <a href={`/blog/posts/${post.data.slug}`} class="no-underline">{post.data.title}</a>
               </h2>
               <p class="text-sm text-teal-900/75 line-clamp-2 mb-4 font-body leading-relaxed flex-1">{post.data.description}</p>
               <time class="text-xs text-teal-900/55 font-heading uppercase tracking-wider" datetime={post.data.publishDate.toISOString()}>
                 {post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
               </time>
             </div>
-          </a>
+          </article>
         );
       })}
     </div>
