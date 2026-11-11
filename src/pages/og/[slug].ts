@@ -27,6 +27,7 @@ const { getStaticPaths, GET } = await OGImageRoute({
   param: 'slug',
   getImageOptions: (_path, page: { title: string; description: string; category: string }) => ({
     title: page.title,
+    logo: { path: "./public/brand/nth-oneline-green.png", size: [240] },
     description: page.description,
     // Paper background and forest-green accent match the approved brand.
     bgGradient: [[255, 255, 255]],

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import Hero from '../post/Hero.astro';
+import '../../styles/banking-guide.css';
 import BankingVideo from '../post/BankingVideo.astro';
 import AnswerCapsule from '../post/AnswerCapsule.astro';
 import TableOfContents from '../post/TableOfContents.astro';
@@ -23,6 +23,7 @@ interface Props {
 
 const { post, headings, relatedPosts = [] } = Astro.props;
 const { data } = post;
+const isBankingGuide = data.slug === "paraguay-residency-after-ueno";
 
 const categoryLabels: Record<string, string> = {
   'paraguay': 'Paraguay',
@@ -130,7 +131,7 @@ const jsonLd = {
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}
 >
-  <article class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
+  <article class:list={["max-w-[1200px] mx-auto px-5 sm:px-8 py-10", { "banking-guide": isBankingGuide }]}>
     <!-- Breadcrumb -->
     <nav class="text-sm text-cream-soft/60 mb-5" aria-label="Breadcrumb">
       <ol class="flex items-center gap-1.5 flex-wrap">
@@ -142,9 +143,9 @@ const jsonLd = {
       </ol>
     </nav>
 
-    <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
+    <div class="post-layout lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
       <!-- Main content column -->
-      <div class="max-w-[760px]">
+      <div class="post-main max-w-[760px]">
         <!-- Category pill -->
         <div class="mb-4">
           <CategoryPill category={data.category} label={categoryLabel} />
@@ -183,7 +184,7 @@ const jsonLd = {
         )}
 
         <!-- Post body — cream surface card -->
-        <div class="bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
+        <div class="post-reading bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
           <div class="prose">
             <slot />
             {data.sources.length > 0 && (
@@ -250,7 +251,7 @@ const jsonLd = {
       </div>
 
       <!-- Desktop sidebar -->
-      <aside class="hidden lg:block">
+      <aside class="post-service-sidebar hidden lg:block">
         <div class="sticky top-24">
           <SidebarCTA />
         </div>
