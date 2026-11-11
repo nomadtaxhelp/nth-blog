@@ -52,6 +52,9 @@ export const GET: APIRoute = async ({ props }) => {
     `**Canonical URL:** ${url}`,
     `**Category:** ${data.category}`,
   ];
+  if (data.video) {
+    frontmatterLines.push(`**Watch Felix's video:** ${data.video.contentUrl}`, `**Captions:** ${data.video.captions}`);
+  }
   if (data.tags?.length) {
     frontmatterLines.push(`**Tags:** ${data.tags.join(', ')}`);
   }

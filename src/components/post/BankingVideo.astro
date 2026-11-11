@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { video: NonNullable<CollectionEntry<'posts'>['data']['video']> }
+const { video } = Astro.props;
+---
+<figure class="banking-video">
+  <video controls playsinline preload="none" poster={video.poster} aria-label={video.title} width="1920" height="1080">
+    <source src={video.contentUrl} type="video/mp4" />
+    <track kind="captions" src={video.captions} srclang="en" label="English" />
+    <a href={video.contentUrl}>Watch or download Felix's banking video</a>
+  </video>
+  <figcaption><strong>Watch Felix explain the setup</strong><span>6½ minutes · English subtitles included</span></figcaption>
+  <p class="recording-note">The recording describes deposit protection broadly. Coverage depends on the bank, account and scheme limits; the guide below explains those limits and distinguishes personal from business account eligibility.</p>
+</figure>
+<style>
+.banking-video { margin: 0 0 2rem; }
+video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; background: #102c22; border: 1px solid #90a89b; border-radius: 12px; }
+figcaption { display: flex; flex-wrap: wrap; gap: .4rem 1rem; justify-content: space-between; padding: .85rem 0; color: #173d2c; font-size: .9rem; }
+figcaption span { color: #476254; }
+.recording-note { border-left: 2px solid #8da396; padding-left: .85rem; font-size: .82rem; line-height: 1.6; color: #476254; }
+</style>

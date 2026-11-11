@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Hero from '../post/Hero.astro';
+import BankingVideo from '../post/BankingVideo.astro';
 import AnswerCapsule from '../post/AnswerCapsule.astro';
 import TableOfContents from '../post/TableOfContents.astro';
 import AuthorByline from '../post/AuthorByline.astro';
@@ -82,7 +83,22 @@ const jsonLd = {
       keywords: (data.tags || []).join(', '),
       url: canonicalUrl,
       citation: data.sources.map((source) => source.url),
+      ...(data.video ? { video: { '@id': `${canonicalUrl}#video` } } : {}),
     },
+    ...(data.video ? [{
+      '@type': 'VideoObject',
+      '@id': `${canonicalUrl}#video`,
+      name: data.video.title,
+      description: data.video.description,
+      thumbnailUrl: [data.video.poster],
+      uploadDate: data.video.uploadDate.toISOString(),
+      duration: data.video.duration,
+      contentUrl: data.video.contentUrl,
+      mainEntityOfPage: canonicalUrl,
+      inLanguage: 'en',
+      isAccessibleForFree: true,
+      publisher: publisherOrg,
+    }] : []),
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -153,6 +169,8 @@ const jsonLd = {
           <span class="text-cream-soft/30">&middot;</span>
           <span>{readingTime} min read</span>
         </div>
+
+        {data.video && <BankingVideo video={data.video} />}
 
         <!-- Answer capsule -->
         {data.answerCapsule && (

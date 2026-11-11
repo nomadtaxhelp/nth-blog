@@ -15,6 +15,15 @@ const posts = defineCollection({
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
     readingTime: z.number().optional(),
+    video: z.object({
+      title: z.string(),
+      description: z.string(),
+      contentUrl: z.string().url(),
+      poster: z.string().url(),
+      captions: z.string().url(),
+      uploadDate: z.coerce.date(),
+      duration: z.string(),
+    }).optional(),
     answerCapsule: z.string().optional(),
     sources: z.array(z.object({ name: z.string(), url: z.string().url() })).default([]),
     faqItems: z
