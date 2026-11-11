@@ -131,7 +131,7 @@ const jsonLd = {
   jsonLd={jsonLd}
   markdownUrl={markdownUrl}
 >
-  <article class:list={["max-w-[1200px] mx-auto px-5 sm:px-8 py-10", { "banking-guide": isBankingGuide }]}>
+  <article class:list={["max-w-[1200px] mx-auto px-5 sm:px-8 py-10", { "banking-guide": isBankingGuide, "country-comparison": data.slug.startsWith("paraguay-vs-") }]}>
     <!-- Breadcrumb -->
     <nav class="text-sm text-cream-soft/60 mb-5" aria-label="Breadcrumb">
       <ol class="flex items-center gap-1.5 flex-wrap">
@@ -146,6 +146,7 @@ const jsonLd = {
     <div class="post-layout lg:grid lg:grid-cols-[1fr_300px] lg:gap-10">
       <!-- Main content column -->
       <div class="post-main max-w-[760px]">
+        <div class:list={["post-intro", { "banking-hero": isBankingGuide }]} >
         <!-- Category pill -->
         <div class="mb-4">
           <CategoryPill category={data.category} label={categoryLabel} />
@@ -173,6 +174,8 @@ const jsonLd = {
 
         {data.video && <BankingVideo video={data.video} />}
 
+        </div>
+
         <!-- Answer capsule -->
         {data.answerCapsule && (
           <AnswerCapsule text={data.answerCapsule} />
@@ -189,8 +192,8 @@ const jsonLd = {
             <slot />
             {data.sources.length > 0 && (
               <section aria-label="Sources">
-                <h2>Sources checked for this guide</h2>
-                <p>Checked on {(data.updatedDate || data.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}. Official rules and NTH service information are identified separately below.</p>
+                <h2>Sources and service references</h2>
+                <p>Article updated on {(data.updatedDate || data.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}. Official rules and NTH service information are identified separately below.</p>
                 <ul>{data.sources.map((source) => <li><a href={source.url}>{source.name}</a></li>)}</ul>
               </section>
             )}

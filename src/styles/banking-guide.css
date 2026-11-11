@@ -2,9 +2,9 @@
 .green-editorial .banking-guide{max-width:1200px;padding-top:40px;padding-bottom:80px}
 .banking-guide .post-layout{display:block}
 .banking-guide .post-main{max-width:none}
-.banking-guide .post-main>h1{max-width:1000px;font-size:clamp(38px,5.2vw,70px);font-family:Georgia,serif;font-weight:400;line-height:1.08;letter-spacing:-.04em;margin:22px 0 28px;color:#123e32}
-.banking-guide .post-main>div.mb-4{margin-top:48px}
-.banking-guide .post-main>div.mb-4 a{background:#edf3ed;color:#315b4c;border:1px solid #d8e1dc;border-radius:4px}
+.banking-guide .post-intro>h1{max-width:1000px;font-size:clamp(38px,5.2vw,70px);font-family:Georgia,serif;font-weight:400;line-height:1.08;letter-spacing:-.04em;margin:22px 0 28px;color:#123e32}
+.banking-guide .post-intro>div.mb-4{margin-top:48px}
+.banking-guide .post-intro>div.mb-4 a{background:#edf3ed;color:#315b4c;border:1px solid #d8e1dc;border-radius:4px}
 .banking-guide .banking-video{margin:36px 0 48px;padding:20px;background:#edf3ed;border:1px solid #d8e1dc;border-radius:8px}
 .banking-guide .banking-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid #315b4c;border-radius:4px;background:#123e32}
 .banking-guide .banking-video figcaption{padding:18px 0 0;gap:12px;color:#123e32}
@@ -25,4 +25,14 @@
 .green-editorial .banking-guide .post-main>div.surface-cream :is(h3,p){color:#f1f5ed}
 .green-editorial .banking-guide .post-main>div.surface-cream a{background:#edf3ed;color:#123e32;border-radius:4px}
 .banking-guide .post-service-sidebar{display:none}
-@media(max-width:640px){.green-editorial .banking-guide{padding:24px 20px 48px}.banking-guide .post-main>div.mb-4{margin-top:28px}.banking-guide .post-main>h1{font-size:38px;margin:20px 0 24px}.banking-guide .banking-video{margin:24px -8px 32px;padding:8px}.banking-guide .banking-video figcaption{flex-direction:column;align-items:flex-start;gap:4px;padding:14px 6px 0}.banking-guide .banking-video .recording-note{padding:0 6px 8px;font-size:11px}.banking-guide nav[aria-label="Table of contents"] ol{grid-template-columns:1fr;gap:12px}.banking-guide .prose{font-size:17px}.green-editorial .banking-guide .post-main>div.surface-cream{padding:28px 20px}.banking-guide .post-main>section,.banking-guide .post-main>div.mt-12{margin-top:40px}}
+@media(max-width:640px){.green-editorial .banking-guide{padding:24px 20px 48px}.banking-guide .post-intro>div.mb-4{margin-top:28px}.banking-guide .post-intro>h1{font-size:38px;margin:20px 0 24px}.banking-guide .banking-video{margin:24px -8px 32px;padding:8px}.banking-guide .banking-video figcaption{flex-direction:column;align-items:flex-start;gap:4px;padding:14px 6px 0}.banking-guide .banking-video .recording-note{padding:0 6px 8px;font-size:11px}.banking-guide nav[aria-label="Table of contents"] ol{grid-template-columns:1fr;gap:12px}.banking-guide .prose{font-size:17px}.green-editorial .banking-guide .post-main>div.surface-cream{padding:28px 20px}.banking-guide .post-main>section,.banking-guide .post-main>div.mt-12{margin-top:40px}}
+
+/* Full-width dark green introduction, with the article staying white. */
+.banking-guide .banking-hero{position:relative;isolation:isolate;background:#123e32;color:#f6f7f2;padding:36px 0 28px;margin:24px 0 40px;box-shadow:0 0 0 100vmax #123e32;clip-path:inset(0 -100vmax)}
+.green-editorial .banking-guide .banking-hero h1{color:#fff}
+.green-editorial .banking-guide .banking-hero :is(p,span,time,a){color:#e4eee7}
+.banking-guide .banking-hero>div.mb-4{margin-top:0}
+.banking-guide .banking-hero>div.mb-4 a{background:#234e41;color:#e4eee7;border-color:#668578}
+.banking-guide .banking-hero .banking-video{margin-bottom:0;background:#1b493b;border-color:#668578}
+.green-editorial .banking-guide .banking-hero .banking-video :is(figcaption,.recording-note){color:#e4eee7}
+@media(max-width:640px){.banking-guide .banking-hero{padding:24px 0;margin:20px 0 32px}.banking-guide .banking-hero .banking-video{margin-inline:0}}

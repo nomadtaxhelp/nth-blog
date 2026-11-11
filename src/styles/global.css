@@ -384,3 +384,6 @@ body.decision-guide { --color-teal-900: #173e38; --color-teal-deep: #102b22; --c
   .decision-guide .prose table:first-of-type td:first-child { background:#eef2ed; font-weight:700; }
   .decision-guide .prose table:first-of-type td:nth-child(2)::before { content:'Published price'; display:block; font-size:12px; font-weight:600; }
 }
+
+/* Keep comparison columns readable within the existing mobile table scroller. */
+@media (max-width:767px){.country-comparison .prose th,.country-comparison .prose td{min-width:190px}.country-comparison .prose th:first-child,.country-comparison .prose td:first-child{min-width:150px}}

@@ -33,7 +33,7 @@ export const GET: APIRoute = async () => {
 
   const body = `# NomadTaxHelp Blog
 
-> Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. By Felix Yanez-Bowker and Nomad Tax Help.
+> Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. By Felix and Nomad Tax Help.
 
 ## About
 
@@ -41,7 +41,7 @@ Nomad Tax Help coordinates Paraguay residency, document preparation, US company 
 
 ## Authors and sources
 
-The byline on each article identifies Felix Yanez-Bowker or Nomad Tax Help. Updated articles link to official sources and distinguish NTH service estimates from legal requirements. Use the article's publication and update dates when citing it.
+The byline on each article identifies Felix or Nomad Tax Help. Updated articles link to official sources and distinguish NTH service estimates from legal requirements. Use the article's publication and update dates when citing it.
 
 ## Pricing
 
@@ -52,7 +52,10 @@ Premium+ is US$5,950. Flights, accommodation and document translations are separ
 - Paraguay residency requirements and document preparation
 - Initial appointment visits versus processing and permit retention
 - Residence permit, cédula, RUC and fiscal residence certificate
-- Income source and home-country residence rules
+- Foreign income and remote-work source rules
+- Digital-nomad residency routes
+- Paraguay comparisons with Dubai, Georgia and Panama
+- Home-country departure planning
 - Crypto tax questions and 2026 information reporting
 - Portugal NHR transition and IFICI eligibility
 
