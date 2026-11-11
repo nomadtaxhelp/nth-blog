@@ -26,7 +26,6 @@ export const felix = {
     'https://www.linkedin.com/in/felix-yanez-bowker-b23270252/',
     'https://felixyanez.substack.com/',
     'https://fascinated-princess-801.notion.site/About-Me-54522f72ef6a470aa87711bb889cd30c',
-    'https://nomadtaxhelp.com',
   ],
 };
 
@@ -35,7 +34,7 @@ export const organization = {
   url: 'https://nomadtaxhelp.com',
   logo: 'https://nomadtaxhelp.com/nomad-tax-help-icon.svg',
   description:
-    'Tax residency facilitation for digital nomads and remote entrepreneurs. Paraguay residency, US LLC formation, and tax exit strategy.',
+    'Paraguay residency education and practical setup coordination for digital nomads, remote workers and travelling founders.',
   email: 'hello@nomadtaxhelp.com',
   areaServed: 'Worldwide (excluding United States persons)',
   knowsAbout: [
@@ -46,7 +45,8 @@ export const organization = {
     'Digital nomad compliance',
   ],
   sameAs: [
-    'https://www.instagram.com/nomadtaxhelp_',
+    'https://www.instagram.com/nomadtaxhelp_/',
+    'https://www.linkedin.com/company/nomad-tax-help/',
   ],
 };
 
