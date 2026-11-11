@@ -30,7 +30,7 @@
 /* Full-width dark green introduction, with the article staying white. */
 .banking-guide .banking-hero{position:relative;isolation:isolate;background:#123e32;color:#f6f7f2;padding:36px 0 28px;margin:24px 0 40px;box-shadow:0 0 0 100vmax #123e32;clip-path:inset(0 -100vmax)}
 .banking-guide .post-intro.banking-hero>h1.font-heading{color:#fff}
-.banking-guide .banking-hero :is(p,span,time,a){color:#e4eee7}
+.banking-guide .post-intro.banking-hero :is(p,span,time,a){color:#e4eee7}
 .banking-guide .banking-hero>div.mb-4{margin-top:0}
 .banking-guide .banking-hero>div.mb-4 a{background:#234e41;color:#e4eee7;border-color:#668578}
 .banking-guide .banking-hero .banking-video{margin-bottom:0;background:#1b493b;border-color:#668578}
