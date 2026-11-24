@@ -1,4 +1,5 @@
 ---
+import { navigationOnly } from '../../data/archive-policy.mjs';
 import BaseLayout from '../../components/layout/BaseLayout.astro';
 import CategoryPill from '../../components/ui/CategoryPill.astro';
 import { getCollection } from 'astro:content';
@@ -33,6 +34,7 @@ const jsonLd = {
 ---
 
 <BaseLayout
+  noindex={navigationOnly(slug, sortedPosts.length)}
   jsonLd={jsonLd}
   title={`Posts tagged "${slug}" | NomadTaxHelp Blog`}
   description={`All NomadTaxHelp blog posts tagged with "${slug}".`}
