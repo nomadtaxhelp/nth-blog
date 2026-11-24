@@ -263,5 +263,33 @@ const jsonLd = {
     </div>
   </article>
 
+  <script>
+    // Carry only the category of this article's immediate arrival on an offer click.
+    // No identifier, search terms, raw referrer, storage or campaign tags are added.
+    function guideEntry(): string {
+      const params = new URLSearchParams(window.location.search);
+      if (Array.from(params.keys()).some(key => /^(utm_|gclid$|fbclid$|msclkid$|wbraid$|gbraid$|ad_id$)/i.test(key))) return 'tagged';
+      if (!document.referrer) return 'unknown';
+      const host = new URL(document.referrer).hostname.toLowerCase();
+      if (host === window.location.hostname) return 'internal';
+      if (['chatgpt.com', 'chat.openai.com', 'claude.ai', 'perplexity.ai', 'www.perplexity.ai', 'gemini.google.com', 'copilot.microsoft.com'].includes(host)) return 'ai';
+      if (/^(www\.)?google\.(com|co\.uk|com\.au|ca|de|fr|es|nl|com\.py)$/.test(host) ||
+          ['www.bing.com', 'bing.com', 'duckduckgo.com', 'search.brave.com', 'search.yahoo.com', 'www.ecosia.org'].includes(host)) return 'search';
+      return 'other';
+    }
+    function markGuideLink(event: MouseEvent) {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>('.prose a[href]');
+      if (!link || link.relList.contains('noreferrer')) return;
+      const destination = new URL(link.href);
+      if (destination.origin !== location.origin || !['/4', '/call', '/services', '/application'].includes(destination.pathname)) return;
+      if (destination.search && !destination.searchParams.has('nth_guide_entry')) return;
+      destination.searchParams.set('nth_guide_entry', guideEntry());
+      link.href = destination.href;
+    }
+    document.addEventListener('click', markGuideLink);
+    document.addEventListener('auxclick', markGuideLink);
+  </script>
+
   <ExitIntentModal />
 </BaseLayout>
