@@ -46,6 +46,7 @@ export const organization = {
   ],
   sameAs: [
     'https://www.instagram.com/nomadtaxhelp_/',
+    'https://www.facebook.com/993032817220040',
     'https://www.linkedin.com/company/nomad-tax-help/',
   ],
 };
