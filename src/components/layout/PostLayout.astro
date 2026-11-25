@@ -284,7 +284,9 @@ const jsonLd = {
       const destination = new URL(link.href);
       if (destination.origin !== location.origin || !['/4', '/call', '/services', '/application'].includes(destination.pathname)) return;
       if (destination.search && !destination.searchParams.has('nth_guide_entry')) return;
+      const placement = Array.from(document.querySelectorAll('.prose a[href]')).indexOf(link) + 1;
       destination.searchParams.set('nth_guide_entry', guideEntry());
+      if (placement > 0 && placement <= 999) destination.searchParams.set('nth_guide_link', String(placement));
       link.href = destination.href;
     }
     document.addEventListener('click', markGuideLink);
