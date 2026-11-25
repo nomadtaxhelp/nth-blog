@@ -302,7 +302,6 @@ const jsonLd = {
     const query = new URLSearchParams(location.search);
     function canMeasure() {
       return location.origin === 'https://nomadtaxhelp.com' && !navigator.webdriver &&
-        navigator.doNotTrack !== '1' && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl &&
         !['qa', 'test', 'preview', 'nth_qa'].some(key => query.has(key));
     }
     const viewKey = canMeasure() ? globalThis.crypto?.randomUUID?.() : undefined;

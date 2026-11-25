@@ -31,7 +31,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'How do I compare prices for digital nomad tax filing help?',
-        a: "Ask two preparers to quote the same work. Specify the tax year, each country, the personal or company returns involved, and whether earlier years need correcting. Ask who prepares and submits each return, whether advice on residence is included, and what an additional country costs. The US$67 Nomad Tax Help call is a planning session. The cost of filing a return is a separate question for the preparer.",
+        a: "Ask two preparers to quote the same work. Specify the tax year, each country, the personal or company returns involved, and whether earlier years need correcting. Ask who prepares and submits each return, whether advice on residence is included, and what an additional country costs. The $67 Nomad Tax Help call is a planning session. The cost of filing a return is a separate question for the preparer.",
         seeAlso: { url: '/blog/posts/digital-nomad-taxes', label: 'How to brief a tax preparer across countries' },
       },
       {
@@ -92,7 +92,7 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'What is the cheapest 0% tax residency I can get?',
-        a: 'Compare the complete first-year and renewal costs for your circumstances. NTH Premium+ is US$5,950, with flights, accommodation and translations separate. Presence requirements and tax eligibility differ between Paraguay, Cyprus and the UAE.',
+        a: 'Compare the complete first-year and renewal costs for your circumstances. NTH Premium+ is $5,950, with flights, accommodation and translations separate. Presence requirements and tax eligibility differ between Paraguay, Cyprus and the UAE.',
         seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full Paraguay cost breakdown' },
       },
       {
@@ -130,7 +130,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'What does Paraguay residency cost?',
-        a: "Nomad Tax Help offers Premium+ at US$5,950 for a coordinated Paraguay residency and US business setup. Flights, accommodation and document translations are separate. See the current services page for inclusions and confirm renewal costs in your proposal.",
+        a: "Nomad Tax Help offers Premium+ at $5,950 for a coordinated Paraguay residency and US business setup. Flights, accommodation and document translations are separate. See the current services page for inclusions and confirm renewal costs in your proposal.",
         seeAlso: { url: '/blog/posts/paraguay-tax-residency-cost-2026', label: 'Full cost breakdown' },
       },
       {
@@ -214,8 +214,8 @@ export const faqSections: FAQSection[] = [
         a: "No. Nomad Tax Help is a facilitator, not a law firm or tax adviser. We don't file your taxes, draft contracts, or give formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational; specifics for your situation should be confirmed with a professional.",
       },
       {
-        q: 'How does the free service consultation differ from the US$67 strategy call?',
-        a: "The free consultation is for people considering our managed setup. The US$67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is US$7. Premium+ is our US$5,950 managed service.",
+        q: 'How does the free service consultation differ from the $67 strategy call?',
+        a: "The free consultation is for people considering our managed setup. The $67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is $7. Premium+ is our $5,950 managed service.",
       },
       {
         q: "Why don't you serve US citizens?",
