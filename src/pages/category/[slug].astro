@@ -5,29 +5,50 @@ import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const meta: Record<string, { label: string; description: string }> = {
+  const meta: Record<string, { label: string; description: string; question: string; answer: string; reading: [string, string][] }> = {
     paraguay: {
-      label: 'Paraguay',
+      label: 'Paraguay residency applications',
+      question: 'Where should I start if I want to apply from abroad?',
+      answer: 'Start with your nationality and your countries of residence during the past three years. These can affect which police records you need. Once you know where each document comes from, ask how it must be certified or translated and whether you must bring the original. That gives you a realistic starting date for the appointment trip.',
+      reading: [
+        ['Check the document list before ordering records', '/blog/posts/paraguay-residency-requirements'],
+        ['Plan the appointment trip and the wait afterwards', '/blog/posts/paraguay-residency-days-and-timeline'],
+        ['Check the ordinary route with Migraciones', 'https://migraciones.gov.py/residencia-temporal/'],
+      ],
       description: 'Guides on Paraguay tax residency: setup process, documents, costs, timelines, and ongoing requirements.',
     },
     'tax-residency': {
-      label: 'Tax Residency',
+      label: 'Tax residency when moving abroad',
+      question: 'Which country’s rules should I check first?',
+      answer: 'Write down where you lived and worked during the year of the move, then list the income you received before and after you left. If you keep a home in one country and work in another, the country you leave, the country you enter and the countries where you work can each raise a different question. Start with the guide that matches the decision you face.',
+      reading: [
+        ['Work out what to ask a departure-year accountant', '/blog/posts/digital-nomad-taxes'],
+        ['Check how keeping a home affects a move from Europe', '/blog/posts/european-nomad-tax-playbook'],
+        ['Compare potential bases against one travel calendar', '/blog/posts/best-tax-residency-digital-nomads'],
+      ],
       description: 'How to establish, exit, and manage tax residency as a digital nomad or remote entrepreneur.',
     },
     'us-llc': {
-      label: 'US LLC',
+      label: 'US LLCs for non-US founders',
+      question: 'What should I check before forming a US LLC?',
+      answer: 'Start with an actual customer payment. Who signs the contract, where do you do the work, which account receives the money, and how will you pay yourself? Those details tell an adviser what to examine before recommending a company. If you already have an LLC, bring its formation documents and a record of money you put in or took out, even if the business made no sales.',
+      reading: [
+        ['Check a foreign-owned LLC’s first-year filing example', '/blog/posts/paraguay-residency-us-llc'],
+        ['Follow a client payment into a business account', '/blog/posts/paraguay-residency-banking'],
+        ['Read the IRS instructions on reportable owner transactions', 'https://www.irs.gov/instructions/i5472'],
+      ],
       description: 'Setting up and running a US LLC as a non-resident: formation, banking, compliance, and tax treatment.',
     },
   };
 
   return Object.entries(meta).map(([slug, data]) => ({
     params: { slug },
-    props: { label: data.label, description: data.description },
+    props: data,
   }));
 };
 
 const { slug } = Astro.params;
-const { label, description } = Astro.props;
+const { label, description, question, answer, reading } = Astro.props;
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft && data.category === slug);
 const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
@@ -57,6 +78,14 @@ const jsonLd = {
     <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Category</p>
     <h1 class="font-heading font-bold text-cream-100 mb-3 text-4xl sm:text-5xl tracking-[-0.01em]">{label}</h1>
     <p class="text-cream-soft/85 mb-10 max-w-2xl text-base sm:text-lg leading-relaxed">{description}</p>
+
+    <section class="mb-10 max-w-2xl" aria-labelledby="category-question">
+      <h2 id="category-question" class="font-heading font-bold text-cream-100 text-2xl mb-3">{question}</h2>
+      <p class="text-cream-soft/85 leading-relaxed">{answer}</p>
+      <ul class="mt-4 list-disc pl-5 space-y-2">
+        {reading.map(([text, href]) => <li><a class="underline underline-offset-4" href={href}>{text}</a></li>)}
+      </ul>
+    </section>
 
     <!-- Category pills -->
     <div class="flex flex-wrap gap-2 mb-10">

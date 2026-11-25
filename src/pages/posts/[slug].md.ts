@@ -3,6 +3,7 @@
 // so LLM crawlers (ChatGPT, Perplexity, Claude, Gemini) can ingest the article
 // without parsing HTML, sidebars, modals, or other site chrome.
 
+import { articleMarkdown } from '../../lib/article-markdown';
 import { getCollection } from 'astro:content';
 import type { APIRoute, GetStaticPaths } from 'astro';
 
@@ -15,69 +16,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const GET: APIRoute = async ({ props }) => {
-  const { post } = props as { post: any };
-  const { data, body } = post;
-
-  const url = `https://nomadtaxhelp.com/blog/posts/${data.slug}`;
-  const publishDate = new Date(data.publishDate).toISOString().split('T')[0];
-
-  // Strip MDX-specific imports and component invocations from the body so the
-  // markdown is clean for LLM ingestion. Keep the prose, drop the JSX.
-  const cleanBody = (body || '')
-    // Remove import lines
-    .replace(/^import\s+.+from\s+['"].+['"];?\s*$/gm, '')
-    // Remove <InlineCTA ...>...</InlineCTA> blocks (multiline)
-    .replace(/<InlineCTA[\s\S]*?<\/InlineCTA>/g, '')
-    // Remove self-closing or block <Callout> components — keep their text
-    .replace(/<Callout[^>]*>([\s\S]*?)<\/Callout>/g, (_, inner) => `> ${inner.trim()}`)
-    // Remove <div class="not-prose ...">...</div> wrappers around SVGs / cards (keep nothing)
-    .replace(/<div class="not-prose[\s\S]*?<\/div>\s*$/gm, '')
-    .replace(/<div class="not-prose[^>]*>[\s\S]*?<\/div>/g, '')
-    // Remove inline SVGs entirely (LLMs can't read them)
-    .replace(/<svg[\s\S]*?<\/svg>/g, '')
-    // Remove MDX comments
-    .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
-    // Collapse 3+ newlines to 2
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-
-  const frontmatterLines: string[] = [
-    `# ${data.title}`,
-    '',
-    `> ${data.description}`,
-    '',
-    `**Author:** ${data.author === 'nth' ? 'Nomad Tax Help' : 'Felix Yanez-Bowker (Co-Founder, Nomad Tax Help)'}`,
-    `**Published:** ${publishDate}`,
-    `**Updated:** ${new Date(data.updatedDate || data.publishDate).toISOString().split('T')[0]}`,
-    `**Canonical URL:** ${url}`,
-    `**Category:** ${data.category}`,
-  ];
-  if (data.video) {
-    frontmatterLines.push(`**Watch Felix's video:** ${data.video.contentUrl}`, `**Captions:** ${data.video.captions}`);
-  }
-  if (data.tags?.length) {
-    frontmatterLines.push(`**Tags:** ${data.tags.join(', ')}`);
-  }
-  frontmatterLines.push('');
-  if (data.answerCapsule) {
-    frontmatterLines.push('## Summary', '', data.answerCapsule, '');
-  }
-  frontmatterLines.push('---', '');
-  const frontmatter = frontmatterLines.join('\n');
-
-  const faqSection =
-    data.faqItems && data.faqItems.length > 0
-      ? [
-          '',
-          '## Frequently asked questions',
-          '',
-          ...data.faqItems.map(
-            (faq: { question: string; answer: string }) =>
-              `### ${faq.question}\n\n${faq.answer}\n`
-          ),
-        ].join('\n')
-      : '';
-
+  const md = articleMarkdown(props.post);
   const footer = [
     '',
     '---',
@@ -89,12 +28,7 @@ export const GET: APIRoute = async ({ props }) => {
     '',
   ].join('\n');
 
-  const sources = data.sources?.length
-    ? '\n\n## Sources\n\n' + data.sources.map((source: { name: string; url: string }) => `- [${source.name}](${source.url})`).join('\n')
-    : '';
-  const md = frontmatter + cleanBody + faqSection + sources + footer;
-
-  return new Response(md, {
+  return new Response(md + footer, {
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
       'Cache-Control': 'public, max-age=3600',

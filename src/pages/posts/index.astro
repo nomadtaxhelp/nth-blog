@@ -56,7 +56,9 @@ const jsonLd = {
 >
   <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
     <BlogBreadcrumb current="All posts" />
-    <h1 class="font-heading font-bold text-cream-100 mb-6 text-4xl sm:text-5xl tracking-[-0.01em]">Every guide on the blog</h1>
+    <h1 class="font-heading font-bold text-cream-100 mb-6 text-4xl sm:text-5xl tracking-[-0.01em]">All Paraguay residency and digital nomad tax guides</h1>
+
+    <p class="mb-6 max-w-2xl leading-relaxed">The newest publications appear first. If you are planning a move, begin with the <a class="underline" href="/blog/posts/paraguay-residency-requirements">Paraguay document list</a>. If you are deciding whether to move, compare <a class="underline" href="/blog/posts/best-tax-residency-digital-nomads">residency options against your travel year</a>. For a question from a bank about your tax number or certificate, use the <a class="underline" href="/blog/posts/paraguay-residency-ruc-tax-certificate">guide to Paraguayan residence documents</a>.</p>
 
     <!-- Category pills -->
     <div class="flex flex-wrap gap-2 mb-10">
@@ -84,12 +86,12 @@ const jsonLd = {
               class="post-card__cover flex flex-col justify-end relative"
               style={`aspect-ratio: 16 / 10; padding: 32px; background: ${cover.bg}; border-radius: 0.625rem 0.625rem 0 0;`}
             >
-              <h3
+              <p aria-hidden="true"
                 class="font-heading font-bold m-0"
                 style={`color: ${cover.fg}; font-size: clamp(1.25rem, 2.4vw, ${titleSize}); line-height: 1.05; letter-spacing: -0.01em; text-align: left; word-break: break-word; hyphens: auto;`}
               >
                 {post.data.title}
-              </h3>
+              </p>
             </div>
 
             {/* Card body: category tag, real title, description, date. */}

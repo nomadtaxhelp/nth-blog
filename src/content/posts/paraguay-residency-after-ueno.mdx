@@ -51,7 +51,7 @@ featured: true
 draft: false
 ---
 
-import transcript from "../../../public/videos/felix-paraguay-banking-20261111.txt?raw";
+import BankingTranscript from "../../components/BankingTranscript.astro";
 
 ## Why did Ueno Bank go into resolution?
 
@@ -103,10 +103,7 @@ The account you use to receive an invoice does not decide where you owe tax on t
 
 We published Felix’s explanation on 11 November 2026. His opening figures describe the experience of his clients and his estimate of the bank’s reach at the time. For the confirmed payments and deposit protection limits, use the dated official notices above. [Banco Central del Paraguay’s resolution notice](https://www.bcp.gov.py/web/institucional/w/banco-central-inicia-el-procedimiento-de-resolucion-de-ueno-bank/).
 
-<details>
-<summary>Read the full transcript (6 minutes, 30 seconds)</summary>
-{transcript.trim().split("\n\n").slice(2).map(paragraph => <p>{paragraph}</p>)}
-</details>
+<BankingTranscript />
 
 [Download the English transcript as plain text](/blog/videos/felix-paraguay-banking-20261111.txt) or [open the timed English captions](/blog/videos/felix-paraguay-banking-20261111.vtt).
 

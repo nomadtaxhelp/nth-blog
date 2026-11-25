@@ -12,6 +12,11 @@ import { navigationOnly } from './src/data/archive-policy.mjs';
 const editorialDates = new Map([
   ['https://nomadtaxhelp.com/blog/', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/about', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/posts', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/resources', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/category/us-llc', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/category/paraguay', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/category/tax-residency', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/faq', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/glossary', '2026-11-25'],
 ]);
