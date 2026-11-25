@@ -5,6 +5,7 @@ import GuideVideo from '../post/GuideVideo.astro';
 import AnswerCapsule from '../post/AnswerCapsule.astro';
 import TableOfContents from '../post/TableOfContents.astro';
 import AuthorByline from '../post/AuthorByline.astro';
+import { readingGuides } from '../../data/topic-reading';
 import RelatedPosts from '../post/RelatedPosts.astro';
 import LastUpdated from '../post/LastUpdated.astro';
 import FAQAccordion from '../post/FAQAccordion.astro';
@@ -23,6 +24,7 @@ interface Props {
 
 const { post, headings, relatedPosts = [] } = Astro.props;
 const { data } = post;
+const readingGuide = Object.entries(readingGuides).find(([, guide]) => Object.keys(guide.articles)[0] === data.slug);
 const isBankingGuide = data.slug === "paraguay-residency-after-ueno";
 
 const categoryLabels: Record<string, string> = {
@@ -192,6 +194,9 @@ const jsonLd = {
         <div class="post-reading bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
           <div class="prose">
             <slot />
+            {readingGuide && (
+              <p>For related reading, see <a href={`/blog/tag/${readingGuide[0]}`}>{readingGuide[1].title}</a>.</p>
+            )}
             {data.sources.length > 0 && (
               <section aria-label="Sources">
                 <h2>Sources and service references</h2>
