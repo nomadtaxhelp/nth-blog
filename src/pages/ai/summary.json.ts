@@ -23,6 +23,7 @@ export const GET: APIRoute = async () => {
     publisher: {
       type: 'Organization',
       name: organization.name,
+      legal_name: organization.legalName,
       url: organization.url,
       logo: organization.logo,
       description: organization.description,

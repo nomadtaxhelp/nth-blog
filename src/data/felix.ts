@@ -31,6 +31,7 @@ export const felix = {
 
 export const organization = {
   name: 'Nomad Tax Help',
+  legalName: 'Nomad Help LLC',
   url: 'https://nomadtaxhelp.com',
   logo: 'https://nomadtaxhelp.com/nomad-tax-help-icon.svg',
   description:
