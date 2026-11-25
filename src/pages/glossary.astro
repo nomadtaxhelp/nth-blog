@@ -17,15 +17,15 @@ const terms = [
     section: 'Paraguay',
     definition:
       "A fiscal residence certificate issued through DNIT under the relevant procedure. General Resolution 65/2020 provides one-year validity from issuance. The certified period and the recipient’s requirements matter; it is distinct from an immigration permit.",
-    seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Paraguay tax residency guide' },
+    seeAlso: { url: '/blog/posts/paraguay-residency-ruc-tax-certificate', label: 'Which Paraguay document do you need?' },
   },
   {
     id: 'ruc',
-    name: 'RUC (Registro Único del Contribuyente)',
+    name: 'RUC (Registro Único de Contribuyentes)',
     section: 'Paraguay',
     definition:
       "Registro Único de Contribuyentes, Paraguay’s taxpayer register. Registration identifies the taxpayer and applicable obligations. It is not itself a fiscal residence certificate or a blanket tax exemption.",
-    seeAlso: { url: '/blog/posts/paraguay-tax-residency-guide', label: 'Paraguay tax residency guide' },
+    seeAlso: { url: '/blog/posts/paraguay-residency-ruc-tax-certificate', label: 'Which Paraguay document do you need?' },
   },
   {
     id: 'cedula',
@@ -56,8 +56,8 @@ const terms = [
     name: 'UK SRT (Statutory Residence Test)',
     section: 'Tax exit tests',
     definition:
-      "The UK's framework (in force since 6 April 2013) for determining tax residency. Combines automatic non-resident tests (e.g. fewer than 16 days in the UK if you were resident any of the prior 3 years) with the \"sufficient ties\" test counting UK home, family, accommodation, 40-day work, and 90+-day patterns. Specific, mechanical, and well-litigated.",
-    seeAlso: { url: '/blog/posts/european-nomad-tax-playbook', label: 'European nomad tax playbook' },
+      "The UK test for residence in a particular tax year. At 183 UK days you meet the first automatic UK test. Below that, apply the automatic overseas tests and the automatic UK tests. If those leave the question open, look at UK days alongside family, accommodation, work, the 90-day tie and, for certain previous residents, the country tie.",
+    seeAlso: { url: "https://www.gov.uk/government/publications/rdr3-statutory-residence-test-srt/guidance-note-for-statutory-residence-test-srt-rdr3", label: "HMRC\u2019s Statutory Residence Test notes" },
   },
   {
     id: 'wegzugsteuer',
@@ -72,8 +72,8 @@ const terms = [
     name: 'Renta mundial',
     section: 'Tax exit tests',
     definition:
-      'Spanish principle that tax residents are taxed on worldwide income, not just income earned in Spain. Combined with Beckham Law restrictions and Modelo 720 reporting, the Spanish exit framework is one of the more onerous in Europe.',
-    seeAlso: { url: '/blog/posts/european-nomad-tax-playbook', label: 'European nomad tax playbook' },
+      "Worldwide income. Under Spain’s ordinary personal income tax rules, residents generally declare income from Spain and abroad. For example, a Spanish tax resident with a rental property abroad may need to report the rent in Spain. Check the applicable treaty for taxing rights and double-tax relief.",
+    seeAlso: { url: "https://sede.agenciatributaria.gob.es/Sede/ciudadanos-familias-personas-discapacidad/residentes-rentas-procedentes-extranjero/obtencion-rentas-extranjeras-reglas-generales.html", label: "Agencia Tributaria on foreign income" },
   },
   {
     id: 'beckham-law',
@@ -94,7 +94,16 @@ const terms = [
     name: 'Centro de intereses vitales (centre of vital interests)',
     section: 'Tax exit tests',
     definition:
-      'Civil-law concept used in OECD tie-breaker rules to identify the country where your "centre of vital interests" (family, economic activity, social bonds) is located. When two countries both claim you as resident, this is one of the tests used to break the tie.',
+      "In treaties using the OECD model, someone with a permanent home in both countries may need to establish where their personal and economic ties are closer. An adviser can weigh where their family lives alongside their employment, business and other connections. The wording of the applicable treaty controls.",
+    seeAlso: { url: "/blog/glossary#tie-breaker-rule", label: "How a treaty tie-breaker works" },
+  },
+  {
+    id: 'habitual-abode',
+    name: 'Habitual abode',
+    section: 'Tax exit tests',
+    definition:
+      "Where you regularly live as part of your normal routine. Under an applicable tax treaty, this can help resolve dual residence when earlier tests leave the position open. Compare the pattern, frequency and length of stays across both countries. Repeated visits to the same home can tell a different story from a single long holiday, even when the total days match.",
+    seeAlso: { url: 'https://www.oecd.org/content/dam/oecd/en/publications/reports/2017/12/model-tax-convention-on-income-and-on-capital-condensed-version-2017_g1g8769b/mtc_cond-2017-en.pdf', label: 'OECD Model Tax Convention, commentary on Article 4' },
   },
   {
     id: 'tie-breaker-rule',
@@ -234,7 +243,7 @@ const jsonLd = {
     <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Glossary</p>
     <h1 class="font-heading font-bold text-cream-100 mb-5 text-4xl sm:text-5xl tracking-[-0.01em]">Plain-English tax-residency terms</h1>
     <p class="text-base sm:text-lg text-cream-soft/85 mb-12 max-w-[640px] font-body leading-relaxed">
-      Tax residency for nomads has more jargon than it deserves. Here's the plain-English version of every term I use across this blog. Each definition links to the post where it actually matters.
+      If a bank asks for a RUC or an accountant mentions habitual abode, the distinction matters. Look up the term below, then follow the guide or official source to see how it applies to your situation.
     </p>
 
     <!-- Big cream card holds all the term definitions for readable scanning -->

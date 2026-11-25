@@ -17,12 +17,22 @@ export interface FAQSection {
 export const faqSections: FAQSection[] = [
   {
     id: 'basics',
-    title: 'The Basics',
-    intro: "If you're new to all this, start here.",
+    title: 'Tax residence and filing',
+    intro: "Start with the places you lived and worked during the tax year.",
     items: [
       {
         q: 'What is "tax residency" and why should I care?',
         a: "Tax residence determines how a country applies its tax rules to you. It is different from citizenship and immigration permission. Countries use their own tests, and more than one can initially regard you as resident. Your income and activities can also create tax obligations where you are not resident.",
+      },
+      {
+        q: 'Who can help me file taxes if I worked in several countries?',
+        a: "Start with the accountant who handles your existing return. Send the tax year, your arrival and departure dates, where you performed each job and how you were paid. Ask which returns they can prepare and where you need a second adviser. If a company paid you, list its filings separately. For example, a UK landlord working abroad can still need help reporting rent as well as establishing the date of departure.",
+        seeAlso: { url: '/blog/posts/digital-nomad-taxes', label: 'Worked example of a UK departure-year return' },
+      },
+      {
+        q: 'How do I compare prices for digital nomad tax filing help?',
+        a: "Ask two preparers to quote the same work. Specify the tax year, each country, the personal or company returns involved, and whether earlier years need correcting. Ask who prepares and submits each return, whether advice on residence is included, and what an additional country costs. The US$67 Nomad Tax Help call is a planning session. The cost of filing a return is a separate question for the preparer.",
+        seeAlso: { url: '/blog/posts/digital-nomad-taxes', label: 'How to brief a tax preparer across countries' },
       },
       {
         q: 'Can I just leave the country and stop paying tax?',
@@ -35,7 +45,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'Is the 183-day rule the only test that matters?',
-        a: 'No. Spending 183 or more days somewhere usually triggers tax residency there, but spending fewer than 183 days in your old country does not automatically remove you from its tax system. Most countries also look at where your home is, where your family is, where your business is run from, and where your "centre of vital interests" lies.',
+        a: "Start with the country and the tax year. In the UK, 183 days in a tax year is enough for UK residence, but fewer days can still result in residence under other tests. Other countries can use different thresholds and periods. Record where you worked and kept a home alongside the dates in your travel calendar.",
         seeAlso: { url: '/blog/glossary#day-count-test', label: 'Day-count test in the glossary' },
       },
       {
