@@ -288,15 +288,63 @@ const jsonLd = {
           ['www.bing.com', 'bing.com', 'duckduckgo.com', 'search.brave.com', 'search.yahoo.com', 'www.ecosia.org'].includes(host)) return 'search';
       return 'other';
     }
-    function markGuideLink(event: MouseEvent) {
-      if (!(event.target instanceof Element)) return;
-      const link = event.target.closest<HTMLAnchorElement>('a[href]');
-      if (!link || link.relList.contains('noreferrer')) return;
+    function offerLink(link: HTMLAnchorElement) {
+      if (link.relList.contains('noreferrer') || link.referrerPolicy === 'no-referrer') return;
       const placement = link.closest('.prose') ? 'article' : link.closest('header') ? 'header' : link.closest('[data-guide-author]') ? 'author' : null;
       if (!placement) return;
       const destination = new URL(link.href);
       if (destination.origin !== location.origin || !['/4', '/call', '/services', '/application'].includes(destination.pathname)) return;
       if (destination.search && !destination.searchParams.has('nth_guide_entry')) return;
+      return { placement, destination };
+    }
+
+    const query = new URLSearchParams(location.search);
+    function canMeasure() {
+      return location.origin === 'https://nomadtaxhelp.com' && !navigator.webdriver &&
+        navigator.doNotTrack !== '1' && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl &&
+        !['qa', 'test', 'preview', 'nth_qa'].some(key => query.has(key));
+    }
+    const viewKey = canMeasure() ? globalThis.crypto?.randomUUID?.() : undefined;
+    const recorded = new Set<string>();
+    function measure(eventType: 'guide_link_clicked' | 'guide_link_visible', placement: string, destination: string) {
+      if (!viewKey || !canMeasure()) return;
+      const key = [eventType, placement, destination].join(':');
+      if (recorded.has(key)) return;
+      recorded.add(key);
+      void fetch('/api/funnel-track', {
+        method: 'POST', keepalive: true, credentials: 'omit', referrerPolicy: 'origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventType, viewKey, pagePath: location.pathname.replace(/\/$/, ''), placement, destination }),
+      }).then(response => { if (!response.ok) recorded.delete(key); }).catch(() => recorded.delete(key));
+    }
+    if (viewKey && 'IntersectionObserver' in window) {
+      const inView = new Set<HTMLAnchorElement>();
+      function recordVisible() {
+        if (document.visibilityState !== 'visible') return;
+        for (const link of inView) {
+          const offer = offerLink(link);
+          if (offer && getComputedStyle(link).visibility === 'visible') measure('guide_link_visible', offer.placement, offer.destination.pathname);
+        }
+      }
+      const observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          const link = entry.target as HTMLAnchorElement;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) inView.add(link);
+          else inView.delete(link);
+        }
+        recordVisible();
+      }, { threshold: 0.25 });
+      document.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(link => { if (offerLink(link)) observer.observe(link); });
+      document.addEventListener('visibilitychange', recordVisible);
+    }
+    function markGuideLink(event: MouseEvent) {
+      if (!(event.target instanceof Element) || event.defaultPrevented || event.button > 1) return;
+      const link = event.target.closest<HTMLAnchorElement>('a[href]');
+      if (!link) return;
+      const offer = offerLink(link);
+      if (!offer) return;
+      const { placement, destination } = offer;
+      if (event.isTrusted && document.visibilityState === 'visible') measure('guide_link_clicked', placement, destination.pathname);
       const linkPosition = placement === 'article' ? Array.from(document.querySelectorAll('.prose a[href]')).indexOf(link) + 1 : 0;
       destination.searchParams.set('nth_guide_placement', placement);
       destination.searchParams.set('nth_guide_entry', guideEntry());
