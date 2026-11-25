@@ -12,7 +12,7 @@ export const GET: APIRoute = async () => {
     return `# ${p.data.title}\nURL: ${url}\nAuthor: ${author}\nPublished: ${p.data.publishDate.toISOString().split('T')[0]}\nUpdated: ${(p.data.updatedDate || p.data.publishDate).toISOString().split('T')[0]}\n\n${p.body || ''}\n\n## Sources\n\n${sources}`;
   });
 
-  const body = `# NomadTaxHelp Blog: Full Content\n\nGenerated at build time. All published blog posts in full.\n\n---\n\n${sections.join('\n\n---\n\n')}`;
+  const body = `# Nomad Tax Help Blog: Full Content\n\nGenerated at build time. All published blog posts in full.\n\n---\n\n${sections.join('\n\n---\n\n')}`;
 
   return new Response(body, {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },

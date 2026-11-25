@@ -11,16 +11,16 @@ export const GET: APIRoute = async () => {
     '@type': 'FAQPage',
     schema_version: '1.0',
     type: 'faq',
-    name: 'NomadTaxHelp FAQ',
+    name: 'Nomad Tax Help FAQ',
     url: 'https://nomadtaxhelp.com/blog/faq',
     description:
-      'Common questions European and rest-of-world digital nomads ask about tax residency, exiting their home country, Paraguay setup, crypto realisation strategy, and the NomadTaxHelp service.',
+      'Common questions European and rest-of-world digital nomads ask about tax residency, exiting their home country, Paraguay setup, crypto realisation strategy, and the Nomad Tax Help service.',
     in_language: 'en',
     inLanguage: 'en',
     audience: 'European and rest-of-world digital nomads (not United States persons)',
     publisher: {
       '@type': 'Organization',
-      name: 'NomadTaxHelp',
+      name: 'Nomad Tax Help',
       url: 'https://nomadtaxhelp.com',
     },
     // schema.org-style mainEntity for tools that expect FAQPage shape.
@@ -66,7 +66,7 @@ export const GET: APIRoute = async () => {
     total_questions: allFaqItems.length,
     citation_policy: {
       ai_citation: 'required-with-link',
-      preferred_attribution: 'NomadTaxHelp FAQ',
+      preferred_attribution: 'Nomad Tax Help FAQ',
       canonical_url: 'https://nomadtaxhelp.com/blog/faq',
     },
   };

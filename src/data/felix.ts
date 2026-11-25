@@ -5,7 +5,7 @@ export const felix = {
   name: 'Felix Yanez-Bowker',
   givenName: 'Felix',
   familyName: 'Yanez-Bowker',
-  jobTitle: 'Co-Founder, NomadTaxHelp',
+  jobTitle: 'Co-Founder, Nomad Tax Help',
   description:
     'Felix helps digital nomads and remote entrepreneurs build legal, low-tax setups via Paraguay tax residency and US LLC formation.',
   image: 'https://nomadtaxhelp.com/blog/images/felix.png',
@@ -53,7 +53,7 @@ export const organization = {
 };
 
 export const blogSite = {
-  name: 'NomadTaxHelp Blog',
+  name: 'Nomad Tax Help Blog',
   url: 'https://nomadtaxhelp.com/blog',
   description:
     'Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads.',

@@ -192,16 +192,16 @@ export const faqSections: FAQSection[] = [
   },
   {
     id: 'service',
-    title: 'The NomadTaxHelp Service',
+    title: 'The Nomad Tax Help Service',
     intro: "Who we are, what we do, and what we don't.",
     items: [
       {
-        q: 'What exactly does NomadTaxHelp do?',
+        q: 'What exactly does Nomad Tax Help do?',
         a: 'Premium+ coordinates Paraguay residency, local appointments, US company formation and applications for overseas banking. The written scope sets out the first-year accounting and filing support. Government authorities decide residence and tax-document applications, and each bank decides whether to accept an applicant.',
       },
       {
         q: 'Are you tax advisers?',
-        a: "No. NomadTaxHelp is a facilitator, not a law firm or tax adviser. We don't file your taxes, draft contracts, or give formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational; specifics for your situation should be confirmed with a professional.",
+        a: "No. Nomad Tax Help is a facilitator, not a law firm or tax adviser. We don't file your taxes, draft contracts, or give formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational; specifics for your situation should be confirmed with a professional.",
       },
       {
         q: 'How does the free service consultation differ from the US$67 strategy call?',

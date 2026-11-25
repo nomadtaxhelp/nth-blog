@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   );
 
   return rss({
-    title: 'NomadTaxHelp Blog',
+    title: 'Nomad Tax Help Blog',
     description:
       'Practical guides on tax residency, US LLCs, and international tax exits for digital nomads and remote entrepreneurs.',
     site: context.site!.toString(),

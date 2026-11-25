@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
     })
     .join('\n\n');
 
-  const body = `# NomadTaxHelp Blog
+  const body = `# Nomad Tax Help Blog
 
 > Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. By Felix and Nomad Tax Help.
 
@@ -61,7 +61,7 @@ Premium+ is US$5,950. Flights, accommodation and document translations are separ
 
 ## Most important pages
 
-- About Felix and NomadTaxHelp: https://nomadtaxhelp.com/blog/about
+- About Felix and Nomad Tax Help: https://nomadtaxhelp.com/blog/about
 - Cornerstone setup guide: https://nomadtaxhelp.com/blog/posts/paraguay-tax-residency-guide
 - Frequently asked questions: https://nomadtaxhelp.com/blog/faq
 - Glossary of tax-residency terms: https://nomadtaxhelp.com/blog/glossary

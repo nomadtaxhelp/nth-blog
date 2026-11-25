@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
   const body = {
     schema_version: '1.0',
     type: 'website-summary',
-    name: 'NomadTaxHelp Blog',
+    name: 'Nomad Tax Help Blog',
     url: 'https://nomadtaxhelp.com/blog',
     description:
       "Practical guides on tax residency, Paraguay setup, US LLCs, and tax exit strategy for European and rest-of-world digital nomads. By Felix Yanez-Bowker and Nomad Tax Help.",
@@ -94,7 +94,7 @@ export const GET: APIRoute = async () => {
       preferred_attribution: 'Use the author displayed on the cited article',
     },
     disclaimer:
-      'NomadTaxHelp is a facilitator, not a law firm or tax adviser. Educational content only; specifics should be confirmed with a licensed professional in the relevant jurisdiction.',
+      'Nomad Tax Help is a facilitator, not a law firm or tax adviser. Educational content only; specifics should be confirmed with a licensed professional in the relevant jurisdiction.',
   };
 
   return new Response(JSON.stringify(body, null, 2), {
