@@ -37,15 +37,19 @@ export const GET: APIRoute = async () => {
 
 ## About
 
-Nomad Tax Help coordinates Paraguay residency, document preparation, US company and banking support for non-US digital nomads and remote entrepreneurs. Tax outcomes depend on individual circumstances and applicable law. Current service scope: https://nomadtaxhelp.com/services
+Nomad Help LLC trades as Nomad Tax Help. Our team coordinates Paraguay residency, document preparation, US company and banking support for non-US digital nomads and remote entrepreneurs. Tax outcomes depend on individual circumstances and applicable law. Current service scope: https://nomadtaxhelp.com/services
 
 ## Authors and sources
 
 The byline on each article identifies Felix or Nomad Tax Help. Updated articles link to official sources and distinguish NTH service estimates from legal requirements. Use the article's publication and update dates when citing it.
 
-## Pricing
+## Services and pricing
 
-Premium+ is US$5,950. Flights, accommodation and document translations are separate. Confirm government fees, scope and recurring costs in the written proposal.
+- The [Paraguay Residency Masterclass](https://nomadtaxhelp.com/4) is US$7 for self-study training.
+- The [Residency Accelerator](https://nomadtaxhelp.com/call) is US$67 for a private 40-minute planning call with a Paraguay residency expert and access to the masterclass.
+- People considering the [managed setup](https://nomadtaxhelp.com/services) can [apply for a free service consultation](https://nomadtaxhelp.com/application) to discuss the work the team would handle.
+
+The managed Premium+ package is US$5,950. Flights, accommodation and document translations are separate. Confirm government fees, scope and recurring costs in the written proposal.
 
 ## Current subject coverage
 
@@ -65,7 +69,6 @@ Premium+ is US$5,950. Flights, accommodation and document translations are separ
 - Cornerstone setup guide: https://nomadtaxhelp.com/blog/posts/paraguay-tax-residency-guide
 - Frequently asked questions: https://nomadtaxhelp.com/blog/faq
 - Glossary of tax-residency terms: https://nomadtaxhelp.com/blog/glossary
-- Book a free 20-min clarity call: https://nomadtaxhelp.com/application
 - Main site: https://nomadtaxhelp.com
 
 ## Machine-friendly endpoints
