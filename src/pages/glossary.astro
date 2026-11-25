@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import BlogBreadcrumb from '../components/ui/BlogBreadcrumb.astro';
 
 // Canonical glossary of every tax-residency term used across the blog.
 // Two purposes:
@@ -229,6 +230,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <article class="max-w-[820px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <BlogBreadcrumb current="Glossary" />
     <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Glossary</p>
     <h1 class="font-heading font-bold text-cream-100 mb-5 text-4xl sm:text-5xl tracking-[-0.01em]">Plain-English tax-residency terms</h1>
     <p class="text-base sm:text-lg text-cream-soft/85 mb-12 max-w-[640px] font-body leading-relaxed">

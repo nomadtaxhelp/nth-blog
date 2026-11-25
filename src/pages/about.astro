@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import BlogBreadcrumb from '../components/ui/BlogBreadcrumb.astro';
 import { felix, organization } from '../data/felix';
 import { getCollection } from 'astro:content';
 
@@ -56,6 +57,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <article class="max-w-[820px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <BlogBreadcrumb current="About" />
     <!-- Hero card: cream surface with photo + name -->
     <div class="surface-cream p-6 sm:p-10 mb-12" style="box-shadow: 0 14px 30px -12px rgba(0,0,0,0.4);">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../components/layout/BaseLayout.astro';
+import BlogBreadcrumb from '../../components/ui/BlogBreadcrumb.astro';
 import CategoryPill from '../../components/ui/CategoryPill.astro';
 import { getCollection } from 'astro:content';
 
@@ -54,6 +55,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <BlogBreadcrumb current="All posts" />
     <h1 class="font-heading font-bold text-cream-100 mb-6 text-4xl sm:text-5xl tracking-[-0.01em]">Every guide on the blog</h1>
 
     <!-- Category pills -->
