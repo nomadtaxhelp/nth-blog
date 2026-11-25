@@ -13,10 +13,14 @@ const upgrades = await getCollection('upgrades');
     <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Free resources</p>
     <h1 class="font-heading font-bold text-cream-100 mb-3 text-4xl sm:text-5xl tracking-[-0.01em]">Guides and checklists</h1>
     <p class="text-cream-soft/85 mb-10 max-w-lg text-base sm:text-lg leading-relaxed">
-      Free guides and checklists to help you sort your tax setup. Enter your email to get the printable PDF.
+      Compare two residency quotes here, or choose a guide below to receive its printable PDF.
     </p>
 
     <div class="space-y-5">
+      <article class="rounded-xl border border-teal-900/20 bg-white p-6 sm:p-7">
+        <h2 class="font-heading text-xl font-bold mb-2"><a class="underline underline-offset-4" href="/blog/resources/compare-paraguay-residency-quotes">Compare two Paraguay residency quotes</a></h2>
+        <p>Enter each package price, add the costs you would pay separately and see which figures you still need from the provider. You can print a blank or completed worksheet.</p>
+      </article>
       {upgrades.map((upgrade) => (
         <div class="bg-cream-100 text-teal-900 p-6 sm:p-7" style="border-radius: 0.625rem; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.35);">
           <p class="text-xl mb-2" aria-hidden="true">📄</p>

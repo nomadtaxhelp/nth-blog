@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+const title = 'Compare two Paraguay residency quotes';
+const costs = [
+  ['Provider’s package price', 'Use the full price, including any deposit already paid.'],
+  ['Government and identity card fees', 'Add only the official fees you still need to pay separately.'],
+  ['Documents and delivery', 'Include translations, apostilles, certified copies and courier charges.'],
+  ['Travel and appointments', 'Count the trips, hotel nights and local transport for the people in your quote.'],
+  ['Company, banking and filings', 'Include setup charges and recurring fees due within the period you are comparing.'],
+  ['Other agreed costs', 'Include later appointments or a change of residency category only if both quotes cover that stage.'],
+];
+---
+<BaseLayout title={title + ' | Nomad Tax Help'} description="Compare two Paraguay residency quotes side by side. Add fees, travel and ongoing costs, see which figures are missing, and print the worksheet.">
+  <div class="sheet">
+    <nav aria-label="Breadcrumb"><a href="/blog">Blog</a> / <a href="/blog/resources">Free resources</a> / Quote worksheet</nav>
+    <p class="imprint">Nomad Tax Help · nomadtaxhelp.com/blog/resources/compare-paraguay-residency-quotes</p>
+    <h1>{title}</h1>
+    <p class="intro">A lower package price can cost more once you add a second trip, translations or a year of filings. Use your written quotes to work out what you would actually spend with each provider.</p>
+    <p class="instructions">Compare the same number of people, residency stage and period. Enter all amounts in US dollars using the same exchange rate. Enter 0 for a cost you know is included or does not apply. Leave an unconfirmed amount blank.</p>
+    <div class="worksheet" role="region" aria-label="Residency quote comparison">
+      <div class="grid row head">
+        <span>Cost in US dollars</span><strong>Quote A</strong><strong>Quote B</strong>
+      </div>
+      <div class="grid row">
+        <span>Provider name</span>
+        {['A','B'].map(q => <input type="text" aria-label={'Provider name for quote ' + q} placeholder="Optional" maxlength="75" />)}
+      </div>
+      {costs.map(([label,hint],i) => <div class="grid row cost">
+        <div class="label"><strong>{label}</strong><small>{hint}</small></div>
+        {['A','B'].map(q => <input type="number" min="0" max="999999999" step="0.01" inputmode="decimal" aria-label={label + ', quote ' + q} data-quote={q} name={q+i} />)}
+      </div>)}
+      <div aria-live="polite" aria-atomic="true" class="totals">
+        <div class="grid"><strong>Known total</strong>{['A','B'].map(q=><output data-total={q}>—</output>)}</div>
+        <p id="quote-comparison">Fill in the amounts you know to compare the quotes.</p>
+      </div>
+    </div>
+    <noscript><p>You can print the worksheet and total each column by hand.</p></noscript>
+    <div class="actions"><button type="button" id="print-quotes" hidden>Print or save your comparison</button><a href="/blog/pdfs/paraguay-residency-quote-worksheet.pdf" download>Download a blank worksheet (PDF)</a></div>
+    <p class="follow">Before you sign, ask each provider to confirm any blank line in writing. The <a href="/blog/posts/paraguay-tax-residency-cost-2026">Paraguay residency cost guide</a> explains the fee categories, and our <a href="/blog/posts/choose-paraguay-residency-agency">agency comparison guide</a> covers what to ask about personal attendance and follow-up.</p>
+  </div>
+</BaseLayout>
+<script>
+const currencies = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:0,maximumFractionDigits:2});
+const form = document.querySelector<HTMLElement>('.worksheet')!;
+function update(){
+  const totals = ['A','B'].map(q => {
+    const inputs = Array.from(form.querySelectorAll<HTMLInputElement>('[data-quote="'+q+'"]'));
+    const invalid = inputs.some(input => !input.validity.valid);
+    const amounts = inputs.filter(input=>input.value !== '');
+    const missing = inputs.length-amounts.length;
+    const cents = amounts.reduce((total,input)=>total+Math.round(input.valueAsNumber*100),0);
+    form.querySelector<HTMLOutputElement>('[data-total="'+q+'"]')!.value = invalid || !amounts.length ? '—' : currencies.format(cents/100);
+    return {cents,missing,invalid};
+  });
+  const [a,b] = totals;
+  let message;
+  if(a.invalid || b.invalid) message='Check the highlighted amount. Use a positive amount or zero, with up to two decimal places.';
+  else if(a.missing || b.missing) message='Amounts still to confirm: '+a.missing+' for quote A and '+b.missing+' for quote B. The known totals are provisional.';
+  else if(a.cents === b.cents) message='Both quotes have the same total for the costs you entered.';
+  else message='Quote '+(a.cents<b.cents?'A':'B')+' costs '+currencies.format(Math.abs(a.cents-b.cents)/100)+' less for the costs you entered.';
+  document.getElementById('quote-comparison')!.textContent=message;
+}
+form.addEventListener('input',update);
+const printButton=document.getElementById('print-quotes')!;
+printButton.hidden=false;
+printButton.addEventListener('click',()=>window.print());
+</script>
+<style>
+.imprint{display:none}
+.sheet{max-width:54rem;margin:auto;padding:2.5rem 1.25rem 4rem;color:#19382b}
+nav, .follow{font-size:.92rem}a{text-decoration:underline;text-underline-offset:3px}
+h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.04;margin:1.5rem 0 1rem}
+.intro{font-size:1.18rem;line-height:1.55}.instructions,.follow{line-height:1.55;margin:1.2rem 0}
+.worksheet{border:1px solid #adbfb3;border-radius:.75rem;overflow:hidden;background:#fff}
+.grid{display:grid;grid-template-columns:minmax(0,2.4fr) repeat(2,minmax(0,1fr));gap:1rem;align-items:center}
+.row,.totals{padding:1rem 1.2rem}.row+.row{border-top:1px solid #dbe3dd}
+.head,.totals{background:#e8f0e9}.head{font-size:.94rem}.label small{display:block;color:#4a6254;margin-top:.2rem;line-height:1.4}
+input{width:100%;min-width:0;min-height:44px;background:#fff;color:#163528;border:1px solid #798f82;border-radius:.35rem;padding:.5rem;font-size:1rem}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #007247;outline-offset:2px}input:invalid{border-color:#aa3333}
+.totals output{font-weight:700;overflow-wrap:anywhere}.totals p{margin-top:.55rem;font-size:.92rem}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.35rem}
+button{background:#164b36;color:#fff;border:0;border-radius:.4rem;padding:.75rem 1rem;font-weight:600;cursor:pointer}
+@media(max-width:550px){.row,.totals{padding:.75rem}.grid{gap:.5rem;grid-template-columns:minmax(0,1.45fr) repeat(2,minmax(0,1fr))}.label small{font-size:.8rem}.sheet{padding-inline:1rem}}
+@media print{
+  @page{size:A4;margin:13mm}
+  :global(body > :not(main)),nav,.actions{display:none!important}.imprint{display:block;font-size:8pt;margin-bottom:8pt}
+  .sheet{padding:0;max-width:none}.sheet h1{font-size:23pt;margin:0 0 8pt}.intro,.instructions,.follow,.row,.totals{font-size:10pt}
+  .row,.totals{padding:6pt 8pt}.label small{font-size:9pt}.grid{grid-template-columns:minmax(0,2.4fr) repeat(2,minmax(0,1fr))}
+  input{min-height:23pt}.worksheet{break-inside:avoid}.follow{margin-bottom:0}
+}
+</style>
