@@ -21,6 +21,7 @@ const posts = defineCollection({
       contentUrl: z.string().url(),
       poster: z.string().url(),
       captions: z.string().url(),
+      visualGuide: z.boolean().optional(),
       uploadDate: z.coerce.date(),
       duration: z.string(),
     }).optional(),

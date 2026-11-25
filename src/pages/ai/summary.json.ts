@@ -55,7 +55,13 @@ export const GET: APIRoute = async () => {
       'Comparing residence routes without conflating personal and corporate tax',
       'Tax-residency certificates (TRC), RUC, cédula, apostilles',
     ],
-    pricing_summary: { premium_plus: { price_usd: 5950, url: 'https://nomadtaxhelp.com/services' }, currency: 'USD', travel_and_accommodation: 'Separate' },
+    pricing_summary: {
+      currency: 'USD',
+      masterclass: { price_usd: 7, scope: 'Self-study training', url: 'https://nomadtaxhelp.com/4' },
+      residency_accelerator: { price_usd: 67, scope: 'Training and a private 40-minute strategy call', url: 'https://nomadtaxhelp.com/call' },
+      premium_plus: { price_usd: 5950, scope: 'Managed Paraguay setup', url: 'https://nomadtaxhelp.com/services' },
+      travel_and_accommodation: 'Separate from Premium+',
+    },
     machine_endpoints: {
       summary: 'https://nomadtaxhelp.com/blog/ai/summary.json',
       faq: 'https://nomadtaxhelp.com/blog/ai/faq.json',

@@ -116,7 +116,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'How long does Paraguay residency take to set up?',
-        a: "NTH currently plans around 4–6 days for initial appointments. Residence approval, the cédula, RUC and fiscal certificate are separate later stages. Government processing times are not guaranteed. Confirm your route and current estimates before booking travel.",
+        a: "NTH currently plans around 4–7 days for initial appointments. Residence approval, the cédula, RUC and fiscal certificate are separate later stages. Government processing times are not guaranteed. Confirm your route and current estimates before booking travel.",
       },
       {
         q: 'What does Paraguay residency cost?',
@@ -197,15 +197,15 @@ export const faqSections: FAQSection[] = [
     items: [
       {
         q: 'What exactly does NomadTaxHelp do?',
-        a: 'We facilitate Paraguay tax residency for European and rest-of-world digital nomads. End-to-end: documents, in-country logistics, tax number, residency certificate, and optional US LLC formation. We coordinate with our partner team in Asunción who handle everything on the ground.',
+        a: 'Premium+ coordinates Paraguay residency, local appointments, US company formation and applications for overseas banking. The written scope sets out the first-year accounting and filing support. Government authorities decide residence and tax-document applications, and each bank decides whether to accept an applicant.',
       },
       {
         q: 'Are you tax advisers?',
         a: "No. NomadTaxHelp is a facilitator, not a law firm or tax adviser. We don't file your taxes, draft contracts, or give formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational; specifics for your situation should be confirmed with a professional.",
       },
       {
-        q: 'What is a clarity call?',
-        a: "A call with Felix to discuss your situation, the NTH service and whether the setup fits your plans. It is a service discussion, not a promised personalised tax opinion or a replacement for professional advice in the countries involved.",
+        q: 'How does the free service consultation differ from the US$67 strategy call?',
+        a: "The free consultation is for people considering our managed setup. The US$67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is US$7. Premium+ is our US$5,950 managed service.",
       },
       {
         q: "Why don't you serve US citizens?",

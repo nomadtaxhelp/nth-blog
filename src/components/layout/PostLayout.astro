@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import '../../styles/banking-guide.css';
-import BankingVideo from '../post/BankingVideo.astro';
+import GuideVideo from '../post/GuideVideo.astro';
 import AnswerCapsule from '../post/AnswerCapsule.astro';
 import TableOfContents from '../post/TableOfContents.astro';
 import AuthorByline from '../post/AuthorByline.astro';
@@ -173,7 +173,7 @@ const jsonLd = {
           <span>{readingTime} min read</span>
         </div>
 
-        {data.video && <BankingVideo video={data.video} />}
+        {data.video && <GuideVideo video={data.video} />}
 
         </div>
 
