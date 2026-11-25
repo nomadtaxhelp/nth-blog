@@ -13,7 +13,7 @@ const upgrades = await getCollection('upgrades');
     <p class="font-heading text-amber-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4">Free resources</p>
     <h1 class="font-heading font-bold text-cream-100 mb-3 text-4xl sm:text-5xl tracking-[-0.01em]">Guides and checklists</h1>
     <p class="text-cream-soft/85 mb-10 max-w-lg text-base sm:text-lg leading-relaxed">
-      Free guides and checklists to help you sort your tax setup. Enter your email and we'll send the PDF straight to your inbox.
+      Free guides and checklists to help you sort your tax setup. Enter your email to get the printable PDF.
     </p>
 
     <div class="space-y-5">
@@ -40,10 +40,10 @@ const upgrades = await getCollection('upgrades');
               class="btn-shimmer px-5 py-2 font-heading font-semibold text-sm shrink-0"
               style="border-radius: 0.625rem;"
             >
-              Send it to me
+              Get the PDF
             </button>
           </form>
-          <p class="resource-success hidden text-sm text-green-600 mt-2">Check your email. The guide is on its way.</p>
+          <p class="resource-success hidden text-sm text-green-600 mt-2"><a class="underline font-semibold" href={upgrade.data.pdfUrl} download>Download {upgrade.data.title} (PDF)</a></p>
           <p class="resource-error hidden text-sm text-coral-600 mt-2">Something went wrong. Try again.</p>
         </div>
       ))}
