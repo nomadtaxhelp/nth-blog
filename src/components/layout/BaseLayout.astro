@@ -14,6 +14,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   jsonLd?: object | object[];
+  pageEntity?: { '@type'?: string; mainEntity?: unknown };
   markdownUrl?: string;
   editorial?: boolean;
   noindex?: boolean;
@@ -26,6 +27,7 @@ const {
   ogImage = 'https://nomadtaxhelp.com/brand/nth-social.png?v=20261111',
   ogType = 'website',
   jsonLd,
+  pageEntity,
   markdownUrl,
   editorial = false,
   noindex = false,
@@ -108,7 +110,7 @@ const pageJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'WebSite', '@id': 'https://nomadtaxhelp.com/#website', url: 'https://nomadtaxhelp.com/', name: 'Nomad Tax Help', publisher: { '@id': organizationJsonLd['@id'] }, inLanguage: 'en' },
-    { '@type': collectionPage ? 'CollectionPage' : 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl, name: title, description, inLanguage: 'en', isPartOf: { '@id': 'https://nomadtaxhelp.com/#website' } },
+    { '@type': collectionPage ? 'CollectionPage' : 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl, name: title, description, inLanguage: 'en', isPartOf: { '@id': 'https://nomadtaxhelp.com/#website' }, ...pageEntity },
   ],
 };
 ---

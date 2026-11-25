@@ -24,13 +24,6 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'AboutPage',
-      '@id': 'https://nomadtaxhelp.com/blog/about#aboutpage',
-      url: 'https://nomadtaxhelp.com/blog/about',
-      name: 'About Felix Yanez-Bowker',
-      mainEntity: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' },
-    },
-    {
       '@type': 'Person',
       '@id': 'https://nomadtaxhelp.com/blog/about#felix',
       name: felix.name,
@@ -48,7 +41,7 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Blog', item: 'https://nomadtaxhelp.com/blog/' },
+        { '@type': 'ListItem', position: 1, name: 'Blog', item: 'https://nomadtaxhelp.com/blog' },
         { '@type': 'ListItem', position: 2, name: 'About', item: 'https://nomadtaxhelp.com/blog/about' },
       ],
     },
@@ -59,6 +52,7 @@ const jsonLd = {
 <BaseLayout
   title="About | Nomad Tax Help Blog"
   description="Felix Yanez-Bowker is the co-founder of Nomad Tax Help. He writes about tax residency, US LLCs, and how nomads can build clean, defensible cross-border setups."
+  pageEntity={{ '@type': 'AboutPage', mainEntity: { '@id': 'https://nomadtaxhelp.com/blog/about#felix' } }}
   jsonLd={jsonLd}
 >
   <article class="max-w-[820px] mx-auto px-5 sm:px-8 py-12 sm:py-16">

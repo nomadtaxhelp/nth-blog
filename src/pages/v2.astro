@@ -10,7 +10,7 @@ const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
 const calLink = 'https://nomadtaxhelp.com/application';
 
 // Latest content date — used for dateModified freshness signal.
-const latestDate = sortedPosts[0]?.data.publishDate || new Date();
+const latestUpdate = sortedPosts.map(({ data }) => (data.updatedDate || data.publishDate).toISOString()).sort().at(-1);
 
 // Alternate homepage layout — kept at /v2 after the route swap. The
 // minimalist greeting layout now lives at /. Schema points back at the
@@ -27,9 +27,10 @@ const jsonLd = {
       author: [{ '@id': 'https://nomadtaxhelp.com/blog/about#felix' }, { '@id': 'https://nomadtaxhelp.com/#organization' }],
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
-      dateModified: latestDate.toISOString(),
+      dateModified: latestUpdate,
       blogPost: sortedPosts.slice(0, 6).map((p) => ({
         '@type': 'BlogPosting',
+        '@id': `https://nomadtaxhelp.com/blog/posts/${p.data.slug}#article`,
         headline: p.data.title,
         url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),

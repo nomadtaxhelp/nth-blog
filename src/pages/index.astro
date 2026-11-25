@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import { felix } from '../data/felix';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -11,7 +12,7 @@ const now = new Date();
 const fourteenDaysAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 
 const calLink = 'https://nomadtaxhelp.com/application';
-const latestDate = sortedPosts[0]?.data.publishDate || new Date();
+const latestUpdate = sortedPosts.map(({ data }) => (data.updatedDate || data.publishDate).toISOString()).sort().at(-1);
 
 // Homepage JSON-LD: Blog + Person. Sitewide
 // Organization schema is emitted separately by BaseLayout.
@@ -28,10 +29,11 @@ const jsonLd = {
       author: [{ '@id': 'https://nomadtaxhelp.com/blog/about#felix' }, { '@id': 'https://nomadtaxhelp.com/#organization' }],
       publisher: { '@id': 'https://nomadtaxhelp.com/#organization' },
       inLanguage: 'en',
-      dateModified: latestDate.toISOString(),
+      dateModified: latestUpdate,
       datePublished: '2026-04-16T00:00:00.000Z',
       blogPost: sortedPosts.map((p) => ({
         '@type': 'BlogPosting',
+        '@id': `https://nomadtaxhelp.com/blog/posts/${p.data.slug}#article`,
         headline: p.data.title,
         url: `https://nomadtaxhelp.com/blog/posts/${p.data.slug}`,
         datePublished: p.data.publishDate.toISOString(),
@@ -47,12 +49,7 @@ const jsonLd = {
       url: 'https://nomadtaxhelp.com/blog/about',
       image: 'https://nomadtaxhelp.com/blog/images/felix.png',
       jobTitle: 'Co-Founder, Nomad Tax Help',
-      sameAs: [
-        'https://www.linkedin.com/in/felix-yanez-bowker-b23270252/',
-        'https://felixyanez.substack.com/',
-        'https://fascinated-princess-801.notion.site/About-Me-54522f72ef6a470aa87711bb889cd30c',
-        'https://nomadtaxhelp.com',
-      ],
+      sameAs: felix.sameAs,
     },
 
   ],
