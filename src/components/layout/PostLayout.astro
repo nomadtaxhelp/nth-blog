@@ -176,12 +176,13 @@ const jsonLd = {
           <span>{readingTime} min read</span>
         </div>
 
+        {isBankingGuide && data.answerCapsule && <p class="mb-6 text-lg leading-relaxed" data-answer-capsule="true">{data.answerCapsule}</p>}
         {data.video && <GuideVideo video={data.video} />}
 
         </div>
 
         <!-- Answer capsule -->
-        {data.answerCapsule && (
+        {!isBankingGuide && data.answerCapsule && (
           <AnswerCapsule text={data.answerCapsule} />
         )}
 

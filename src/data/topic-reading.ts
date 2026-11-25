@@ -81,7 +81,7 @@ export const readingGuides: Record<string, ReadingGuide> = {
     title: 'Banking in Paraguay after the Ueno news',
     introduction: 'If the bank news has made you reconsider a move, start with the briefing. The banking guide and document guide can then help you prepare for a conversation with a bank about your own accounts.',
     articles: {
-      'paraguay-residency-after-ueno': 'Watch the briefing or read the transcript on the difference between holding residency and holding deposits.',
+      'paraguay-residency-after-ueno': 'Read the dated account of why Ueno failed, the payments depositors received and what changed for residents. Felix’s banking video and transcript are included.',
       'paraguay-residency-banking': 'Compare the jobs of a personal account and a company account, and review the documents providers can request.',
       'paraguay-residency-ruc-tax-certificate': 'Check which Paraguayan document you have when a bank asks for tax or identity evidence.',
     },

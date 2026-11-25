@@ -56,7 +56,7 @@ const jsonLd = {
 };
 
 const featured = sortedPosts.find(p => p.data.slug.includes('requirements')) || sortedPosts[0];
-const category = (p: typeof sortedPosts[number]) => /bank|llc|crypto/.test(p.data.slug) ? 'Money & business' : /dubai|portugal|europe/.test(p.data.slug) ? 'Comparisons & tax exit' : 'Paraguay residency';
+const category = (p: typeof sortedPosts[number]) => /bank|ueno|llc|crypto/.test(p.data.slug) ? 'Money & business' : /dubai|portugal|europe/.test(p.data.slug) ? 'Comparisons & tax exit' : 'Paraguay residency';
 ---
 
 <BaseLayout editorial title="Paraguay Residency & Tax Guides | Nomad Tax Help" description="Understand Paraguay residency, banking, tax and your options abroad. Practical guides from Felix and the Nomad Tax Help team." jsonLd={jsonLd}>
@@ -65,6 +65,7 @@ const category = (p: typeof sortedPosts[number]) => /bank|llc|crypto/.test(p.dat
  <div class="library-main">
   <section class="library-hero"><div><p class="library-eyebrow">THE NOMAD TAX HELP LIBRARY</p><h1>A clearer path to<br /><em>your life abroad.</em></h1><p class="library-intro">Paraguay residency. Your tax position. A setup that works together. Get the information to make your next move with confidence.</p><a class="library-text-link" href="#guides">Explore the guides <span aria-hidden="true">↓</span></a></div><aside class="library-feature"><img src="/blog/images/library-asuncion.webp" alt="Asunción skyline at dusk beside the Paraguay River" width="800" height="533" fetchpriority="high" /><div><span class="library-eyebrow">START HERE · PARAGUAY RESIDENCY</span><h2><a href={`/blog/posts/${featured.data.slug}`}>{featured.data.title}</a></h2><a class="library-text-link" href={`/blog/posts/${featured.data.slug}`}>Read the guide <span aria-hidden="true">↗</span></a></div></aside></section>
   <div class="library-editor"><img src="/blog/images/felix.png" alt="Felix Yanez-Bowker" width="48" height="48" loading="lazy" /><p><strong>From Felix & the Nomad Tax Help team</strong><span>Practical explanations. Official sources linked. Clear next steps.</span></p><a href="/blog/about">Meet the team <span aria-hidden="true">↗</span></a></div>
+  <p class="library-intro"><strong>Paraguay banking update · 25 November 2026</strong><br /><a class="library-text-link" href="/blog/posts/paraguay-residency-after-ueno">What happened to Ueno Bank, who got paid and what it means for residency</a></p>
   <section id="guides" class="library-guides"><div class="library-section-heading"><div><p class="library-eyebrow">MAKE AN INFORMED MOVE</p><h2>Start with your question.</h2></div><label class="library-search"><span class="sr-only">Search guides</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="guide-search" type="search" placeholder="Search residency, banking, tax…" /></label></div>
    <div class="library-filters" role="group" aria-label="Filter guides">{['All guides','Paraguay residency','Money & business','Comparisons & tax exit'].map((label,i)=><button type="button" data-filter={label} aria-pressed={i===0}>{label}</button>)}</div>
    <p id="guide-count" class="library-count" aria-live="polite">{sortedPosts.length} guides</p>
