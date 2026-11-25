@@ -5,6 +5,15 @@ type ReadingGuide = {
 };
 
 export const readingGuides: Record<string, ReadingGuide> = {
+  ruc: {
+    title: 'Which Paraguayan tax document is your bank asking for?',
+    introduction: 'Start with the wording of the request. If your bank wants an identification number, a signed declaration or an official certificate covering a particular period, you may need three different records.',
+    articles: {
+      'paraguay-residency-ruc-tax-certificate': 'Identify the document and the office that issues it before making an appointment.',
+      'bank-tax-residency-self-certification-paraguay': 'Work through the individual self-certification form, including a pending tax number or more than one country of tax residence.',
+      'paraguay-residency-banking': 'Prepare identity, address and business-activity evidence for a personal or company account.',
+    },
+  },
   uk: {
     title: 'Leaving the UK and preparing for Paraguay',
     introduction: 'If your next tax return, your limited company and your Paraguay application all depend on the same move, it helps to divide the work. Pick the guide for the decision you need to make first.',
