@@ -5,6 +5,26 @@ type ReadingGuide = {
 };
 
 export const readingGuides: Record<string, ReadingGuide> = {
+  uk: {
+    title: 'Leaving the UK and preparing for Paraguay',
+    introduction: 'If your next tax return, your limited company and your Paraguay application all depend on the same move, it helps to divide the work. Pick the guide for the decision you need to make first.',
+    articles: {
+      'leaving-the-uk-tax-checklist': 'Start here for your departure date, HMRC notification and records of UK income.',
+      'uk-split-year-treatment-when-leaving': 'Check the three departure cases if you moved during the tax year.',
+      'uk-to-paraguay-tax-residency': 'Use the worked timeline if you intend to keep running a UK limited company.',
+      'paraguay-residency-uk-documents': 'Prepare your UK police record, birth certificate and apostilles before the Paraguay trip.',
+    },
+  },
+  'tax-exit': {
+    title: 'How to document a change of tax residence',
+    introduction: 'A municipality, tax authority and bank can each ask a different question about the same move. Start with the authority where you last lived, then work out what evidence will explain your new position.',
+    articles: {
+      'leaving-the-netherlands-tax-residency': 'Follow the Dutch process for the population register and the departure-year return.',
+      'leaving-the-uk-tax-checklist': 'Use the UK checklist to record departure, subsequent visits and workdays.',
+      'can-digital-nomads-be-tax-resident-nowhere': 'See what changes if you keep travelling instead of settling immediately.',
+      'bank-tax-residency-self-certification-paraguay': 'Match the answer about your tax residence to what a bank asks you to declare.',
+    },
+  },
   cost: {
     title: 'How to budget for residency in Paraguay',
     introduction: 'A package quote is only part of the budget. Use these guides to price the documents and trips, then decide which appointments or paperwork you want someone to handle.',
