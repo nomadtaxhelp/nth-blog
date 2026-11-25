@@ -10,7 +10,7 @@ import { navigationOnly } from './src/data/archive-policy.mjs';
 
 // Keep sitemap dates tied to each page's editorial update, not each deployment.
 const editorialDates = new Map([
-  ['https://nomadtaxhelp.com/blog', '2026-11-25'],
+  ['https://nomadtaxhelp.com/blog/', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/about', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/faq', '2026-11-25'],
   ['https://nomadtaxhelp.com/blog/glossary', '2026-11-25'],
