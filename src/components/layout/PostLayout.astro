@@ -256,7 +256,7 @@ const jsonLd = {
               </p>
             </div>
           </div>
-        </div> : <div class="mt-12 p-6 surface-muted">
+        </div> : <div class="mt-12 p-6 surface-muted" data-guide-author>
           <p class="font-heading font-semibold text-cream-100">Nomad Tax Help</p>
           <p class="text-sm text-cream-soft/80">Practical residency guides using official sources and NTH's published service information. <a href="/services" class="text-amber-600 hover:text-amber-700">Meet the team and see our services</a>.</p>
         </div>}
@@ -290,14 +290,17 @@ const jsonLd = {
     }
     function markGuideLink(event: MouseEvent) {
       if (!(event.target instanceof Element)) return;
-      const link = event.target.closest<HTMLAnchorElement>('.prose a[href]');
+      const link = event.target.closest<HTMLAnchorElement>('a[href]');
       if (!link || link.relList.contains('noreferrer')) return;
+      const placement = link.closest('.prose') ? 'article' : link.closest('header') ? 'header' : link.closest('[data-guide-author]') ? 'author' : null;
+      if (!placement) return;
       const destination = new URL(link.href);
       if (destination.origin !== location.origin || !['/4', '/call', '/services', '/application'].includes(destination.pathname)) return;
       if (destination.search && !destination.searchParams.has('nth_guide_entry')) return;
-      const placement = Array.from(document.querySelectorAll('.prose a[href]')).indexOf(link) + 1;
+      const linkPosition = placement === 'article' ? Array.from(document.querySelectorAll('.prose a[href]')).indexOf(link) + 1 : 0;
+      destination.searchParams.set('nth_guide_placement', placement);
       destination.searchParams.set('nth_guide_entry', guideEntry());
-      if (placement > 0 && placement <= 999) destination.searchParams.set('nth_guide_link', String(placement));
+      if (linkPosition > 0 && linkPosition <= 999) destination.searchParams.set('nth_guide_link', String(linkPosition));
       link.href = destination.href;
     }
     document.addEventListener('click', markGuideLink);
