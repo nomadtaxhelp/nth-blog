@@ -24,7 +24,7 @@ interface Props {
 
 const { post, headings, relatedPosts = [] } = Astro.props;
 const { data } = post;
-const readingGuide = Object.entries(readingGuides).find(([, guide]) => Object.keys(guide.articles)[0] === data.slug);
+const relatedTopics = Object.entries(readingGuides).filter(([, guide]) => Object.keys(guide.articles)[0] === data.slug);
 const isBankingGuide = data.slug === "paraguay-residency-after-ueno";
 
 const categoryLabels: Record<string, string> = {
@@ -194,8 +194,13 @@ const jsonLd = {
         <div class="post-reading bg-cream-100 text-teal-900 mt-10 p-6 sm:p-10" style="border-radius: 0.625rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);">
           <div class="prose">
             <slot />
-            {readingGuide && (
-              <p>For related reading, see <a href={`/blog/tag/${readingGuide[0]}`}>{readingGuide[1].title}</a>.</p>
+            {relatedTopics.length > 0 && (
+              <aside aria-label="Related reading guides">
+                <p>Related reading</p>
+                <ul>{relatedTopics.map(([slug, guide]) => (
+                  <li><a href={`/blog/tag/${slug}`}>{guide.title}</a></li>
+                ))}</ul>
+              </aside>
             )}
             {data.sources.length > 0 && (
               <section aria-label="Sources">

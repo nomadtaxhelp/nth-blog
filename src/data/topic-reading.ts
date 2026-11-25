@@ -86,4 +86,112 @@ export const readingGuides: Record<string, ReadingGuide> = {
       'paraguay-residency-ruc-tax-certificate': 'Check which Paraguayan document you have when a bank asks for tax or identity evidence.',
     },
   },
+  banking: {
+    title: 'Choosing accounts for personal spending and business income',
+    introduction: 'Follow a payment from your client to your company account and then to your personal spending account. These guides explain which provider checks apply along that route and which documents to prepare.',
+    articles: {
+      'paraguay-residency-banking': 'Compare the jobs of different accounts, eligibility checks and transfer costs.',
+      'paraguay-residency-us-llc': 'See which records relate to your company and which relate to you as its owner.',
+      'paraguay-residency-ruc-tax-certificate': 'Check which document you have when a bank asks about your tax residence.',
+    },
+  },
+  comparison: {
+    title: 'How to compare residency options on the same terms',
+    introduction: 'A residence permit, an annual company fee and a personal tax rate answer different questions. Use the same income, travel and budget assumptions when you compare your shortlist.',
+    articles: {
+      'best-tax-residency-digital-nomads': 'Compare several bases using the same work and travel pattern.',
+      'paraguay-vs-dubai-tax-residency': 'Compare the presence, administration and costs of Paraguay and Dubai.',
+      'paraguay-vs-panama-tax-residency': 'Distinguish an investment requirement from a fee or a recurring cost.',
+    },
+  },
+  'foreign-income': {
+    title: 'Tracing where your income comes from',
+    introduction: 'An overseas customer, a foreign bank account and a day spent working abroad are three different facts. Start with the type of income and where the activity took place.',
+    articles: {
+      'paraguay-foreign-income-tax': 'Use the examples to distinguish services, investments and other income.',
+      'paraguay-residency-us-llc': 'Check what changes when a company invoices the customer.',
+      'paraguay-crypto-tax-residency': 'Work through the different records you may need for digital assets.',
+    },
+  },
+  georgia: {
+    title: 'Comparing Georgia with Paraguay for freelance work',
+    introduction: 'If you invoice clients yourself, compare the treatment of that income alongside your travel plans. Georgia’s small-business rules and Paraguay’s source rules require different checks.',
+    articles: {
+      'paraguay-vs-georgia-tax-residency': 'Start with the eligibility, turnover and presence questions for each option.',
+      'paraguay-foreign-income-tax': 'Examine where your freelance work takes place on the Paraguay side.',
+      'best-tax-residency-digital-nomads': 'Compare another base if neither route suits your year.',
+    },
+  },
+  legitimacy: {
+    title: 'Checking official rules and a provider’s claims',
+    introduction: 'If a quote promises residency and a particular tax result, verify those parts separately. These guides show where to read the official rules, what each document establishes and what to ask the provider in writing.',
+    articles: {
+      'is-paraguay-tax-residency-legit': 'Review the legal basis and the limits of a residency claim.',
+      'paraguay-residency-ruc-tax-certificate': 'Check what a residence permit, cédula, RUC and tax certificate each document.',
+      'choose-paraguay-residency-agency': 'Test a proposed scope of work against specific documents and responsibilities.',
+    },
+  },
+  nhr: {
+    title: 'What to review as an existing Portuguese NHR period ends',
+    introduction: 'If you already have NHR status, start with the dates in your own approval. The guides below address what to review before a move and how to compare staying in Portugal with establishing another base.',
+    articles: {
+      'portugal-nhr-replacement-2026': 'Find the section on existing NHR holders and the distinction between NHR and IFICI.',
+      'european-nomad-tax-playbook': 'List the home, work and family connections relevant to an exit review.',
+      'paraguay-tax-residency-cost-2026': 'Build a comparison budget for a Paraguay move, including travel and recurring costs.',
+    },
+  },
+  'nomad-setup': {
+    title: 'Planning the paperwork before a move to Paraguay',
+    introduction: 'Build a plan you can use before buying flights. Start with the documents you can obtain from abroad, work out when you need to attend in person and decide what you want help arranging.',
+    articles: {
+      'paraguay-residency-requirements': 'Prepare a checklist based on nationality and previous places of residence.',
+      'paraguay-residency-days-and-timeline': 'Separate the appointment trip from the later processing stages.',
+      'paraguay-residency-diy-vs-agency': 'Decide who will check the documents and follow up after submission.',
+    },
+  },
+  'nomad-tax': {
+    title: 'Working out where a travelling freelancer may owe tax',
+    introduction: 'Before choosing a new base, make a calendar of your working days and note who invoices each client. Use that picture to investigate your current position and the countries you are considering.',
+    articles: {
+      'digital-nomad-taxes': 'Start with where you live, work and maintain ties.',
+      'european-nomad-tax-playbook': 'Review the records to take to your home-country adviser.',
+      'paraguay-foreign-income-tax': 'Check how Paraguay approaches the source of freelance income.',
+    },
+  },
+  paraguay: {
+    title: 'Where to start with Paraguayan residency',
+    introduction: 'The residency route, the budget for your trip and your tax documentation are separate planning decisions. Start with these three guides and follow the subject that matches your next decision.',
+    articles: {
+      'paraguay-tax-residency-guide': 'See the route from initial preparation through later registrations.',
+      'paraguay-tax-residency-cost-2026': 'Estimate the initial and continuing cost for your own route.',
+      'paraguay-residency-ruc-tax-certificate': 'Identify what each document can demonstrate when someone asks for proof.',
+    },
+  },
+  'territorial-tax': {
+    title: 'Checking territorial taxation against your actual work',
+    introduction: 'Where you are registered and where you perform the work can lead to different tax questions. Work through source rules, residence documents and any obligations you retain in another country.',
+    articles: {
+      'paraguay-foreign-income-tax': 'Apply the source rules to each income stream.',
+      'paraguay-residency-ruc-tax-certificate': 'Distinguish evidence of registration from evidence about the source of income.',
+      'european-nomad-tax-playbook': 'Check which obligations may continue in your previous country.',
+    },
+  },
+  'us-llc': {
+    title: 'Running a US LLC alongside a Paraguay base',
+    introduction: 'Start with the company you already have, the name on your contracts and the account that receives customer payments. Use those details to assess formation, filing and banking questions together.',
+    articles: {
+      'paraguay-residency-us-llc': 'Review ownership, US filings and how your activity affects the analysis.',
+      'paraguay-residency-banking': 'Check what the bank needs from the business and its owners.',
+      'paraguay-foreign-income-tax': 'Trace the income separately from the location of the account.',
+    },
+  },
+  visa: {
+    title: 'Choosing the right immigration route for remote work in Paraguay',
+    introduction: 'If you arrived looking for a digital nomad visa, establish which immigration category actually fits your circumstances. Then check the document list and what it takes to keep your status while travelling.',
+    articles: {
+      'paraguay-digital-nomad-visa': 'Understand the difference between a visitor stay and an ordinary residence application.',
+      'paraguay-residency-requirements': 'Check the documents for your route before making travel arrangements.',
+      'maintaining-paraguay-residency': 'Plan for absence rules and the later permanent-residency stage.',
+    },
+  },
 };
