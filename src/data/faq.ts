@@ -215,7 +215,7 @@ export const faqSections: FAQSection[] = [
       },
       {
         q: 'How does the free service consultation differ from the $67 strategy call?',
-        a: "The free consultation is for people considering our managed setup. The $67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is $7. Premium+ is our $5,950 managed service.",
+        a: "The free consultation is for people considering our managed setup. The $67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is $17. Premium+ is our $5,950 managed service.",
       },
       {
         q: "Why don't you serve US citizens?",
