@@ -47,7 +47,7 @@ The byline on each article identifies Felix or Nomad Tax Help. Updated articles 
 
 - The [Paraguay Residency Masterclass](https://nomadtaxhelp.com/4) is $17 for self-study training.
 - The [Residency Accelerator](https://nomadtaxhelp.com/call) is $67 for a private 40-minute planning call with a Paraguay residency expert and access to the masterclass.
-- People considering the [managed setup](https://nomadtaxhelp.com/services) can [apply for a free service consultation](https://nomadtaxhelp.com/application) to discuss the work the team would handle.
+- People considering the [managed setup](https://nomadtaxhelp.com/services) discuss the work the team would handle in the same [$67 consultation](https://nomadtaxhelp.com/call).
 
 The managed Premium+ package is $5,950. Flights, accommodation and document translations are separate. Confirm government fees, scope and recurring costs in the written proposal.
 

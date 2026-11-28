@@ -40,7 +40,8 @@ const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog
 const posthogScript = posthogKey
   ? `<script>!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture identify alias group reset register register_once unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_distinct_id get_session_id get_session_replay_url onFeatureFlags getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags setPersonProperties getGroups resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags startSessionRecording stopSessionRecording captureException loadToolbar".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHost)},persistence:"memory",autocapture:true,capture_pageview:true,capture_pageleave:true});
 
-// Conversion event tracking — fires named events for clarity_call_click and
+// Conversion event tracking — fires named events for clarity_call_click (kept as
+// the event name; it now means a click to the $67 consultation at /call) and
 // health_check_click so the PostHog funnel can show "page view -> CTA click"
 // without having to filter by element selector. Location property tells you
 // WHERE on the page the user converted (header, footer, sidebar, exit-intent,
@@ -56,7 +57,7 @@ document.addEventListener("click", function(e) {
                  link.closest("aside") ? "sidebar" :
                  link.closest(".prose") ? "inline-cta" :
                  "hero-or-page";
-  if (href.indexOf("nomadtaxhelp.com/application") !== -1) {
+  if (/nomadtaxhelp\.com\/call(?:[?#]|$)/.test(href)) {
     posthog.capture("clarity_call_click", { location: location, page: path });
   } else if (href.indexOf("nomadtaxhelp.com/health-check") !== -1) {
     posthog.capture("health_check_click", { location: location, page: path });

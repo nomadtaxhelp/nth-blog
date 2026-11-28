@@ -214,8 +214,8 @@ export const faqSections: FAQSection[] = [
         a: "No. Nomad Tax Help is a facilitator, not a law firm or tax adviser. We don't file your taxes, draft contracts, or give formal legal opinions. We coordinate with licensed partners who do. Everything on this blog is educational; specifics for your situation should be confirmed with a professional.",
       },
       {
-        q: 'How does the free service consultation differ from the $67 strategy call?',
-        a: "The free consultation is for people considering our managed setup. The $67 Residency Accelerator includes the training and a private 40-minute strategy call about your own Paraguay plan. The self-study masterclass on its own is $17. Premium+ is our $5,950 managed service.",
+        q: 'What do the $17 masterclass and the $67 consultation each include?',
+        a: "The $17 masterclass is self-study training that walks you through the residency steps. The $67 consultation is a private 40-minute call with a Paraguay residency expert about your own plan, and it includes the masterclass. If you are considering our managed setup, you discuss it in that same consultation. Premium+ is our $5,950 managed service.",
       },
       {
         q: "Why don't you serve US citizens?",

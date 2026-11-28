@@ -7,7 +7,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.dat
 const featuredPost = sortedPosts.find((p) => p.data.featured) || sortedPosts[0];
 const recentPosts = sortedPosts.filter((p) => p !== featuredPost).slice(0, 6);
 
-const calLink = 'https://nomadtaxhelp.com/application';
+const calLink = 'https://nomadtaxhelp.com/call';
 
 // Latest content date — used for dateModified freshness signal.
 const latestUpdate = sortedPosts.map(({ data }) => (data.updatedDate || data.publishDate).toISOString()).sort().at(-1);
@@ -89,7 +89,7 @@ const jsonLd = {
           class="btn-shimmer inline-flex items-center px-8 py-3.5 font-heading font-semibold no-underline text-base"
           style="border-radius: 0.625rem;"
         >
-          Book a Call
+          Book your consultation for $67
         </a>
       </div>
     </div>
@@ -160,7 +160,7 @@ const jsonLd = {
         Need help with your tax setup?
       </p>
       <p class="font-body text-teal-900/75 mb-7 mx-auto max-w-[480px] text-base">
-        We can have a 1-1 call, explore your situation and point you towards a more tax-efficient setup.
+        Book a 40-minute consultation with an expert for $67 to explore your situation and find a more tax-efficient setup.
       </p>
       <a
         href={calLink}
@@ -169,7 +169,7 @@ const jsonLd = {
         class="btn-shimmer inline-flex items-center font-heading font-semibold no-underline text-base"
         style="padding: 14px 32px; border-radius: 0.625rem;"
       >
-        Let's Chat ☎️
+        Book your consultation for $67
       </a>
     </section>
   </div>

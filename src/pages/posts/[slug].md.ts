@@ -23,7 +23,7 @@ export const GET: APIRoute = async ({ props }) => {
     '',
     'Nomad Tax Help is not a tax or legal adviser. We coordinate with licensed partners. Educational content only. Confirm specifics with a professional.',
     '',
-    'Book a free clarity call: https://nomadtaxhelp.com/application',
+    'Book a 40-minute consultation with an expert for $67: https://nomadtaxhelp.com/call',
     'Main site: https://nomadtaxhelp.com',
     '',
   ].join('\n');

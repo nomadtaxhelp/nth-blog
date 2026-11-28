@@ -58,8 +58,8 @@ export const GET: APIRoute = async () => {
     ],
     pricing_summary: {
       currency: 'USD',
-      masterclass: { price_usd: 7, scope: 'Self-study training', url: 'https://nomadtaxhelp.com/4' },
-      residency_accelerator: { price_usd: 67, scope: 'Training and a private 40-minute strategy call', url: 'https://nomadtaxhelp.com/call' },
+      masterclass: { price_usd: 17, scope: 'Self-study training', url: 'https://nomadtaxhelp.com/4' },
+      residency_accelerator: { price_usd: 67, scope: 'A private 40-minute consultation with a Paraguay residency expert, with the training included; also where the managed setup is discussed', url: 'https://nomadtaxhelp.com/call' },
       premium_plus: { price_usd: 5950, scope: 'Managed Paraguay setup', url: 'https://nomadtaxhelp.com/services' },
       travel_and_accommodation: 'Separate from Premium+',
     },
@@ -83,7 +83,7 @@ export const GET: APIRoute = async () => {
     },
     contact: {
       email: organization.email,
-      clarity_call: 'https://nomadtaxhelp.com/application',
+      consultation: 'https://nomadtaxhelp.com/call',
       main_site: 'https://nomadtaxhelp.com',
     },
     citation_policy: {
